@@ -24,7 +24,6 @@ class CreateProductsTable extends Migration
             $table->string('description');
             $table->integer('quantity');
             $table->string('language');
-            $table->date('inputDay');
         });
     }
 

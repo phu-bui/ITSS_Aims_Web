@@ -1,7 +1,11 @@
-id,product_sku,brand_id,slug,name,image,price,cost_price,short_description,long_description,quantity,status
-1,ao-phong-nam,1,ao-phong-oversized-volkath,ÁO PHÔNG OVERSIZED VOLKATH,https://product.hstatic.net/1000299894/product/1.2.02.3.09.002.220.01.10100011__1__5cf631eaf3bf4a028459016a9029d571.jpg,25300,28990,short_description,long_description,5,1
-2,ao-phong-nam,1,ao-phong-oversized,ÁO PHÔNG OVERSIZE,https://product.hstatic.net/1000299894/product/1.0.02.2.02.002.220.01.10200011__1__d3f3c142a27141d58b07b39e3f758d6e.jpg,300000,350000,short_description,Áo phông nam Boozilla in Starwars,1,1
-3,ao-phong-nam,1,ao-phong-oversized,ÁO PHÔNG OVERSIZE,https://product.hstatic.net/1000299894/product/1.2.02.3.18.002.220.23.10100011__1__1ac55f02578d471796ac34dff91669d4.jpg,300000,350000,short_description,Áo phông nam Boozilla in Starwars,1,1
-4,ao-phong-nam,1,ao-phong-oversized-volkath,ÁO PHÔNG OVERSIZED VOLKATH,https://product.hstatic.net/1000299894/product/1.2.02.3.09.002.220.01.10100011__1__5cf631eaf3bf4a028459016a9029d571.jpg,25300,28990,short_description,long_description,5,1
-5,ao-phong-nam,1,ao-phong-oversized,ÁO PHÔNG OVERSIZE,https://product.hstatic.net/1000299894/product/1.0.02.2.02.002.220.01.10200011__1__d3f3c142a27141d58b07b39e3f758d6e.jpg,300000,350000,short_description,Áo phông nam Boozilla in Starwars,1,1
-6,ao-phong-nam,1,ao-phong-oversized,ÁO PHÔNG OVERSIZE,https://product.hstatic.net/1000299894/product/1.2.02.3.18.002.220.23.10100011__1__1ac55f02578d471796ac34dff91669d4.jpg,300000,350000,short_description,Áo phông nam Boozilla in Starwars,1,1
+productId,categoryId,idGood,title,value,image,price,description,quantity,language
+1,1,1,Combo Bí Mật Tư Duy Triệu Phú (Mới Nhất - 2016),304,https://salt.tikicdn.com/cache/200x200/media/catalog/product/7/_/7_10_2_1.u547.d20160408.t112901.jpg,304,1,1,1
+2,1,1,"Bộ: Mặt Dày Tâm Đen- Lãnh Đạo Bằng Câu Hỏi - 7 Câu Hỏi ""Thần Kỳ"" Của Mọi Sếp Giỏi",309,https://salt.tikicdn.com/cache/200x200/ts/product/3e/5e/8a/b7ccc81599336118914688e3da2fb7e5.jpg,309,1,1,1
+3,1,1,Combo Không Thể Thiếu Cho Những Nhân Viên Chuyên Nghiệp: Kỹ Năng Viết Báo Cáo Hiệu Quả + Kỹ Năng Lập Kế Hoạch Hiệu Quả (những bí quyết để từng bước thăng tiến trong công việc),164,https://salt.tikicdn.com/cache/200x200/ts/product/43/e4/e6/b1bc1888da98b108bd68da1229f18fec.jpg,164,1,1,1
+4,1,1,Gia Tộc Morgan - Một Triều Đại Ngân Hàng Mỹ Và Sự Trỗi Dậy Của Nền Tài Chính Hiện Đại,424,https://salt.tikicdn.com/cache/200x200/ts/product/5d/8d/4d/9ee0443157de2e51c013ff659c3e374f.jpg,424,1,1,1
+5,1,1,Nhất định phải kinh doanh cái gì đó,179,https://salt.tikicdn.com/cache/200x200/ts/product/61/41/03/d1150a2835d2495aee950fee2aeba5a4.jpg,179,1,1,1
+6,1,1,Combo Đánh Bại Sự Trì Trệ Của Bản Thân: Kỹ Năng Bán Hàng Hiệu Quả + Quản Lý Công Việc Hiệu Quả Theo Phong Cách Người Nhật (có đạt được thành công và tạo dấu ấn trong sự nghiệp hay không là tùy thuộc vào bạn),150,https://salt.tikicdn.com/cache/200x200/ts/product/68/b2/5a/9aa0ac6d9e2524d96670d88c6c08b6b5.jpg,150,1,1,1
+7,1,1,Hiệu Ứng IKEA Và Hành Trình Chinh Phục Thế Giới,188,https://salt.tikicdn.com/cache/200x200/ts/product/fe/ec/07/22bf265fe78207e3bc9822244cf8ee0d.jpg,188,1,1,1
+8,1,1,Combo Sách Bài Học Kinh Doanh Hay : Bước Đi Ngẫu Nhiên Trên Phố Wall + Donald Trump Chiến Lược Đầu Tư Bất Động Sản ( Tặng Kèm Postcard HAPPY LIFE ),222,https://salt.tikicdn.com/cache/200x200/ts/product/87/05/d0/059be27a9faf26428fbf965dad2218e2.jpg,222,1,1,1
+9,1,1,Khát Vọng Việt: Vì Sao Đất Nước Ta Còn Nghèo?,85,https://salt.tikicdn.com/cache/200x200/media/catalog/product/b/i/bia_khat-vong-viet.u5131.d20170505.t122106.404670.jpg,85,1,1,1
+10,1,1,Để Doanh Nghiệp Thành Công Trong Thế Giới Phẳng,11,https://salt.tikicdn.com/cache/200x200/media/catalog/product/i/m/image_895_.jpg,11,1,1,1
