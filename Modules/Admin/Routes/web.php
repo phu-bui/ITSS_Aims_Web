@@ -27,10 +27,10 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin', 'namespace' => '\Modul
         //Category
         Route::get('/categories', 'CategoryController@index')->name('admin.categories.list');
         Route::get('/add-categories', 'CategoryController@add_category')->name('admin.add_category');
-        Route::get('/save-categories', 'CategoryController@')->name('admin.categories.list');
-        Route::get('/categories', 'CategoryController@index')->name('admin.categories.list');
-        Route::get('/categories', 'CategoryController@index')->name('admin.categories.list');
-        Route::get('/categories', 'CategoryController@index')->name('admin.categories.list');
+        Route::post('/save-categories', 'CategoryController@save_category')->name('admin.save_category');
+        Route::get('/edit-categories/{category_id}', 'CategoryController@edit_category')->name('admin.edit_category');
+        Route::post('/update-categories/{category_id}', 'CategoryController@update_category')->name('admin.update_category');
+        Route::get('/delete-categories/{category_id}', 'CategoryController@delete_category')->name('admin.delete_category');
 
 
 

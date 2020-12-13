@@ -8,7 +8,7 @@
                         <i class="pe-7s-box2 icon-gradient bg-happy-itmeo">
                         </i>
                     </div>
-                    <div>Product Management
+                    <div>Category Management
                         <div class="page-title-subheading">
                             <?php
                             $message = Session::get('message');
@@ -33,35 +33,27 @@
                             <table class="mb-0 table">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Image</th>
-                                        <th>Title</th>
-                                        <th>Price</th>
-                                        <th>Value</th>
-                                        <th>Quantity</th>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Type</th>
                                         <th>Update/Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($products as $index => $product)
+                                    @foreach($categories as $index => $category)
                                     <tr>
-                                        <th scope="row">{{$index + 1}}</th>
-                                        <td><img width="60" class="" src="{{$product->image}}" alt=""></td>
-                                        <td>{{$product->title}}</td>
-                                        <td>{{($product->price)}}</td>
-                                        <td>{{($product->value)}}</td>
+                                        <td>{{$category->categoryId}}</td>
+                                        <td>{{($category->categoryName)}}</td>
+                                        @if($category->type == 1)
+                                            <td>PhysicGood</td>
+                                        @else
+                                            <td>EGood</td>
+                                        @endif
                                         <td>
-                                            @if($product->quantity > 0)
-                                                <div class="mb-2 mr-2 badge badge-success">Stocking</div>
-                                            @else
-                                                <div class="mb-2 mr-2 badge badge-danger">Out of stock</div>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <form action="{{route('admin.delete_product', array('product_id'=>$product->productId))}}">
-                                                <button class="mb-2 mr-2 btn-transition btn btn-outline-success" onclick="return confirm('Are you sure you want to delete this product?')" >Delete</button>
+                                            <form action="{{route('admin.delete_category', array('category_id'=>$category->categoryId))}}">
+                                                <button class="mb-2 mr-2 btn-transition btn btn-outline-success" onclick="return confirm('Are you sure you want to delete this category?')" >Delete</button>
                                             </form>
-                                            <form action="{{route('admin.edit_product', array('product_id'=>$product->productId))}}"><button class="mb-2 mr-2 btn-transition btn btn-outline-primary">Detail</button></form>
+                                            <form action="{{route('admin.edit_category', array('category_id'=>$category->categoryId))}}"><button class="mb-2 mr-2 btn-transition btn btn-outline-primary">Detail</button></form>
                                         </td>
                                     </tr>
                                     @endforeach
