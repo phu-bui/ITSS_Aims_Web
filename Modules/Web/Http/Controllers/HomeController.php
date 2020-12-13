@@ -17,9 +17,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $brand_product = DB::table('brands')->orderby('id', 'desc')->get();
-        $all_product = DB::table('products')->where('status', 1)->orderby('id', 'desc')->limit(4)->get();
-        return view('web::home')->with('brand_product', $brand_product)->with('products', $all_product);
+        $category_product = DB::table('categories')->orderby('categoryId', 'desc')->get();
+        $all_product = DB::table('products')->orderby('productId', 'desc')->limit(4)->get();
+        return view('web::home')->with('category_product', $category_product)->with('products', $all_product);
     }
 
     public function checkout() {

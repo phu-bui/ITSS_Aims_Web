@@ -16,13 +16,22 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin', 'namespace' => '\Modul
     Route::group(['middleware' => 'auth.admin'], function() {
         Route::get('/', 'AdminController@index')->name('admin.index');
         Route::get('/logout', 'Auth\LoginController@logout')->name('admin.logout');
-        Route::get('/products', 'ProductController@index')->name('admin.products.list');
 
+        Route::get('/products', 'ProductController@index')->name('admin.products.list');
         Route::get ('/add-products', 'ProductController@add_product')->name('admin.add_product');
         Route::post('/save-products', 'ProductController@save_product')->name('admin.save_product');
         Route::get('/edit-products/{product_id}', 'ProductController@edit_product')->name('admin.edit_product');
         Route::post('/update-products/{product_id}', 'ProductController@update_product')->name('admin.update_product');
         Route::get('/delete-products/{product_id}', 'ProductController@delete_product')->name('admin.delete_product');
+
+        //Category
+        Route::get('/categories', 'CategoryController@index')->name('admin.categories.list');
+        Route::get('/add-categories', 'CategoryController@add_category')->name('admin.add_category');
+        Route::get('/save-categories', 'CategoryController@')->name('admin.categories.list');
+        Route::get('/categories', 'CategoryController@index')->name('admin.categories.list');
+        Route::get('/categories', 'CategoryController@index')->name('admin.categories.list');
+        Route::get('/categories', 'CategoryController@index')->name('admin.categories.list');
+
 
 
 
