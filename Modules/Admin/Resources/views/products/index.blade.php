@@ -35,10 +35,10 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Image</th>
-                                        <th>Name</th>
-                                        <th>Cost Price</th>
+                                        <th>Title</th>
                                         <th>Price</th>
-                                        <th>Status</th>
+                                        <th>Value</th>
+                                        <th>Quantity</th>
                                         <th>Update/Delete</th>
                                     </tr>
                                 </thead>
@@ -47,9 +47,9 @@
                                     <tr>
                                         <th scope="row">{{$index + 1}}</th>
                                         <td><img width="60" class="" src="{{$product->image}}" alt=""></td>
-                                        <td>{{$product->name}}</td>
-                                        <td>{{($product->cost_price)}}</td>
+                                        <td>{{$product->title}}</td>
                                         <td>{{($product->price)}}</td>
+                                        <td>{{($product->value)}}</td>
                                         <td>
                                             @if($product->quantity > 0)
                                                 <div class="mb-2 mr-2 badge badge-success">Stocking</div>
@@ -58,10 +58,10 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <form action="{{route('admin.delete_product', array('product_id'=>$product->id))}}">
+                                            <form action="{{route('admin.delete_product', array('product_id'=>$product->productId))}}">
                                                 <button class="mb-2 mr-2 btn-transition btn btn-outline-success" onclick="return confirm('Are you sure you want to delete this product?')" >Delete</button>
                                             </form>
-                                            <form action="{{route('admin.edit_product', array('product_id'=>$product->id))}}"><button class="mb-2 mr-2 btn-transition btn btn-outline-primary">Detail</button></form>
+                                            <form action="{{route('admin.edit_product', array('product_id'=>$product->productId))}}"><button class="mb-2 mr-2 btn-transition btn btn-outline-primary">Detail</button></form>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -70,7 +70,6 @@
                         </div>
                     </div>
                     <div class="d-block text-center card-footer">
-                        {{ $products->links() }}
                     </div>
                 </div>
             </div>

@@ -30,29 +30,25 @@
                     {{csrf_field()}}
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
-                            <label for="product_sku">Product </label>
-                            <input type="text" class="form-control" id="product_sku" name="product_sku" placeholder="Product  ..." required="">
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="brand_id">Brand</label>
-                            <select id="brand_id" name="brand_id" class="form-control">
-                                @foreach($brand_product as $key => $brand)
-                                    <option value="{{$brand->id}}">{{$brand->brand_name}}</option>
+                            <label for="category_id">Category</label>
+                            <select id="category_id" name="category_id" class="form-control">
+                                @foreach($category_product as $key => $category)
+                                    <option value="{{$category->categoryId}}">{{$category->categoryName}}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <!-- Slug input-->
                         <div class="col-md-4 mb-3">
-                            <label for="slug">Slug</label>
-                            <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug ..." required="">
+                            <label for="slug">Title</label>
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Title ..." required="">
                         </div>
                     </div>
                     <div class="form-row">
                         <!-- Name input-->
                         <div class="col-md-4 mb-3">
-                            <label for="name">Product name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Product name ..." required="">
+                            <label for="name">Product Value</label>
+                            <input type="text" class="form-control" id="value" name="value" placeholder="Value ..." required="">
                         </div>
                         <!-- Input image -->
                         <div class="col-md-4 mb-3">
@@ -60,6 +56,15 @@
                             <input type="text" class="form-control" id="image" name="image" placeholder="Image ..." required="">
                         </div>
 
+
+                    </div>
+                    <div class="form-row">
+
+                        <!-- Short description input-->
+                        <div class="col-md-4 mb-3">
+                            <label for="short_description">Description</label>
+                            <input type="text" class="form-control" id="description" name="description" placeholder="Description..." required="">
+                        </div>
                         <!-- Price input-->
                         <div class="col-md-4 mb-3">
                             <label for="price">Price</label>
@@ -67,34 +72,16 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <!-- Cost Price input-->
-                        <div class="col-md-4 mb-3">
-                            <label for="cost_price">Cost price</label>
-                            <input type="text" class="form-control" id="cost_price" name="cost_price" placeholder="Cost Price..." required="">
-                        </div>
-                        <!-- Short description input-->
-                        <div class="col-md-4 mb-3">
-                            <label for="short_description">Short description</label>
-                            <input type="text" class="form-control" id="short_description" name="short_description" placeholder="Short description..." required="">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <!-- Long description Textarea -->
-                        <div class="col-md-4 mb-3">
-                            <label for="long_description">Long description</label>
-                            <textarea class="form-control" id="long_description" name="long_description"></textarea>
-
-                        </div>
                         <!-- Input vote -->
                         <div class="col-md-4 mb-3">
                             <label for="image">Quantity</label>
-                            <input type="text" class="form-control" id="vote" name="vote" placeholder="Quantity..." required="">
+                            <input type="text" class="form-control" id="quantity" name="quantity" placeholder="Quantity..." required="">
                         </div>
 
                         <!-- Status input-->
                         <div class="col-md-4 mb-3">
-                            <label for="price">Status</label>
-                            <input type="text" class="form-control" id="status" name="status" placeholder="Status..." required="">
+                            <label for="price">Language</label>
+                            <input type="text" class="form-control" id="language" name="language" placeholder="Language..." required="">
                         </div>
                     </div>
 

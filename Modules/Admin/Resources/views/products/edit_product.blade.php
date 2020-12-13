@@ -27,33 +27,29 @@
             <div class="card-body">
                 <h5 class="card-title">Products</h5>
                 @foreach($products as $key => $pro)
-                <form class="form-horizontal" action="{{route('admin.update_product', array('product_id'=>$pro->id))}}" method="post">
+                <form class="form-horizontal" action="{{route('admin.update_product', array('product_id'=>$pro->productId))}}" method="post">
                     {{csrf_field()}}
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
-                            <label for="product_sku">Product sku </label>
-                            <input type="text" class="form-control" id="product_sku" name="product_sku" value="{{$pro->product_sku}}" required="">
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="brand_id">Brand</label>
-                            <select id="brand_id" name="brand_id" class="form-control">
-                                @foreach($brand_product as $key => $brand)
-                                    <option value="{{$brand->id}}">{{$brand->brand_name}}</option>
+                            <label for="category_id">Category</label>
+                            <select id="category_id" name="category_id" class="form-control">
+                                @foreach($category_product as $key => $category)
+                                    <option value="{{$category->categoryId}}">{{$category->categoryName}}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <!-- Slug input-->
                         <div class="col-md-4 mb-3">
-                            <label for="slug">Slug</label>
-                            <input type="text" class="form-control" id="slug" name="slug" value="{{$pro->slug}}" required="">
+                            <label for="slug">Title</label>
+                            <input type="text" class="form-control" id="title" name="title" value="{{$pro->title}}"  required="">
                         </div>
                     </div>
                     <div class="form-row">
                         <!-- Name input-->
                         <div class="col-md-4 mb-3">
-                            <label for="name">Product name</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{$pro->name}}" required="">
+                            <label for="name">Product Value</label>
+                            <input type="text" class="form-control" id="value" name="value" value="{{$pro->value}}" required="">
                         </div>
                         <!-- Input image -->
                         <div class="col-md-4 mb-3">
@@ -61,6 +57,15 @@
                             <input type="text" class="form-control" id="image" name="image" value="{{$pro->image}}" required="">
                         </div>
 
+
+                    </div>
+                    <div class="form-row">
+
+                        <!-- Short description input-->
+                        <div class="col-md-4 mb-3">
+                            <label for="short_description">Description</label>
+                            <input type="text" class="form-control" id="description" name="description" value="{{$pro->description}}" required="">
+                        </div>
                         <!-- Price input-->
                         <div class="col-md-4 mb-3">
                             <label for="price">Price</label>
@@ -68,36 +73,18 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <!-- Cost Price input-->
-                        <div class="col-md-4 mb-3">
-                            <label for="cost_price">Cost price</label>
-                            <input type="text" class="form-control" id="cost_price" name="cost_price" value="{{$pro->cost_price}}" required="">
-                        </div>
-                        <!-- Short description input-->
-                        <div class="col-md-4 mb-3">
-                            <label for="short_description">Short description</label>
-                            <input type="text" class="form-control" id="short_description" name="short_description" value="{{$pro->short_description}}" required="">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <!-- Long description Textarea -->
-                        <div class="col-md-4 mb-3">
-                            <label for="long_description">Long description</label>
-                            <textarea class="form-control" id="long_description" name="long_description" placeholder={{$pro->long_description}}></textarea>
-                        </div>
                         <!-- Input vote -->
                         <div class="col-md-4 mb-3">
                             <label for="image">Quantity</label>
-                            <input type="text" class="form-control" id="vote" name="vote" value="{{$pro->quantity}}" required="">
+                            <input type="text" class="form-control" id="quantity" name="quantity" value="{{$pro->quantity}}" required="">
                         </div>
 
                         <!-- Status input-->
                         <div class="col-md-4 mb-3">
-                            <label for="price">Status</label>
-                            <input type="text" class="form-control" id="status" name="status" value="{{$pro->status}}" required="">
+                            <label for="price">Language</label>
+                            <input type="text" class="form-control" id="language" name="language" value="{{$pro->language}}" required="">
                         </div>
                     </div>
-
 
                     <button class="btn btn-primary" type="submit">Update</button>
                 </form>
