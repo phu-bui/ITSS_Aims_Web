@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-sm-2">
                     <div class="companyinfo">
-                        <h2><span>e</span>-shopper</h2>
+                        <h2><span>Aims</span>-shopper</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
                     </div>
                 </div>
@@ -13,13 +13,13 @@
                         <div class="video-gallery text-center">
                             <a href="">
                                 <div class="iframe-img">
-                                    <img src="{{asset('frontend/images/iframe1.png')}}" alt="" />
+                                    <img src="{{asset('frontend/images/dac_nhan_tam.jpeg')}}" alt="" />
                                 </div>
                                 <div class="overlay-icon">
                                     <i class="fa fa-play-circle-o"></i>
                                 </div>
                             </a>
-                            <p>Circle of Hands</p>
+                            <p>Dac nhan tam</p>
                             <h2>24 DEC 2014</h2>
                         </div>
                     </div>
@@ -28,13 +28,13 @@
                         <div class="video-gallery text-center">
                             <a href="">
                                 <div class="iframe-img">
-                                    <img src="{{asset('frontend/images/iframe2.png')}}" alt="" />
+                                    <img src="{{asset('frontend/images/nghe_thuat_giao_tiep.jpeg')}}" alt="" />
                                 </div>
                                 <div class="overlay-icon">
                                     <i class="fa fa-play-circle-o"></i>
                                 </div>
                             </a>
-                            <p>Circle of Hands</p>
+                            <p>Nghe thuat giao tiep</p>
                             <h2>24 DEC 2014</h2>
                         </div>
                     </div>
@@ -43,13 +43,13 @@
                         <div class="video-gallery text-center">
                             <a href="">
                                 <div class="iframe-img">
-                                    <img src="{{asset('frontend/images/iframe3.png')}}" alt="" />
+                                    <img src="{{asset('frontend/images/neu_chi_con_1_ngay.jpeg')}}" alt="" />
                                 </div>
                                 <div class="overlay-icon">
                                     <i class="fa fa-play-circle-o"></i>
                                 </div>
                             </a>
-                            <p>Circle of Hands</p>
+                            <p>Neu chi con mot ngay de song</p>
                             <h2>24 DEC 2014</h2>
                         </div>
                     </div>
@@ -58,13 +58,13 @@
                         <div class="video-gallery text-center">
                             <a href="">
                                 <div class="iframe-img">
-                                    <img src="{{asset('frontend/images/iframe4.png')}}" alt="" />
+                                    <img src="{{asset('frontend/images/the_learn_startup.jpg')}}" alt="" />
                                 </div>
                                 <div class="overlay-icon">
                                     <i class="fa fa-play-circle-o"></i>
                                 </div>
                             </a>
-                            <p>Circle of Hands</p>
+                            <p>Learn startup</p>
                             <h2>24 DEC 2014</h2>
                         </div>
                     </div>
@@ -98,11 +98,11 @@
                     <div class="single-widget">
                         <h2>Quock Shop</h2>
                         <ul class="nav nav-pills nav-stacked">
-                            <li><a href="">T-Shirt</a></li>
-                            <li><a href="">Mens</a></li>
-                            <li><a href="">Womens</a></li>
-                            <li><a href="">Gift Cards</a></li>
-                            <li><a href="">Shoes</a></li>
+                            <li><a href="">Books</a></li>
+                            <li><a href="">CD</a></li>
+                            <li><a href="">DVD</a></li>
+                            <li><a href="">Media</a></li>
+                            <li><a href=""></a></li>
                         </ul>
                     </div>
                 </div>
@@ -148,7 +148,7 @@
     <div class="footer-bottom">
         <div class="container">
             <div class="row">
-                <p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
+                <p class="pull-left">Copyright © 2013 Aims Inc. All rights reserved.</p>
                 <p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
             </div>
         </div>
