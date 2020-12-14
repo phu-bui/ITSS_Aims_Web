@@ -17,10 +17,11 @@ class ProductController extends Controller
 
     //search product
 	public function search(Request $req) {
-        $brand_product = DB::table('brands')->orderby('id', 'desc')->get();
+        // $brand_product = DB::table('brands')->orderby('id', 'desc')->get();
         $keywords = $req->keywords_submit;
-		$search_product = DB::table('products')->where('name', 'like', '%'.$keywords.'%')->get();
-        return view('web::products.search',compact('search_product'))->with('brand_product', $brand_product);
+		$search_product = DB::table('products')->where('title', 'like', '%'.$keywords.'%')->get();
+        return view('web::products.search',compact('search_product'));
+        // ->with('brand_product', $brand_product);
     }
 
 
@@ -33,7 +34,7 @@ class ProductController extends Controller
     }
 
 	public function addCart(Request $req,$id){
-		$product = DB::table('products')->where('id', $id)->first();
+		$product = DB::table('products')->where('productId', $id)->first();
 		if($product != null){
 			$oldCart = Session('Cart') ? Session('Cart') : null;
 			$newCart = new Cart($oldCart);
@@ -58,34 +59,34 @@ class ProductController extends Controller
 			else{
 				$req->Session()->forget('Cart');
 			}
-			return view('web::cart');
+			return view('web::list-cart');
 		}
 	}
 
-    public function product_detail($product_slug, Request $request){
-        $brand_product = DB::table('brands')->orderby('id','desc')->get();
-        $details_product = DB::table('products')
-            ->join('brands','brands.id','=','products.brand_id')->where('products.slug', $product_slug)->get();
+    // public function product_detail($product_slug, Request $request){
+    //     $brand_product = DB::table('brands')->orderby('id','desc')->get();
+    //     $details_product = DB::table('products')
+    //         ->join('brands','brands.id','=','products.brand_id')->where('products.slug', $product_slug)->get();
 
-        foreach ($details_product as $key => $value){
-            $meta_desc = $value->short_description;
-            $meta_keywords = $value->slug;
-            $meta_title = $value->name;
-            $url_canonical = $request->url();
-        }
+    //     foreach ($details_product as $key => $value){
+    //         $meta_desc = $value->short_description;
+    //         $meta_keywords = $value->slug;
+    //         $meta_title = $value->name;
+    //         $url_canonical = $request->url();
+    //     }
 
-        $related_product = DB::table('products')
-            ->join('brands','brands.id','=','products.brand_id')
-            ->whereNotIn('products.slug',[$product_slug])->get();
-        return view('web::products.show_details')
-            ->with('brand',$brand_product)
-            ->with('product_details',$details_product)
-            ->with('relate',$related_product)
-            ->with('meta_desc',$meta_desc)
-            ->with('meta_keywords',$meta_keywords)
-            ->with('meta_title',$meta_title)
-            ->with('url_canonical',$url_canonical);
-    }
+    //     $related_product = DB::table('products')
+    //         ->join('brands','brands.id','=','products.brand_id')
+    //         ->whereNotIn('products.slug',[$product_slug])->get();
+    //     return view('web::products.show_details')
+    //         ->with('brand',$brand_product)
+    //         ->with('product_details',$details_product)
+    //         ->with('relate',$related_product)
+    //         ->with('meta_desc',$meta_desc)
+    //         ->with('meta_keywords',$meta_keywords)
+    //         ->with('meta_title',$meta_title)
+    //         ->with('url_canonical',$url_canonical);
+    // }
 
 }
 

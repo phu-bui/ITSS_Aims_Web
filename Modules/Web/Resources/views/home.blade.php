@@ -36,15 +36,13 @@
                 <div class="features_items"><!--features_items-->
                     <h2 class="title text-center">Features Items</h2>
                     @foreach($products as $key => $product)
-                        @foreach($category_product as $key => $category)
-                       <!-- <a href="{{route('web.product_detail', array('product_slug'=>$category->categoryName))}}">-->
-                        @endforeach
                             <div class="col-sm-4">
                                 <div class="product-image-wrapper">
 
                                     <div class="single-products">
                                         <div class="productinfo text-center">
                                             <td><img width="60" class="" src="{{$product->image}}" alt=""></td>
+                                            <h1>{{$product->productId}}</h1>
                                             <h2>{{number_format($product->price).' '.'VNĐ'}}</h2>
                                             <p>{{$product->title}}</p>
                                             <p>Number of products: {{$product->quantity}}</p>
@@ -212,7 +210,9 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
 <!-- Bootstrap theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
+
 <script>
     function AddCart(id){
         console.log(id);
