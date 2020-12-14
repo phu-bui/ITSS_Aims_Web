@@ -50,8 +50,8 @@ class CategoryController extends AdminBaseController
         return redirect()->route('admin.edit_category', array('category_id'=>$category_id));
     }
 
-    public function delete_product($product_id){
-        DB::table('products')->where('productId', $product_id)->delete();
+    public function delete_category($category_id){
+        DB::table('categories')->where('categoryId', $category_id)->delete();
         Session::put('message', 'Delete category successful!');
         return redirect()->route('admin.categories.list');
     }
