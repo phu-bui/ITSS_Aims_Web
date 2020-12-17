@@ -35,7 +35,7 @@
                             <tbody>
                             <tr>
                                 <td>
-                                    <div class="h6"><a href="">{{$product['productInfo']->name}}</a></div>
+                                    <div class="h6"><a href="">{{$product['productInfo']->title}}</a></div>
                                     <div class="simple-article size-1">QUANTITY: {{$product['quanty']}}</div>
                                 </td>
                                 <td>
