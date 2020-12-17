@@ -62,19 +62,14 @@
                             <?php
                             if(session()->has('data-signin')){
                             $user = \App\Entities\User::where('email', session('data-signin')['email'])->first();
-                            $user_id = $user->id;
-                            $shipping_id = Session::get('shipping_id');
-                            if($shipping_id==NULL){
+                            $user_id = $user->userId;
+                            //$shipping_id = Session::get('shipping_id');
+                            //if($shipping_id==NULL){
                             ?>
-                            <li><a href="{{route('web.checkout')}}"><i class="fa fa-crosshairs"></i>Checkout</a> </li>
-                            <?php
-                                }
-                                else{
-                                    ?>
-                                    <li><a href="{{route('web.payment')}}"><i class="fa fa-crosshairs"></i>Checkout</a> </li>
+                                    <li><a href="{{route('web.show_checkout', array('user_id'=>$user_id))}}"><i class="fa fa-crosshairs"></i>Checkout</a> </li>
+
                             <?php
                                     }
-                                }
                             else{
                                 ?>
                                 <li><a href="{{route('web.login')}}"><i class="fa fa-crosshairs"></i>Checkout</a> </li>

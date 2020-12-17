@@ -34,8 +34,10 @@ Route::group(['prefix' => '', 'namespace' => '\Modules\Web\Http\Controllers\Auth
     Route::get('/logout', 'LoginController@logout')->name('web.logout');
 });
 
+//Checkout
 Route::get('/login-checkout', 'CheckoutController@login_checkout')->name('web.login-checkout');
 Route::get('/checkout', 'CheckoutController@checkout')->name('web.checkout');
+Route::get('/show-checkout/{user_id}', 'CheckoutController@show_checkout')->name('web.show_checkout');
 Route::get('/save-checkout-customer', 'CheckoutController@save_checkout_customer')->name('web.save-checkout-customer');
 Route::get('/payment', 'CheckoutController@payment')->name('web.payment');
 Route::get('/order-place', 'CheckoutController@order_place')->name('web.order-place');

@@ -44,9 +44,6 @@
                             <p class="cart_total_price">{{number_format($product['price'])}} VND</p>
                         </td>
                         <td class="cart_delete">
-                            <!-- <a class="cart_quantity_delete" href="{{url('/Delete-Item-Cart/'.$product['productInfo']->productId)}}">
-                                <i class="fa fa-times"></i>
-                            </a> -->
                             <a class="cart_quantity_delete" onclick ="DeleteItemCart({{$product['productInfo']->productId}})">
                                 <i class="fa fa-times"></i>
                             </a>

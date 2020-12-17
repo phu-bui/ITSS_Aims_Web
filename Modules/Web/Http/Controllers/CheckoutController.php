@@ -16,11 +16,6 @@ session_start();
 
 class CheckoutController extends Controller
 {
-    public function login_checkout(){
-        $category_product = DB::table('categories')->orderby('categoryId', 'desc')->get();
-
-        return view('web::checkout.login_checkout')->with('category_product', $category_product);
-    }
 
     public function checkout(Request $request){
         $meta_desc = "Đăng nhập thanh toán";
@@ -38,13 +33,31 @@ class CheckoutController extends Controller
             ->with('url_canonical', $url_canonical);
     }
 
+    public function show_checkout($user_id){
+        $ship_by_order = DB::table('ships')->join('orders', 'ships.id', '=','orders.shipId')->where('orders.userId', $user_id)->get();
+        if(sizeof($ship_by_order) == 0){
+            return view('web::checkout.show_checkout');
+        }
+        else {
+            return view('web::checkout.checkout_details')->with('ship_by_order', $ship_by_order);
+        }
+    }
+
     public function save_checkout_customer(Request $requests){
+
         $data_ship = array();
         $data_ship['shipName'] = $requests->shipping_name;
         $data_ship['shipAddress'] = $requests->shipping_address;
         $data_ship['shipPhone'] = $requests->shipping_phone;
         $data_ship['shipEmail'] = $requests->shipping_email;
-        $data_ship['shipNote'] = $requests->shipping_notes;
+        if($requests->shipping_notes == NULL){
+            $shipping_id = Session::get('shipping_id');
+            Session::put('message', 'Please update shipping note!');
+            return redirect()->route('web.show_checkout', array('shipping_id'=>$shipping_id));
+        }
+        else {
+            $data_ship['shipNote'] = $requests->shipping_notes;
+        }
 
         $shipping_id = DB::table('ships')->insertGetId($data_ship);
         Session::put('shipping_id', $shipping_id);
@@ -120,7 +133,7 @@ class CheckoutController extends Controller
                         $quanti = $product_quantity - $order_detail_data['quantity'];
                         if ($quanti >= 0) {
                             DB::table('products')->where('productId', $order_detail_data['productId'])->update(['quantity' => $quanti]);
-
+                            $request->Session()->forget('Cart');
                             Session::put('message', 'Payment success!');
                             return view('web::checkout.handcash')->with('category_product', $category_product);
                         } else {
