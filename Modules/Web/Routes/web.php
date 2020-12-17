@@ -14,9 +14,9 @@
 Route::group(['prefix' => '', 'namespace' => '\Modules\Web\Http\Controllers'], function() {
     Route::get('/', 'HomeController@index')->name('web.home');
     Route::get('/cart', 'ProductController@cart')->name('web.cart');
-    Route::get('/search-order', 'HomeController@searchOrder')->name('web.search-order');
-    Route::get('/detail', 'HomeController@detail')->name('web.products-detail');
-    Route::get('/about-us', 'HomeController@aboutUs')->name('web.about-us');
+   // Route::get('/search-order', 'HomeController@searchOrder')->name('web.search-order');
+    //Route::get('/detail', 'HomeController@detail')->name('web.products-detail');
+   // Route::get('/about-us', 'HomeController@aboutUs')->name('web.about-us');
 
     //search product
 
@@ -41,7 +41,9 @@ Route::get('/payment', 'CheckoutController@payment')->name('web.payment');
 Route::get('/order-place', 'CheckoutController@order_place')->name('web.order-place');
 Route::get('/test', 'CheckoutController@test');
 
-//Brand
-Route::get('/{brand_slug}' ,'BrandController@show_brand_home')->name('web.brand_home');
+//Category
+Route::get('/{cate_name}' ,'CategoryController@show_category_home')->name('web.category_home');
 Route::get('/product-detail/{product_slug}','ProductController@product_detail')->name('web.product_detail');
+
+//
 #how to make custom library on laravel

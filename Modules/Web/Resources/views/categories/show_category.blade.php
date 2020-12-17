@@ -9,8 +9,8 @@
                             <h2>Brands</h2>
                             <div class="brands-name">
                                 <ul class="nav nav-pills nav-stacked">
-                                    @foreach($brand_product as $key => $brand)
-                                        <li><a href="{{route('web.brand_home', array('brand_slug'=>$brand->brand_name))}}"> <span class="pull-right"></span>{{$brand->brand_name}}</a></li>
+                                    @foreach($categories as $key => $category)
+                                        <li><a href="{{route('web.category_home', array('cate_name'=>$category->categoryName))}}"> <span class="pull-right"></span>{{$category->categoryName}}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -32,15 +32,13 @@
                 </div>
                 <div class="features_items"><!--features_items-->
 
-                        @foreach($brand_name as $key => $name)
+                        @foreach($category_name as $key => $name)
 
-                        <h2 class="title text-center">{{$name->brand_name}}</h2>
+                        <h2 class="title text-center">{{$name->categoryName}}</h2>
 
                         @endforeach
-                        @foreach($product_by_brand as $key => $product)
-                        @foreach($brand_product as $key => $brand)
-                    <!-- <a href="{{route('web.product_detail', array('product_slug'=>$brand->brand_slug))}}">-->
-                        @endforeach
+                        @foreach($product_by_category as $key => $product)
+
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">
 
@@ -48,10 +46,10 @@
                                         <div class="productinfo text-center">
                                             <td><img width="60" class="" src="{{$product->image}}" alt=""></td>
                                             <h2>{{number_format($product->price).' '.'VNĐ'}}</h2>
-                                            <p><del>{{number_format($product->cost_price).' '.'VNĐ'}}</del></p>
-                                            <p>{{$product->name}}</p>
+                                            <p><del>{{number_format($product->value).' '.'VNĐ'}}</del></p>
+                                            <p>{{$product->title}}</p>
                                             <p>Number of products: {{$product->quantity}}</p>
-                                            <a onclick="AddCart({{$product->id}})" href="javascript:" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            <a onclick="AddCart({{$product->productId}})" href="javascript:" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                         </div>
 
                                 </div>
