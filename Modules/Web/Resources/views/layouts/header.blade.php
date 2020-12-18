@@ -78,12 +78,13 @@
                             ?>
 
                             <li><a href="{{route('web.cart')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                            <?php if(session()->has('data-signin')){ ?>
-
+                            <?php if(session()->has('data-signin')){
+                                $user_id = $user->userId
+                            ?>
                             <li class="dropdown"><a>Account<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu" style="background-color: grey">
                                     <div class="col-sm-9">
-                                        <li><a class="" style="background-color: grey" href="/profile">
+                                        <li><a class="" style="background-color: grey" href="{{route('web.profile', array('user_id'=>$user_id))}}">
                                                 <?php
                                                 $user = \App\Entities\User::where('email', session('data-signin')['email'])->first();
                                                 echo $user->name;

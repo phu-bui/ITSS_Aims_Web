@@ -32,6 +32,9 @@ Route::group(['prefix' => '', 'namespace' => '\Modules\Web\Http\Controllers\Auth
     Route::post('/login', 'LoginController@login')->name('web.post-login');
     Route::post('/register', 'RegisterController@register')->name('web.post-register');
     Route::get('/logout', 'LoginController@logout')->name('web.logout');
+    //User
+    Route::get('/profile/{user_id}', 'LoginController@view_account')->name('web.profile');
+    Route::get('profile/update-profile/{user_id}', 'LoginController@update_profile')->name('web.update_profile');
 });
 
 //Checkout
@@ -47,5 +50,5 @@ Route::get('/test', 'CheckoutController@test');
 Route::get('/{cate_name}' ,'CategoryController@show_category_home')->name('web.category_home');
 Route::get('/product-detail/{product_slug}','ProductController@product_detail')->name('web.product_detail');
 
-//
+
 #how to make custom library on laravel
