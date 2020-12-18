@@ -32,6 +32,10 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin', 'namespace' => '\Modul
         Route::post('/update-categories/{category_id}', 'CategoryController@update_category')->name('admin.update_category');
         Route::get('/delete-categories/{category_id}', 'CategoryController@delete_category')->name('admin.delete_category');
 
+        //User
+        Route::get('/users', 'UserController@index')->name('admin.users.list');
+        Route::get('/delete-users/{user_id}', 'UserController@delete_user')->name('admin.delete_user');
+
 
 
 
