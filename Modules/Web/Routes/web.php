@@ -35,6 +35,9 @@ Route::group(['prefix' => '', 'namespace' => '\Modules\Web\Http\Controllers\Auth
     //User
     Route::get('/profile/{user_id}', 'LoginController@view_account')->name('web.profile');
     Route::get('profile/update-profile/{user_id}', 'LoginController@update_profile')->name('web.update_profile');
+    Route::get('profile/update-password/{user_id}', 'LoginController@update_password')->name('web.update_password');
+    Route::get('profile/save-update-password/{user_id}', 'LoginController@save_update_password')->name('web.save_update_password');
+
 });
 
 //Checkout

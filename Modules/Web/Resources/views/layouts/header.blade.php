@@ -89,7 +89,7 @@
                                                 $user = \App\Entities\User::where('email', session('data-signin')['email'])->first();
                                                 echo $user->name;
                                                 ?></a></li>
-                                        <li><a class="" style="background-color: grey" href="">Settings</a></li>
+                                        <li><a class="" style="background-color: grey" href="{{route('web.update_password', array('user_id'=>$user_id))}}">Change password</a></li>
                                         <li><a class="" style="background-color: grey" href="{{route('web.logout')}}">Logout</a></li>
                                     </div>
                                 </ul>

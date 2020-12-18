@@ -13,7 +13,7 @@ use DB;
 use Session;
 use Illuminate\Support\Facades\Hash;
 
-class RegisterController extends BaseController
+class   RegisterController extends BaseController
 {
     /*
     |--------------------------------------------------------------------------
