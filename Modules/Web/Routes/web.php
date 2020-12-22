@@ -50,8 +50,12 @@ Route::get('/order-place', 'CheckoutController@order_place')->name('web.order-pl
 Route::get('/test', 'CheckoutController@test');
 
 //Category
-Route::get('/{cate_name}' ,'CategoryController@show_category_home')->name('web.category_home');
+Route::get('/category/{cate_name}' ,'CategoryController@show_category_home')->name('web.category_home');
 Route::get('/product-detail/{product_slug}','ProductController@product_detail')->name('web.product_detail');
+
+//Order
+Route::get('/order-history','OrderController@order_history')->name('web.order_history');
+Route::get('/order-remove/{ordered_id}', 'OrderController@order_cancellation')->name('web.order_remove');
 
 
 #how to make custom library on laravel
