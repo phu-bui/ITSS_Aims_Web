@@ -13,7 +13,7 @@ class CreatePropertyTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('propertyTypes', function (Blueprint $table) {
+        Schema::create('property_types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('categoryId');
             $table->string('propertyName');
@@ -30,6 +30,6 @@ class CreatePropertyTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('propertyTypes');
+        Schema::dropIfExists('property_types');
     }
 }

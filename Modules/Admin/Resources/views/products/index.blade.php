@@ -27,7 +27,10 @@
                 <div class="main-card mb-3 card">
                     <div class="card-body">
                         <h5 class="card-title">
-
+                            <div class="info-box-content">
+                                <span class="info-box-text">Total product</span>
+                                <span class="info-box-number">{{count($products)}}</span>
+                            </div>
                         </h5>
                         <div class="table-responsive">
                             <table class="mb-0 table">

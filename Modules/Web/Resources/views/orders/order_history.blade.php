@@ -1,4 +1,4 @@
-        @extends('web::layouts.master')
+@extends('web::layouts.master')
 @section('content')
 
     <section id="cart_items">
@@ -55,6 +55,7 @@
                                                         @else
                                                             <td class="align-middle py-5"><span class="text-primary">Đã huỷ</span></td></td>
                                                             <td class="align-middle py-5">{{$order->totalPrices}} VND</td>
+                                                            <td></td>
                                                         @endif
                                                     </tr>
                                                 @endforeach

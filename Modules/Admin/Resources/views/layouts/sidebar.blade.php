@@ -28,15 +28,17 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link" href="{{route('admin.products.list')}}">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Product list</span></a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{route('admin.add_product')}}">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Add Product</span></a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#productUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Products</span>
+        </a>
+        <div id="productUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Custom Utilities:</h6>
+                <a class="collapse-item" href="{{route('admin.products.list')}}">Product List</a>
+                <a class="collapse-item" href="{{route('admin.add_product')}}">Add Product</a>
+            </div>
+        </div>
     </li>
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
@@ -71,12 +73,13 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">List users:</h6>
                 <a class="collapse-item" href="{{route('admin.users.list')}}">Users</a>
-               <!--- <a class="collapse-item" href="register.html">Register</a>
-                <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                <div class="collapse-divider"></div>
-                <h6 class="collapse-header">Other Pages:</h6>
-                <a class="collapse-item" href="404.html">404 Page</a>
-                <a class="collapse-item" href="blank.html">Blank Page</a>--->
+                <a class="collapse-item" href="{{route('admin.orders.list')}}">User's order</a>
+                <!--- <a class="collapse-item" href="register.html">Register</a>
+                 <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                 <div class="collapse-divider"></div>
+                 <h6 class="collapse-header">Other Pages:</h6>
+                 <a class="collapse-item" href="404.html">404 Page</a>
+                 <a class="collapse-item" href="blank.html">Blank Page</a>--->
             </div>
         </div>
     </li>

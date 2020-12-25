@@ -17,12 +17,18 @@ session_start();
 class OrderController extends Controller
 {
     public function order_history(){
-        $orders = DB::table('orders')->orderby('id','desc')->get();
-        return view('web::orders.order_history')->with('orders', $orders);
+        if (session()->has('data-signin')) {
+            $user = \App\Entities\User::where('email', session('data-signin')['email'])->first();
+            $orders = DB::table('orders')->where('userId', $user->userId)->get();
+            return view('web::orders.order_history')->with('orders', $orders);
+        }
+        else{
+            return view('web::error.404');
+        }
+
     }
 
     public function order_cancellation($ordered_id){
-        //$ordered_product = DB::table('products')->join('orderDetails','products.id','=','orderDetails.productId')->join('orders','orderDetails.orderId','=','orders.id')->where('orders.id', $ordered_id)->get();
         $ordered_detail = DB::table('orderDetails')->where('orderId', $ordered_id)->get();
         $ordered = DB::table('orders')->where('id', $ordered_id)->get();
         foreach ($ordered_detail as $item){
@@ -43,7 +49,7 @@ class OrderController extends Controller
         return redirect()->route('web.order_history');
     }
 
-    public function test(){
-        return 0;
+    public function view_ordered($ordered_id){
+
     }
 }
