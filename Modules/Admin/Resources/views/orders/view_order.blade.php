@@ -49,7 +49,7 @@
                                 @foreach($orders as $index => $order)
                                     <tr>
                                         <th scope="row">{{$index + 1}}</th>
-                                        <td><img width="60" class="" src="{{$order->order_no}}" alt=""></td>
+                                        <td>{{$order->order_no}}</td>
                                         <td>{{$order->userId}}</td>
                                         <td>{{($order->totalPrices)}}</td>
                                         <td>{{($order->orderDate)}}</td>

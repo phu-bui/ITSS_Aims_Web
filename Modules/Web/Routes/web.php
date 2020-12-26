@@ -56,6 +56,6 @@ Route::get('/product-detail/{product_slug}','ProductController@product_detail')-
 //Order
 Route::get('/order-history','OrderController@order_history')->name('web.order_history');
 Route::get('/order-remove/{ordered_id}', 'OrderController@order_cancellation')->name('web.order_remove');
-
+Route::get('/view-order-detail/{ordered_id}', 'OrderController@view_order_detail')->name('web.view_order_detail');
 
 #how to make custom library on laravel

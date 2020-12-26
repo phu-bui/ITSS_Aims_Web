@@ -39,23 +39,35 @@
                                                         <th class="pl-3 pl-md-5 font-weight-normal align-middle py-6">#{{$order->order_no}}</th>
                                                         <td class="align-middle py-5">{{$order->orderDate}}</td>
                                                         @if($order->orderStatus==1)
-                                                            <td class="align-middle py-5">Đang chờ</td>
+                                                            <td class="align-middle py-5"><span class="text-yellow-darker">Waitting...</span></td>
                                                             <td class="align-middle py-5">{{$order->totalPrices}} VND</td>
                                                             <td class="align-middle py-5">
                                                                 <div class="d-flex justify-content-center">
-                                                                    <a href="{{route('web.home')}}"> <button type="submit" class="btn btn-dark rounded-1 btn-wide font-weight-medium">View
+                                                                    <a href="{{route('web.view_order_detail', array('ordered_id'=>$order->id))}}"> <button type="submit" class="btn btn-dark rounded-1 btn-wide font-weight-medium">View
                                                                         </button></a>
-                                                                    <a href="{{route('web.order_remove', array('ordered_id'=>$order->id))}}"> <button type="submit" class="btn btn-dark rounded-1 btn-wide font-weight-medium">Huỷ đơn hàng
+                                                                    <a href="{{route('web.order_remove', array('ordered_id'=>$order->id))}}"> <button type="submit" class="btn btn-dark rounded-1 btn-wide font-weight-medium">Remove
                                                                         </button></a>
                                                                 </div>
                                                                 <div class="d-flex justify-content-center">
 
                                                                 </div>
                                                             </td>
-                                                        @else
-                                                            <td class="align-middle py-5"><span class="text-primary">Đã huỷ</span></td></td>
+                                                        @elseif($order->orderStatus==0)
+                                                            <td class="align-middle py-5"><span class="text-primary">Canceled</span></td></td>
                                                             <td class="align-middle py-5">{{$order->totalPrices}} VND</td>
                                                             <td></td>
+                                                        @else
+                                                            <td class="align-middle py-5"><span class="text-bold">Delivered</span></td>
+                                                            <td class="align-middle py-5">{{$order->totalPrices}} VND</td>
+                                                            <td class="align-middle py-5">
+                                                                <div class="d-flex justify-content-center">
+                                                                    <a href="{{route('web.view_order_detail', array('ordered_id'=>$order->id))}}"> <button type="submit" class="btn btn-dark rounded-1 btn-wide font-weight-medium">View
+                                                                        </button></a>
+                                                                </div>
+                                                                <div class="d-flex justify-content-center">
+
+                                                                </div>
+                                                            </td>
                                                         @endif
                                                     </tr>
                                                 @endforeach

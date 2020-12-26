@@ -136,9 +136,10 @@ class CheckoutController extends Controller
                             DB::table('products')->where('productId', $order_detail_data['productId'])->update(['quantity' => $quanti]);
                             $request->Session()->forget('Cart');
                             $ordered_new = DB::table('orders')->join('payments','orders.paymentId','=','payments.id')->where('orders.id', $order_id)->get();
-                            $product_ordered = DB::table('products')->join('orderDetails','products.id', '=', 'orderDetails.productId')->where('orderDetails.orderId', $order_id)->get();
+                            $product_ordered = DB::table('products')->join('orderDetails','products.productId', '=', 'orderDetails.productId')->where('orderDetails.orderId', $order_id)->get();
+                            $shipping = DB::table('ships')->join('orders', 'ships.id', '=', 'orders.shipId')->where('orders.id', $order_id)->get();
                             Session::put('message', 'Payment success!');
-                            return view('web::checkout.handcash')->with('ordered_new', $ordered_new)->with('product_ordered', $product_ordered);
+                            return view('web::checkout.handcash')->with('ordered_new', $ordered_new)->with('product_ordered', $product_ordered)->with('shipping', $shipping);
                         } else {
                             Session::put('message', 'Sorry, Quantity of products is not enough to order!');
                             return view('web::checkout.payment');

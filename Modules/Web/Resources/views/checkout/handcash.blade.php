@@ -78,7 +78,7 @@
                         <div class="px-3 pl-md-5 pr-md-4">
                             <div class="d-flex justify-content-between">
                                 <span class="font-size-2 font-weight-medium">Total</span>
-                                <span class="font-weight-medium fon-size-2">{{$subtotal}} VND</span>
+                                <span class="font-weight-medium fon-size-2"> VND</span>
                             </div>
                         </div>
                         <br>
@@ -86,28 +86,15 @@
                     <div class="px-3 pl-md-5 pr-md-4 mb-6 pb-xl-1">
                         <div class="row row-cols-1 row-cols-md-2">
                             <div class="col">
-                                <div class="mb-6 mb-md-0">
-                                    <h6 class="font-weight-medium font-size-22 mb-3">Billing Address
-                                    </h6>
-                                    <address class="d-flex flex-column mb-0">
-                                        <span class="text-gray-600 font-size-2">Hà Nội</span>
-                                        <span class="text-gray-600 font-size-2">Số 1 Đại Cồ Việt, Hai Bà Tr</span>
-                                        <span class="text-gray-600 font-size-2">0986868686</span>
-                                        <span class="text-gray-600 font-size-2">hust@hust.edu.vn</span>
-                                        <span class="text-gray-600 font-size-2">Đại học Bách Khoa Hà Nội</span>
-                                    </address>
-                                </div>
-                            </div>
-                            <div class="col">
                                 <h6 class="font-weight-medium font-size-22 mb-3">Shipping Address
                                 </h6>
                                 @foreach($shipping as $ship)
                                     <address class="d-flex flex-column mb-0">
-                                        <span class="text-gray-600 font-size-2">{{$ship->province}}</span>
-                                        <span class="text-gray-600 font-size-2">{{$ship->address}}</span>
-                                        <span class="text-gray-600 font-size-2">{{$ship->receiver_phone_number}} </span>
-                                        <span class="text-gray-600 font-size-2">{{$ship->receiver_email}}</span>
-                                        <span class="text-gray-600 font-size-2">{{$ship->receiver_name}}</span>
+                                        <span class="text-gray-600 font-size-2">{{$ship->shipName}}</span><br>
+                                        <span class="text-gray-600 font-size-2">{{$ship->shipAddress}}</span><br>
+                                        <span class="text-gray-600 font-size-2">{{$ship->shipPhone}} </span><br>
+                                        <span class="text-gray-600 font-size-2">{{$ship->shipEmail}}</span><br>
+                                        <span class="text-gray-600 font-size-2">{{$ship->shipNote}}</span>
                                     </address>
                                 @endforeach
                             </div>

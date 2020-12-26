@@ -49,7 +49,11 @@ class OrderController extends Controller
         return redirect()->route('web.order_history');
     }
 
-    public function view_ordered($ordered_id){
-
+    public function view_order_detail($ordered_id){
+        $ordered = DB::table('orders')->join('payments', 'orders.paymentId', '=', 'payments.id')->where('orders.id', $ordered_id)->get();
+        $product_ordered = DB::table('products')->join('orderDetails','products.productId', '=', 'orderDetails.productId')->where('orderDetails.orderId', $ordered_id)->get();
+        $shipping = DB::table('ships')->join('orders', 'ships.id', '=', 'orders.shipId')->where('orders.id', $ordered_id)->get();
+        return view('web::orders.view_ordered')
+            ->with('ordered', $ordered)->with('shipping', $shipping)->with('product_ordered', $product_ordered);
     }
 }
