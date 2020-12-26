@@ -44,6 +44,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin', 'namespace' => '\Modul
         Route::get('orders', 'OrderController@index')->name('admin.orders.list');
         Route::get('delete-orders/{order_id}', 'OrderController@delete_order')->name('admin.delete_order');
         Route::get('view-order/{order_id}', 'OrderController@view_order')->name('admin.view_order');
+        Route::get('order-approval/{order_id}', 'OrderController@order_approval')->name('admin.order_approval');
 
 
 
