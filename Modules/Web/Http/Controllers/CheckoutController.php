@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use DB;
 use Illuminate\Support\Facades\Redirect;
+use Modules\Web\Http\Requests\ShippingRequest;
 use Session;
 use App\Http\Requests;
 session_start();
@@ -43,7 +44,7 @@ class CheckoutController extends Controller
         }
     }
 
-    public function save_checkout_customer(Request $requests){
+    public function save_checkout_customer(ShippingRequest  $requests){
 
         $data_ship = array();
         $data_ship['shipName'] = $requests->shipping_name;
