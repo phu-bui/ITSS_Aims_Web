@@ -1,4 +1,6 @@
 {
     "Admin": true,
-    "Web": true
+    "Web": true,
+    "Request": true,
+    "UserStoreRequest": true
 }

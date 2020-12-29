@@ -16,7 +16,9 @@ class CategoryController extends WebBaseController
 
         $category_name = DB::table('categories')->where('categories.categoryName',$cate_name)->limit(1)->get();
 
-        return view('web::categories.show_category')->with('categories',$categories)->with('product_by_category',$product_by_category)->with('category_name',$category_name);
+        return view('web::categories.show_category')->with('categories', $categories)
+            ->with('product_by_category', $product_by_category)
+            ->with('category_name', $category_name);
     }
 
 }

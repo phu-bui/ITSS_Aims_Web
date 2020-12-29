@@ -62,19 +62,14 @@
                             <?php
                             if(session()->has('data-signin')){
                             $user = \App\Entities\User::where('email', session('data-signin')['email'])->first();
-                            $user_id = $user->id;
-                            $shipping_id = Session::get('shipping_id');
-                            if($shipping_id==NULL){
+                            $user_id = $user->userId;
+                            //$shipping_id = Session::get('shipping_id');
+                            //if($shipping_id==NULL){
                             ?>
-                            <li><a href="{{route('web.checkout')}}"><i class="fa fa-crosshairs"></i>Checkout</a> </li>
-                            <?php
-                                }
-                                else{
-                                    ?>
-                                    <li><a href="{{route('web.payment')}}"><i class="fa fa-crosshairs"></i>Checkout</a> </li>
+                                    <li><a href="{{route('web.show_checkout', array('user_id'=>$user_id))}}"><i class="fa fa-crosshairs"></i>Checkout</a> </li>
+
                             <?php
                                     }
-                                }
                             else{
                                 ?>
                                 <li><a href="{{route('web.login')}}"><i class="fa fa-crosshairs"></i>Checkout</a> </li>
@@ -83,17 +78,19 @@
                             ?>
 
                             <li><a href="{{route('web.cart')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                            <?php if(session()->has('data-signin')){ ?>
-
+                            <?php if(session()->has('data-signin')){
+                                $user_id = $user->userId
+                            ?>
                             <li class="dropdown"><a>Account<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu" style="background-color: grey">
                                     <div class="col-sm-9">
-                                        <li><a class="" style="background-color: grey" href="/profile">
+                                        <li><a class="" style="background-color: grey" href="{{route('web.profile', array('user_id'=>$user_id))}}">
                                                 <?php
                                                 $user = \App\Entities\User::where('email', session('data-signin')['email'])->first();
                                                 echo $user->name;
                                                 ?></a></li>
-                                        <li><a class="" style="background-color: grey" href="">Settings</a></li>
+                                        <li><a class="" style="background-color: grey" href="{{route('web.order_history')}}">View order history</a></li>
+                                        <li><a class="" style="background-color: grey" href="{{route('web.update_password', array('user_id'=>$user_id))}}">Change password</a></li>
                                         <li><a class="" style="background-color: grey" href="{{route('web.logout')}}">Logout</a></li>
                                     </div>
                                 </ul>

@@ -17,12 +17,16 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin', 'namespace' => '\Modul
         Route::get('/', 'AdminController@index')->name('admin.index');
         Route::get('/logout', 'Auth\LoginController@logout')->name('admin.logout');
 
+        //Product
         Route::get('/products', 'ProductController@index')->name('admin.products.list');
-        Route::get ('/add-products', 'ProductController@add_product')->name('admin.add_product');
-        Route::post('/save-products', 'ProductController@save_product')->name('admin.save_product');
+        Route::get('/add-products', 'ProductController@add_product')->name('admin.add_product');
+        Route::get('/add-property/{category_id}', 'ProductController@add_property')->name('admin.product.add_property');
+        Route::get('/save-products', 'ProductController@save_product')->name('admin.save_product');
         Route::get('/edit-products/{product_id}', 'ProductController@edit_product')->name('admin.edit_product');
         Route::post('/update-products/{product_id}', 'ProductController@update_product')->name('admin.update_product');
         Route::get('/delete-products/{product_id}', 'ProductController@delete_product')->name('admin.delete_product');
+
+
 
         //Category
         Route::get('/categories', 'CategoryController@index')->name('admin.categories.list');
@@ -31,6 +35,16 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin', 'namespace' => '\Modul
         Route::get('/edit-categories/{category_id}', 'CategoryController@edit_category')->name('admin.edit_category');
         Route::post('/update-categories/{category_id}', 'CategoryController@update_category')->name('admin.update_category');
         Route::get('/delete-categories/{category_id}', 'CategoryController@delete_category')->name('admin.delete_category');
+
+        //User
+        Route::get('/users', 'UserController@index')->name('admin.users.list');
+        Route::get('/delete-users/{user_id}', 'UserController@delete_user')->name('admin.delete_user');
+
+        //Order
+        Route::get('orders', 'OrderController@index')->name('admin.orders.list');
+        Route::get('delete-orders/{order_id}', 'OrderController@delete_order')->name('admin.delete_order');
+        Route::get('view-order/{order_id}', 'OrderController@view_order')->name('admin.view_order');
+        Route::get('order-approval/{order_id}', 'OrderController@order_approval')->name('admin.order_approval');
 
 
 

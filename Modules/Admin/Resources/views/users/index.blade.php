@@ -8,7 +8,7 @@
                         <i class="pe-7s-box2 icon-gradient bg-happy-itmeo">
                         </i>
                     </div>
-                    <div>Product Management
+                    <div>User Management
                         <div class="page-title-subheading">
                             <?php
                             $message = Session::get('message');
@@ -27,44 +27,30 @@
                 <div class="main-card mb-3 card">
                     <div class="card-body">
                         <h5 class="card-title">
-                            <div class="info-box-content">
-                                <span class="info-box-text">Total product</span>
-                                <span class="info-box-number">{{count($products)}}</span>
-                            </div>
+
                         </h5>
                         <div class="table-responsive">
                             <table class="mb-0 table">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Image</th>
-                                        <th>Title</th>
-                                        <th>Price</th>
-                                        <th>Value</th>
-                                        <th>Quantity</th>
-                                        <th>Update/Delete</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($products as $index => $product)
+                                    @foreach($users as $index => $user)
                                     <tr>
                                         <th scope="row">{{$index + 1}}</th>
-                                        <td><img width="60" class="" src="{{$product->image}}" alt=""></td>
-                                        <td>{{$product->title}}</td>
-                                        <td>{{($product->price)}}</td>
-                                        <td>{{($product->value)}}</td>
+                                        <td>{{$user->name}}</td>
+                                        <td>{{($user->email)}}</td>
+                                        <td>{{($user->phone)}}</td>
                                         <td>
-                                            @if($product->quantity > 0)
-                                                <div class="mb-2 mr-2 badge badge-success">Stocking</div>
-                                            @else
-                                                <div class="mb-2 mr-2 badge badge-danger">Out of stock</div>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <form action="{{route('admin.delete_product', array('product_id'=>$product->productId))}}">
-                                                <button class="mb-2 mr-2 btn-transition btn btn-outline-success" onclick="return confirm('Are you sure you want to delete this product?')" >Delete</button>
+                                            <form action="{{route('admin.delete_user', array('user_id'=>$user->userId))}}">
+                                                <button class="mb-2 mr-2 btn-transition btn btn-outline-success" onclick="return confirm('Are you sure you want to delete this user?')" >Delete</button>
                                             </form>
-                                            <form action="{{route('admin.edit_product', array('product_id'=>$product->productId))}}"><button class="mb-2 mr-2 btn-transition btn btn-outline-primary">Detail</button></form>
                                         </td>
                                     </tr>
                                     @endforeach

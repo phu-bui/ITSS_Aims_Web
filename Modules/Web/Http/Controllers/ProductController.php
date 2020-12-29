@@ -59,7 +59,7 @@ class ProductController extends Controller
 			else{
 				$req->Session()->forget('Cart');
 			}
-			return view('web::carts.cart');
+			return view('web::carts.list-cart');
 		}
 	}
 
