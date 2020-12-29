@@ -71,6 +71,7 @@
                                                         @endif
                                                     </tr>
                                                 @endforeach
+                                                {{$orders->links()}}
                                                 </tbody>
                                             </table>
 

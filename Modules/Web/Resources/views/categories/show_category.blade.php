@@ -84,9 +84,10 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script>
         function AddCart(id){
-            console.log(id);
+            let link = '{{route('web.add_cart', ':id')}}'
+            link = link.replace(':id', id)
             $.ajax({
-                url: 'addcart/'+id,
+                url: link,
                 type: 'GET',
             }).done(function(response){
                 alertify.success('Add to cart successful!');

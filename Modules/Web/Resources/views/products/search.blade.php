@@ -65,6 +65,7 @@
                             </div>
                         </a>
                     @endforeach
+                    {{$search_product->links()}}
 
 
                 </div><!--features_items-->
@@ -88,13 +89,14 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
     function AddCart(id){
-        console.log(id);
-        $.ajax({
-            url: 'addcart/'+id,
-            type: 'GET',
-        }).done(function(response){
-           alertify.success('Add to cart successful!');
-        });
+        let link = '{{route('web.add_cart', ':id')}}'
+            link = link.replace(':id', id)
+            $.ajax({
+                url: link,
+                type: 'GET',
+            }).done(function(response){
+                alertify.success('Add to cart successful!');
+            });        
     }
 </script>
 @endsection

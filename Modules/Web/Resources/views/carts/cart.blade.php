@@ -28,7 +28,7 @@
                             <a href=""><img width="60" src="{{$product['productInfo']->image}}" alt=""></a>
                         </td>
                         <td class="cart_description">
-                            <h4><a href="">{{$product['productInfo']->title}}</a></h4>
+                            <h5><a href="">{{$product['productInfo']->title}}</a></h5>
                         </td>
                         <td class="cart_price">
                             <p>{{number_format($product['productInfo']->price)}} VND</p>

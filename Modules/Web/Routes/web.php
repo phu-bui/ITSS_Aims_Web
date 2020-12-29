@@ -20,7 +20,8 @@ Route::group(['prefix' => '', 'namespace' => '\Modules\Web\Http\Controllers'], f
 
     //search product
 
-    Route::post('/search', 'ProductController@search')->name('web.search');
+    // Route::post('/search', 'ProductController@search')->name('web.search');
+    Route::get('/search', 'ProductController@search')->name('web.search');
 
     //shopping cart
     Route::get('/addcart/{id}', 'ProductController@addCart')->name('web.add_cart');

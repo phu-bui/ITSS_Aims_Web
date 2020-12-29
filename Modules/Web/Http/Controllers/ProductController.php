@@ -19,7 +19,7 @@ class ProductController extends Controller
 	public function search(Request $req) {
 	    $category_product = DB::table('categories')->orderby('categoryId', 'desc')->get();
         $keywords = $req->keywords_submit;
-		$search_product = DB::table('products')->where('title', 'like', '%'.$keywords.'%')->get();
+		$search_product = DB::table('products')->where('title', 'like', '%'.$keywords.'%')->paginate(6);
 
         return view('web::products.search',compact('search_product'))->with('category_product', $category_product);
     }
