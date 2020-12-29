@@ -44,7 +44,7 @@
                                     <div class="single-products">
                                         <div class="productinfo text-center">
                                             <td><img width="60" class="" src="{{$product->image}}" alt=""></td>
-                                            <h2>{{number_format($product->price).' '.'VNĐ'}}</h2>
+                                            <h2>{{number_format($product->price).' '.'VND'}}</h2>
                                             <p>{{$product->title}}</p>
                                             <p>Number of products: {{$product->quantity}}</p>
                                             <a onclick="AddCart({{$product->productId}})" href="javascript:" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -62,8 +62,9 @@
                                 </div>
 
                             </div>
-                        </a>
                 @endforeach
+                {{ $products->links() }}
+
 
 
                 </div>
