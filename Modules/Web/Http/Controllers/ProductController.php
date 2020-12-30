@@ -20,6 +20,8 @@ class ProductController extends Controller
 	    $category_product = DB::table('categories')->orderby('categoryId', 'desc')->get();
         $keywords = $req->keywords_submit;
 		$search_product = DB::table('products')->where('title', 'like', '%'.$keywords.'%')->paginate(6);
+		$search_product->appends(['keywords_submit' => $keywords]);
+
 
         return view('web::products.search',compact('search_product'))->with('category_product', $category_product);
     }
@@ -42,8 +44,25 @@ class ProductController extends Controller
 
 			$req->Session()->put('Cart', $newCart);
 		}
-		return view('web::carts.cart');
+		return view('web::carts.list-cart');
 	}
+
+	public function deleteOneItem(Request $req,$id){
+		$product = DB::table('products')->where('productId', $id)->first();
+		if($product != null){
+			$oldCart = Session('Cart') ? Session('Cart') : null;
+			$newCart = new Cart($oldCart);
+			$newCart->DeleteOneItem($id);
+			if(Count($newCart->products) > 0){
+				$req->Session()->put('Cart', $newCart);
+			}
+			else{
+				$req->Session()->forget('Cart');
+			}
+		}
+		return view('web::carts.list-cart');
+	}
+
 
 	public function DeleteItemCart(Request $req,$id){
 		if(Session::has("Cart") == null){

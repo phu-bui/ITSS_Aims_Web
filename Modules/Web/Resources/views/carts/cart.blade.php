@@ -34,11 +34,16 @@
                             <p>{{number_format($product['productInfo']->price)}} VND</p>
                         </td>
                         <td class="cart_quantity">
-                            <div class="cart_quantity_button">
-                                <!-- <a class="cart_quantity_up" href=""> + </a> -->
+                            <!-- <div class="cart_quantity_button">
+                                <a class="cart_quantity_up" > + </a>
                                 <a href="">{{$product['quanty']}}</a>
-                                <!-- <a class="cart_quantity_down" href=""> - </a> -->
-                            </div>
+                                <a class="cart_quantity_down" > - </a>
+                            </div> -->
+                            <div class="buttons_added">
+  								<a onclick="DeleteOne({{$product['productInfo']->productId}})"><input class="minus is-form" type="button" value="-"></a>
+  								<input aria-label="quantity" class="input-qty" max="10" min="1" name="" type="number" value="{{$product['quanty']}}">
+  								<a onclick="AddCart({{$product['productInfo']->productId}})" href="javascript:"><input class="plus is-form" type="button" value="+"></a>
+							</div>
                         </td>
                         <td class="cart_total">
                             <p class="cart_total_price">{{number_format($product['price'])}} VND</p>
@@ -62,7 +67,63 @@
         </div>
     </section> <!--/#cart_items-->
 
+ <script src="{{asset('frontend/js/jquery-3.2.1.min.js')}}"></script>
+@if(Session::has("Cart") != null)
 <script>
+$('input.input-qty').each(function() {
+  var $this = $({{$product['quanty']}}),
+    qty = $this.parent().find('.is-form'),
+    min = Number($this.attr('min')),
+    max = Number($this.attr('max'))
+  if (min == 0) {
+    var d = 0
+  } else d = min
+  $(qty).on('click', function() {
+    if ($(this).hasClass('minus')) {
+      if (d > min) d += -1
+    } else if ($(this).hasClass('plus')) {
+      var x = Number($this.val()) + 1
+      if (x <= max) d += 1
+    }
+    $this.attr('value', d).val(d)
+  })
+})
+</script>
+
+<script>
+
+	function DeleteOne(id){
+		console.log(id);
+        // let link = '{{route('web.delete_one', ':id')}}'
+        // link = link.replace(':id', id)
+        // $.ajax({
+        //     url: link,
+        //     type: 'GET',
+        // }).done(function(response){
+        // 	RenderListCart(response);
+        //     alertify.success('Add to cart successful!');
+        // });
+        $.ajax({
+            url: '/Delete-One/'+id,
+            type: 'GET',
+        }).done(function(response){
+            RenderListCart(response);
+           alertify.success('Xoa thanh cong');
+        });
+    }
+
+	function AddCart(id){
+        let link = '{{route('web.add_cart', ':id')}}'
+        link = link.replace(':id', id)
+        $.ajax({
+            url: link,
+            type: 'GET',
+        }).done(function(response){
+        	RenderListCart(response);
+            alertify.success('Add to cart successful!');
+        });
+    }
+
     function DeleteItemCart(id){
         console.log(id);
         $.ajax({
@@ -80,4 +141,5 @@
 
     }
 </script>
+@endif
 @endsection

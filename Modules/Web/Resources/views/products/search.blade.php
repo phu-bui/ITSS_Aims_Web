@@ -65,12 +65,11 @@
                             </div>
                         </a>
                     @endforeach
-                    {{$search_product->links()}}
-
 
                 </div><!--features_items-->
 
             </div>
+            {{$search_product->links()}}
         </div>
     </div>
 </section>
