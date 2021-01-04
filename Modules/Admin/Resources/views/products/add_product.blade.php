@@ -26,13 +26,14 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h5 class="card-title">Products</h5>
-                <form class="form-horizontal" action="{{route('admin.save_product')}}" method="post">
-                    {{csrf_field()}}
+                <form class="form-horizontal" action="{{route('admin.save_product')}}" method="get">
+                    @csrf
                     <div class="form-row">
-                        <div class="col-md-4 mb-3">
-                            <label for="category_id">Category</label>
-                            <select id="category_id" name="category_id" class="form-control">
-                                @foreach($category_product as $key => $category)
+                        <div class="form-group col-sm-4">
+                            <label for="">Loại sản phẩm</label>
+                            <select class="form-control" id="category" name="categoryId" required>
+                                <option value="" selected>---</option>
+                                @foreach($category_product as $category)
                                     <option value="{{$category->categoryId}}">{{$category->categoryName}}</option>
                                 @endforeach
                             </select>
@@ -41,19 +42,28 @@
                         <!-- Slug input-->
                         <div class="col-md-4 mb-3">
                             <label for="slug">Title</label>
-                            <input type="text" class="form-control" id="title" name="title" placeholder="Title ..." required="">
+                            <input type="text" class="form-control" @error('title') is-invalid @enderror id="title" name="title" placeholder="Title ..." required="">
+                            @error('title')
+                            <span class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-row">
                         <!-- Name input-->
                         <div class="col-md-4 mb-3">
                             <label for="name">Product Value</label>
-                            <input type="text" class="form-control" id="value" name="value" placeholder="Value ..." required="">
+                            <input type="text" class="form-control" @error('value') is-invalid @enderror id="value" name="value" placeholder="Value ..." required="">
+                            @error('value')
+                            <span class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
                         <!-- Input image -->
                         <div class="col-md-4 mb-3">
                             <label for="image">Image</label>
-                            <input type="text" class="form-control" id="image" name="image" placeholder="Image ..." required="">
+                            <input type="text" class="form-control" @error('image') is-invalid @enderror id="image" name="image" placeholder="Image ..." required="">
+                            @error('image')
+                            <span class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
 
 
@@ -63,73 +73,51 @@
                         <!-- Short description input-->
                         <div class="col-md-4 mb-3">
                             <label for="short_description">Description</label>
-                            <input type="text" class="form-control" id="description" name="description" placeholder="Description..." required="">
+                            <input type="text" class="form-control" @error('description') is-invalid @enderror id="description" name="description" placeholder="Description..." required="">
+                            @error('description')
+                            <span class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
                         <!-- Price input-->
                         <div class="col-md-4 mb-3">
                             <label for="price">Price</label>
-                            <input type="text" class="form-control" id="price" name="price" placeholder="Price ..." required="">
+                            <input type="text" class="form-control" @error('price') is-invalid @enderror id="price" name="price" placeholder="Price ..." required="">
+                            @error('price')
+                            <span class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-row">
                         <!-- Input vote -->
                         <div class="col-md-4 mb-3">
                             <label for="image">Quantity</label>
-                            <input type="text" class="form-control" id="quantity" name="quantity" placeholder="Quantity..." required="">
+                            <input type="text" class="form-control" @error('quantity') is-invalid @enderror id="quantity" name="quantity" placeholder="Quantity..." required="">
+                            @error('quantity')
+                            <span class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <!-- Status input-->
                         <div class="col-md-4 mb-3">
                             <label for="price">Language</label>
-                            <input type="text" class="form-control" id="language" name="language" placeholder="Language..." required="">
+                            <input type="text" class="form-control" @error('language') is-invalid @enderror id="language" name="language" placeholder="Language..." required="">
+                            @error('language')
+                            <span class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
+                        <div id="other-property"></div>
+
                     </div>
-
-
-                    <button class="btn btn-primary" type="submit">Save product</button>
+                    <button class="btn btn-primary" type="submit">Continue</button>
                 </form>
 
-                <script>
-                            // Example starter JavaScript for disabling form submissions if there are invalid fields
-                            (function() {
-                                'use strict';
-                                window.addEventListener('load', function() {
-                                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                                    var forms = document.getElementsByClassName('needs-validation');
-                                    // Loop over them and prevent submission
-                                    var validation = Array.prototype.filter.call(forms, function(form) {
-                                        form.addEventListener('submit', function(event) {
-                                            if (form.checkValidity() === false) {
-                                                event.preventDefault();
-                                                event.stopPropagation();
-                                            }
-                                            form.classList.add('was-validated');
-                                        }, false);
-                                    });
-                                }, false);
-                            })();
-                        </script>
             </div>
         </div>
-        <script>
-                    // Example starter JavaScript for disabling form submissions if there are invalid fields
-                    (function() {
-                        'use strict';
-                        window.addEventListener('load', function() {
-                            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                            var forms = document.getElementsByClassName('needs-validation');
-                            // Loop over them and prevent submission
-                            var validation = Array.prototype.filter.call(forms, function(form) {
-                                form.addEventListener('submit', function(event) {
-                                    if (form.checkValidity() === false) {
-                                        event.preventDefault();
-                                        event.stopPropagation();
-                                    }
-                                    form.classList.add('was-validated');
-                                }, false);
-                            });
-                        }, false);
-                    })();
-                </script>
     </div>
+
+    <script>
+
+
+    </script>
+
 @endsection

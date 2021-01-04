@@ -10,17 +10,13 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use DB;
 use Illuminate\Support\Facades\Redirect;
+use Modules\Web\Http\Requests\ShippingRequest;
 use Session;
 use App\Http\Requests;
 session_start();
 
 class CheckoutController extends Controller
 {
-    public function login_checkout(){
-        $category_product = DB::table('categories')->orderby('categoryId', 'desc')->get();
-
-        return view('web::checkout.login_checkout')->with('category_product', $category_product);
-    }
 
     public function checkout(Request $request){
         $meta_desc = "Đăng nhập thanh toán";
@@ -38,13 +34,31 @@ class CheckoutController extends Controller
             ->with('url_canonical', $url_canonical);
     }
 
-    public function save_checkout_customer(Request $requests){
+    public function show_checkout($user_id){
+        $ship_by_order = DB::table('ships')->join('orders', 'ships.id', '=','orders.shipId')->where('orders.userId', $user_id)->orderby('ships.id','desc')->limit(1)->get();
+        if(sizeof($ship_by_order) == 0){
+            return view('web::checkout.show_checkout');
+        }
+        else {
+            return view('web::checkout.checkout_details')->with('ship_by_order', $ship_by_order);
+        }
+    }
+
+    public function save_checkout_customer(ShippingRequest  $requests){
+
         $data_ship = array();
         $data_ship['shipName'] = $requests->shipping_name;
         $data_ship['shipAddress'] = $requests->shipping_address;
         $data_ship['shipPhone'] = $requests->shipping_phone;
         $data_ship['shipEmail'] = $requests->shipping_email;
-        $data_ship['shipNote'] = $requests->shipping_notes;
+        if($requests->shipping_notes == NULL){
+            $shipping_id = Session::get('shipping_id');
+            Session::put('message', 'Please update shipping note!');
+            return redirect()->route('web.show_checkout', array('shipping_id'=>$shipping_id));
+        }
+        else {
+            $data_ship['shipNote'] = $requests->shipping_notes;
+        }
 
         $shipping_id = DB::table('ships')->insertGetId($data_ship);
         Session::put('shipping_id', $shipping_id);
@@ -87,8 +101,9 @@ class CheckoutController extends Controller
             $order_data = array();
             $order_data['userId'] = $user_id;
             $order_data['paymentId'] = $payment_id;
+            $order_data['order_no'] = rand(1, 10000);
             $order_data['shipId'] = Session::get('shipping_id');
-
+            $order_data['totalPrices'] = 0;
             //Nếu gỉỏ hàng rỗng
             if (Session::has('Cart') == null) {
                 Session::put('message', 'Sorry, The cart is empty! Please order...');
@@ -96,7 +111,7 @@ class CheckoutController extends Controller
             } //Giỏ hàng đã có sản phẩm được order
             else {
                 foreach (Session::get('Cart')->products as $product) {
-                    $order_data['totalPrices'] = $product['productInfo']->price;
+                    $order_data['totalPrices'] += $product['productInfo']->price;
                 }
                 $order_data['orderStatus'] = 1;
                 $order_id = DB::table('orders')->insertGetId($order_data);
@@ -120,9 +135,12 @@ class CheckoutController extends Controller
                         $quanti = $product_quantity - $order_detail_data['quantity'];
                         if ($quanti >= 0) {
                             DB::table('products')->where('productId', $order_detail_data['productId'])->update(['quantity' => $quanti]);
-
+                            $request->Session()->forget('Cart');
+                            $ordered_new = DB::table('orders')->join('payments','orders.paymentId','=','payments.id')->where('orders.id', $order_id)->get();
+                            $product_ordered = DB::table('products')->join('orderDetails','products.productId', '=', 'orderDetails.productId')->where('orderDetails.orderId', $order_id)->get();
+                            $shipping = DB::table('ships')->join('orders', 'ships.id', '=', 'orders.shipId')->where('orders.id', $order_id)->get();
                             Session::put('message', 'Payment success!');
-                            return view('web::checkout.handcash')->with('category_product', $category_product);
+                            return view('web::checkout.handcash')->with('ordered_new', $ordered_new)->with('product_ordered', $product_ordered)->with('shipping', $shipping);
                         } else {
                             Session::put('message', 'Sorry, Quantity of products is not enough to order!');
                             return view('web::checkout.payment');

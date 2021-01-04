@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('order_no')->default(1);
+            $table->integer('order_no');
             $table->integer('userId');
             $table->integer('paymentId');
             $table->integer('shipId');
