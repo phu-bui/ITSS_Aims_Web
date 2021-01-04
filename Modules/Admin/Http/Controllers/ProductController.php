@@ -27,7 +27,7 @@ class ProductController extends AdminBaseController
     }
 
     public function index() {
-        $products = DB::table('products')->get();
+        $products = DB::table('products')->paginate(8);
         return view('admin::products.index', compact('products'));
     }
 

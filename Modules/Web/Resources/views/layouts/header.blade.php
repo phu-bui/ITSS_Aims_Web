@@ -140,7 +140,7 @@
                     </div>
                 </div>
                 <div class="col-sm-5">
-                    <form action="{{url('/search')}}" method="POST">
+                    <form action="{{url('/search')}}" method="GET">
                         {{csrf_field()}}
                         <div class="search_box pull-right">
                             <input type="text" name="keywords_submit" placeholder="Search"/>

@@ -28,6 +28,21 @@ class Cart{
 		$this->totalQuanty ++;
 	}
 
+
+	public function DeleteOneItem($id){
+		if($this->products[$id]['quanty'] > 1){
+			$this->totalPrice -= $this->products[$id]['price']/$this->products[$id]['quanty'];
+			$this->products[$id]['price'] -= $this->products[$id]['price']/$this->products[$id]['quanty'];
+			$this->products[$id]['quanty']--;
+			$this->totalQuanty --;
+		}
+		else{
+			$this->totalQuanty -= $this->products[$id]['quanty'];
+			$this->totalPrice -= $this->products[$id]['price'];
+			unset($this->products[$id]);
+		}
+	}
+
 	public function DeleteItemCart($id){
 		$this->totalQuanty -= $this->products[$id]['quanty'];
 		$this->totalPrice -= $this->products[$id]['price'];

@@ -19,7 +19,7 @@ class OrderController extends Controller
     public function order_history(){
         if (session()->has('data-signin')) {
             $user = \App\Entities\User::where('email', session('data-signin')['email'])->first();
-            $orders = DB::table('orders')->where('userId', $user->userId)->get();
+            $orders = DB::table('orders')->where('userId', $user->userId)->paginate(5);
             return view('web::orders.order_history')->with('orders', $orders);
         }
         else{

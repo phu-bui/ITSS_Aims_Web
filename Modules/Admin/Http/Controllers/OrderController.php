@@ -19,7 +19,7 @@ class OrderController extends AdminBaseController
 {
 
     public function index() {
-        $orders = DB::table('orders')->get();
+        $orders = DB::table('orders')->paginate(10);
         return view('admin::orders.view_order', compact('orders'));
     }
 

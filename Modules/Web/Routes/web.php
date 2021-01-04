@@ -20,11 +20,13 @@ Route::group(['prefix' => '', 'namespace' => '\Modules\Web\Http\Controllers'], f
 
     //search product
 
-    Route::post('/search', 'ProductController@search')->name('web.search');
+    // Route::post('/search', 'ProductController@search')->name('web.search');
+    Route::get('/search', 'ProductController@search')->name('web.search');
 
     //shopping cart
     Route::get('/addcart/{id}', 'ProductController@addCart')->name('web.add_cart');
     Route::get('/Delete-Item-Cart/{id}', 'ProductController@DeleteItemCart')->name('web.delete_item_cart');
+    Route::get('/Delete-One/{id}', 'ProductController@deleteOneItem')->name('web.delete_one');
 
 });
 Route::group(['prefix' => '', 'namespace' => '\Modules\Web\Http\Controllers\Auth'], function() {
