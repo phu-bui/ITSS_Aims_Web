@@ -14,13 +14,14 @@ class CreateShipsTable extends Migration
     public function up()
     {
         Schema::create('ships', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('shipId');
             $table->string('shipName');
             $table->string('shipAddress');
             $table->string('shipPhone');
             $table->string('shipEmail');
             $table->text('shipNote');
-            $table->dateTime('createDate')->default(\DB::raw('CURRENT_TIMESTAMP'));;
+            $table->dateTime('createDate')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->double('cost');
         });
     }
 

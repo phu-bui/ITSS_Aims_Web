@@ -47,17 +47,22 @@ Route::get('/login-checkout', 'CheckoutController@login_checkout')->name('web.lo
 Route::get('/checkout', 'CheckoutController@checkout')->name('web.checkout');
 Route::get('/show-checkout/{user_id}', 'CheckoutController@show_checkout')->name('web.show_checkout');
 Route::get('/save-checkout-customer', 'CheckoutController@save_checkout_customer')->name('web.save-checkout-customer');
+
+Route::get('/show-update-checkout/{ship_id}', 'CheckoutController@show_update_checkout')->name('web.show_update_checkout');
+Route::get('/save-update-checkout-customer/{ship_id}', 'CheckoutController@save_update_checkout_customer')->name('web.save_update_checkout_customer');
+
 Route::get('/payment', 'CheckoutController@payment')->name('web.payment');
 Route::get('/order-place', 'CheckoutController@order_place')->name('web.order-place');
 Route::get('/test', 'CheckoutController@test');
 
 //Category
 Route::get('/category/{cate_name}' ,'CategoryController@show_category_home')->name('web.category_home');
-Route::get('/product-detail/{product_slug}','ProductController@product_detail')->name('web.product_detail');
 
 //Order
 Route::get('/order-history','OrderController@order_history')->name('web.order_history');
 Route::get('/order-remove/{ordered_id}', 'OrderController@order_cancellation')->name('web.order_remove');
 Route::get('/view-order-detail/{ordered_id}', 'OrderController@view_order_detail')->name('web.view_order_detail');
 
+//Product
+Route::get('/product/{product_id}', 'ProductController@product_detail')->name('web.product_detail');
 #how to make custom library on laravel

@@ -41,11 +41,12 @@
                             <div class="col-sm-4">
                                 <div class="product-image-wrapper">
 
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <td><img width="60" class="" src="{{$product->image}}" alt=""></td>
+                                    <div class="single-products" ">
+                                        <div class="productinfo text-center" >
+                                            <a href="{{route('web.product_detail', array('product_id'=>$product->productId))}}"><td><img width="60" class="" src="{{$product->image}}" alt=""></td></a>
                                             <h2>{{number_format($product->price).' '.'VND'}}</h2>
-                                            <p>{{$product->title}}</p>
+                                            <p><del>{{number_format($product->value).' '.'VNĐ'}}</del></p>
+                                            <a href="{{route('web.product_detail', array('product_id'=>$product->productId))}}"><p>{{$product->title}}</p></a>
                                             <p>Number of products: {{$product->quantity}}</p>
                                             <a onclick="AddCart({{$product->productId}})" href="javascript:" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                         </div>
@@ -94,7 +95,7 @@
             url: 'addcart/'+id,
             type: 'GET',
         }).done(function(response){
-           alertify.success('Them thanh cong');
+           alertify.success('Add to cart successful!');
         });
     }
 </script>

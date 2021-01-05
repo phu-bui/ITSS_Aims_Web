@@ -84,28 +84,21 @@ class ProductController extends Controller
 
     public function product_detail($product_id, Request $request){
         $category_product = DB::table('categories')->orderby('categoryId','desc')->get();
-        $details_product = DB::table('products')
-            ->join('categories','categories.categoryId','=','products.categoryId')->where('products.productId', $product_id)->get();
+        $product = DB::table('products')->where('productId', $product_id)->get();
+        $details_product = DB::table('property_types')
+            ->join('properties','property_types.id','=','properties.propertyTypeId')->where('properties.productId', $product_id)->get();
 
-        foreach ($details_product as $key => $value){
-            $meta_desc = $value->description;
-            $meta_keywords = $value->value;
-            $meta_title = $value->title;
-            $url_canonical = $request->url();
+        foreach ($product as $pro){
+            $categoryId = $pro->categoryId;
         }
+        $product_same_category = DB::table('products')->where('categoryId', $categoryId)->limit(3)->get();
 
-        $related_product = DB::table('products')
-            ->join('categories','categories.categoryId','=','products.categoryId')
-            ->whereNotIn('products.productId',[$product_id])->get();
         return view('web::products.show_details')
-            ->with('category',$category_product)
+            ->with('categories',$category_product)
             ->with('product_details',$details_product)
-            ->with('relate',$related_product)
-            ->with('meta_desc',$meta_desc)
-            ->with('meta_keywords',$meta_keywords)
-            ->with('meta_title',$meta_title)
-            ->with('url_canonical',$url_canonical);
-    }
+            ->with('product', $product)
+            ->with('product_same_category', $product_same_category);
+	}
 
 }
 

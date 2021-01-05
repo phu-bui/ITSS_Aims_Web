@@ -63,10 +63,10 @@
                     <br>
                     <div class="payment-options">
                         <span>
-                            <label><input name="payment_option" value="paypal" type="checkbox">Paypal</label>
+                            <label><input name="payment_option" value="paypal" type="radio">Paypal</label>
                         </span>
                         <span>
-                            <label><input name="payment_option" value="handcash" type="checkbox">Hand Cash</label>
+                            <label><input name="payment_option" value="handcash" type="radio">Hand Cash</label>
                         </span>
                         <br>
                         <?php

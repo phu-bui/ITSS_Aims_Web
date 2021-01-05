@@ -23,21 +23,20 @@
                             <p>Fill in shipping information</p>
                             <div class="form-one">
                             @foreach($ship_by_order as $key => $ship)
-                                <form  action="{{route('web.save-checkout-customer')}}" method="GET">
+                                <form  action="{{route('web.show_update_checkout', array('ship_id'=>$ship->shipId))}}" method="GET">
                                     {{csrf_field()}}
-                                    <input type="text" name="shipping_name" class="shipping_name" value="{{$ship->shipName}}">
-                                    <input type="text" name="shipping_phone" class="shipping_phone" value="{{$ship->shipPhone}}">
-                                    <input type="text" name="shipping_email" class="shipping_email" value="{{$ship->shipEmail}}">
-                                    <input type="text" name="shipping_address" class="shipping_address" value="{{$ship->shipAddress}}">
-                                    <textarea name="shipping_notes" class="shipping_notes" placeholder="Shipping note..." rows="5"></textarea>
-                                    <br>
-                                    <?php
-                                    $message = Session::get('message');
-                                    if($message){
-                                        echo '<span class="text-alert">'.$message.'</span>';
-                                        Session::put('message', null);
-                                    }
-                                    ?>
+                                    <div class="col-sm-4">
+                                        <div class="contact-info">
+                                            <h2 class="title text-center">Ship Info</h2>
+                                            <address>
+                                                <p>Name: {{$ship->shipName}}</p>
+                                                <p>Address: {{$ship->shipAddress}}</p>
+                                                <p>Mobile: {{$ship->shipPhone}}</p>
+                                                <p>Email: {{$ship->shipEmail}}</p>
+                                                <p>Note: {{$ship->shipNote}}</p>
+                                            </address>
+                                        </div>
+                                    </div>
                                     <br>
                                     <input type="submit" value="Update ship" name="send_order_place" class="btn btn-primary br-sm">
                                     <button type="button" value="Go to payment" name="send_order_place" class="btn btn-primary br-sm"><a href="{{route('web.payment')}}">Go to payment</a></button>
