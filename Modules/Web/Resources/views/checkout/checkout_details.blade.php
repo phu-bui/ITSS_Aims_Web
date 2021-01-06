@@ -39,7 +39,7 @@
                                     </div>
                                     <br>
                                     <input type="submit" value="Update ship" name="send_order_place" class="btn btn-primary br-sm">
-                                    <button type="button" value="Go to payment" name="send_order_place" class="btn btn-primary br-sm"><a href="{{route('web.payment')}}">Go to payment</a></button>
+                                    <button type="button" value="Go to payment" name="send_order_place" class="btn btn-primary br-sm"><a href="{{route('web.payment', array('ship_id'=>$ship->shipId))}}">Go to payment</a></button>
                                 </form>
                             @endforeach
                             </div>

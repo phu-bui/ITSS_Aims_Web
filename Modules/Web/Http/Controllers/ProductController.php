@@ -86,7 +86,7 @@ class ProductController extends Controller
         $category_product = DB::table('categories')->orderby('categoryId','desc')->get();
         $product = DB::table('products')->where('productId', $product_id)->get();
         $details_product = DB::table('property_types')
-            ->join('properties','property_types.id','=','properties.propertyTypeId')->where('properties.productId', $product_id)->get();
+            ->join('properties','property_types.propertyTypeId','=','properties.propertyTypeId')->where('properties.productId', $product_id)->get();
 
         foreach ($product as $pro){
             $categoryId = $pro->categoryId;

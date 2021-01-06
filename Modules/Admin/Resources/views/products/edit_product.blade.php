@@ -86,7 +86,7 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-primary" type="submit">Update</button>
+                    <button class="btn btn-primary" type="submit">Continue</button>
                 </form>
                 @endforeach
                 <script>

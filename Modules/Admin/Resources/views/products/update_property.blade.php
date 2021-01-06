@@ -26,16 +26,16 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h5 class="card-title">Products</h5>
-                <form class="form-horizontal" action="{{route('admin.product.add_property', array('category_id'=>$categoryId))}}" method="get">
+                <form class="form-horizontal" action="{{route('admin.update_property', array('product_id'=>$product_id))}}" method="post">
                     @csrf
 
-                    @foreach($propertyTypes as $proType)
+                    @foreach($properties as $property)
                         <div class="form-group">
-                            <label for="">{{$proType->propertyName}}</label>
-                            <input type="text" class="form-control" name="{{$proType->propertyTypeId}}" placeholder="">
+                            <label for="">{{$property->propertyName}}</label>
+                            <input type="text" class="form-control" name="{{$property->propertyTypeId}}" value="{{$property->value}}" placeholder="">
                         </div>
                     @endforeach
-                    <button class="btn btn-primary" type="submit">Continue</button>
+                    <button class="btn btn-primary" type="submit">Save</button>
                 </form>
             </div>
         </div>

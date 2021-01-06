@@ -52,7 +52,11 @@
                             </tbody>
                         </table>
                         @endforeach
+                        <?php
+                            $total_price += $ship_cost;
+                        ?>
                     </div>
+                    <h5>Ship cost: {{$ship_cost}} VND</h5>
                     <h4>Total Price: {{$total_price}} VND</h4>
                 </div>
                 @endif

@@ -51,10 +51,9 @@ Route::get('/save-checkout-customer', 'CheckoutController@save_checkout_customer
 Route::get('/show-update-checkout/{ship_id}', 'CheckoutController@show_update_checkout')->name('web.show_update_checkout');
 Route::get('/save-update-checkout-customer/{ship_id}', 'CheckoutController@save_update_checkout_customer')->name('web.save_update_checkout_customer');
 
-Route::get('/payment', 'CheckoutController@payment')->name('web.payment');
+Route::get('/payment/{ship_id}', 'CheckoutController@payment')->name('web.payment');
 Route::get('/order-place', 'CheckoutController@order_place')->name('web.order-place');
-Route::get('/test', 'CheckoutController@test');
-
+Route::get('paypal', 'CheckoutController@paypal')->name('web.paypal');
 //Category
 Route::get('/category/{cate_name}' ,'CategoryController@show_category_home')->name('web.category_home');
 

@@ -75,7 +75,7 @@ class CheckoutController extends Controller
 
         $shipping_id = DB::table('ships')->insertGetId($data_ship);
         Session::put('shipping_id', $shipping_id);
-        return redirect()->route('web.payment');
+        return redirect()->route('web.payment', array('ship_id'=>$shipping_id));
 
     }
 
@@ -117,53 +117,140 @@ class CheckoutController extends Controller
         $data_ship['shipNote'] = $requests->shipping_notes;
 
         DB::table('ships')->where('shipId', $ship_id)->update($data_ship);
-        return redirect()->route('web.payment');
+        return redirect()->route('web.payment', array('ship_id'=>$ship_id));
 
     }
 
-    public function payment(Request $request){
-        $meta_desc = "Đăng nhập thanh toán";
-        $meta_keywords = "Đăng nhập thanh toán";
-        $meta_title = "Đăng nhập thanh toán";
-        $url_canonical = $request->url();
+    public function payment($ship_id){
         $category_product = DB::table('categories')->orderby('categoryId', 'desc')->get();
-
+        $ship_info = DB::table('ships')->where('shipId', $ship_id)->get();
+        foreach ($ship_info as $info) {
+            $ship_cost = $info->cost;
+        }
         return view('web::checkout.payment')->with('category_product', $category_product)
-            ->with('meta_desc', $meta_desc)
-            ->with('meta_keywords', $meta_keywords)
-            ->with('meta_title', $meta_title)
-            ->with('url_canonical', $url_canonical);
+            ->with('ship_cost', $ship_cost);
     }
 
-    public function order_place(Request $request){
+    public function order_place(Request $request)
+    {
         if (session()->has('data-signin')) {
             $user = \App\Entities\User::where('email', session('data-signin')['email'])->first();
         }
         $user_id = $user->userId;
-        $ship_by_order = DB::table('ships')->join('orders', 'ships.shipId', '=','orders.shipId')->where('orders.userId', $user_id)->orderby('ships.shipId','desc')->limit(1)->get();
+        $ship_by_order = DB::table('ships')->join('orders', 'ships.shipId', '=', 'orders.shipId')->where('orders.userId', $user_id)->orderby('ships.shipId', 'desc')->limit(1)->get();
         foreach ($ship_by_order as $ship) {
             $ship_id = $ship->shipId;
         }
         //insert payment
         $data = array();
         $data['name'] = $request->payment_option;
-        if($data['name'] == null){
+        if ($data['name'] == null) {
             Session::put('message', 'Sorry, Please choose your form of payment!');
             return view('web::checkout.payment');
+        } else {
+            $payment_info = DB::table('payments')->where('name', $data['name'])->get();
+            foreach ($payment_info as $pay_info){
+                $payment_id = $pay_info->id;
+            }
+            //insert order
+
+            if ($data['name'] == 'handcash') {
+                $ship_info = DB::table('ships')->where('shipId', $ship_id)->get();
+                foreach ($ship_info as $info) {
+                    $ship_cost = $info->cost;
+                }
+                if (session()->has('data-signin')) {
+                    $user = \App\Entities\User::where('email', session('data-signin')['email'])->first();
+                }
+                $user_id = $user->userId;
+                $order_data = array();
+                $order_data['userId'] = $user_id;
+                $order_data['paymentId'] = $payment_id;
+                $order_data['order_no'] = rand(1, 10000);
+                $order_data['shipId'] = $ship_id;
+                $order_data['totalPrices'] = $ship_cost;
+                //Nếu gỉỏ hàng rỗng
+                if (Session::has('Cart') == null) {
+                    Session::put('message', 'Sorry, The cart is empty! Please order...');
+                    return view('web::checkout.payment');
+                } //Giỏ hàng đã có sản phẩm được order
+                else {
+                    foreach (Session::get('Cart')->products as $product) {
+                        $order_data['totalPrices'] += $product['productInfo']->price*$product['quanty'];
+                    }
+                    $order_data['orderStatus'] = 1;
+                    $order_id = DB::table('orders')->insertGetId($order_data);
+                    //insert order detail
+                    $order_detail_data = array();
+
+                    foreach (Session::get('Cart')->products as $product) {
+                        $order_detail_data['orderId'] = $order_id;
+                        $order_detail_data['productId'] = $product['productInfo']->productId;
+                        $order_detail_data['quantity'] = $product['quanty'];
+                        DB::table('orderDetails')->insert($order_detail_data);
+
+                    }
+                    foreach (Session::get('Cart')->products as $product) {
+                        $product_data = DB::table('products')->where('productId', $product['productInfo']->productId)->get();
+                    }
+                    foreach ($product_data as $item) {
+                        $product_quantity = $item->quantity;
+                    }
+                    $quanti = $product_quantity - $order_detail_data['quantity'];
+                    if ($quanti >= 0) {
+                        DB::table('products')->where('productId', $order_detail_data['productId'])->update(['quantity' => $quanti]);
+                        $request->Session()->forget('Cart');
+                        $ordered_new = DB::table('orders')->join('payments', 'orders.paymentId', '=', 'payments.id')->where('orders.id', $order_id)->get();
+                        $product_ordered = DB::table('products')->join('orderDetails', 'products.productId', '=', 'orderDetails.productId')->where('orderDetails.orderId', $order_id)->get();
+                        $shipping = DB::table('ships')->join('orders', 'ships.shipId', '=', 'orders.shipId')->where('orders.id', $order_id)->get();
+                        Session::put('message', 'Payment success!');
+                        return view('web::checkout.success')->with('ordered_new', $ordered_new)->with('product_ordered', $product_ordered)->with('shipping', $shipping)->with('payment_info', $payment_info);
+                    } else {
+                        Session::put('message', 'Sorry, Quantity of products is not enough to order!');
+                        return view('web::checkout.payment');
+                    }
+                }
+            } else {
+                if (Session::has('Cart') == null) {
+                    Session::put('message', 'Sorry, The cart is empty! Please order...');
+                    return view('web::checkout.payment');
+                }
+                else {
+                    return view('web::checkout.paypal');
+                }
+            }
+        }
+    }
+
+    public function paypal(Request $request){
+        $payment_info = DB::table('payments')->where('name', 'paypal')->get();
+        foreach ($payment_info as $pay_info){
+            $payment_id = $pay_info->id;
+        }
+
+        $paypal_code = $request->paypal_code;
+        $paypal_data = DB::table('paypals')->where('paypalCode', $paypal_code)->get();
+        foreach ($paypal_data as $paypal) {
+            $paypal_money = $paypal->paypalMoney;
+        }
+        if (sizeof($paypal_data) == 0){
+            Session::put('message', 'Sorry, Paypal code is not ready to accept payment! Please enter another paypal code...');
+            return view('web::checkout.paypal');
         }
         else {
-            $payment_id = DB::table('payments')->insertGetId($data);
-
-
-            //insert order
-            $ship_info = DB::table('ships')->where('shipId', $ship_id)->get();
-            foreach ($ship_info as $info) {
-                $ship_cost = $info->cost;
-            }
             if (session()->has('data-signin')) {
                 $user = \App\Entities\User::where('email', session('data-signin')['email'])->first();
             }
             $user_id = $user->userId;
+            $ship_by_order = DB::table('ships')->join('orders', 'ships.shipId', '=', 'orders.shipId')->where('orders.userId', $user_id)->orderby('ships.shipId', 'desc')->limit(1)->get();
+            foreach ($ship_by_order as $ship) {
+                $ship_id = $ship->shipId;
+            }
+            $ship_info = DB::table('ships')->where('shipId', $ship_id)->get();
+            foreach ($ship_info as $info) {
+                $ship_cost = $info->cost;
+            }
+
             $order_data = array();
             $order_data['userId'] = $user_id;
             $order_data['paymentId'] = $payment_id;
@@ -177,10 +264,11 @@ class CheckoutController extends Controller
             } //Giỏ hàng đã có sản phẩm được order
             else {
                 foreach (Session::get('Cart')->products as $product) {
-                    $order_data['totalPrices'] += $product['productInfo']->price*$product['quanty'];
+                    $order_data['totalPrices'] += $product['productInfo']->price * $product['quanty'];
                 }
                 $order_data['orderStatus'] = 1;
                 $order_id = DB::table('orders')->insertGetId($order_data);
+
                 //insert order detail
                 $order_detail_data = array();
 
@@ -191,36 +279,28 @@ class CheckoutController extends Controller
                     DB::table('orderDetails')->insert($order_detail_data);
 
                 }
-                if ($data['name'] == 'handcash') {
-                    $category_product = DB::table('categories')->orderby('categoryId', 'desc')->get();
-                    foreach (Session::get('Cart')->products as $product) {
-                        $product_data = DB::table('products')->where('productId', $order_detail_data['productId'])->get();
-                        foreach ($product_data as $item) {
-                            $product_quantity = $item->quantity;
-                        }
-                        $quanti = $product_quantity - $order_detail_data['quantity'];
-                        if ($quanti >= 0) {
-                            DB::table('products')->where('productId', $order_detail_data['productId'])->update(['quantity' => $quanti]);
-                            $request->Session()->forget('Cart');
-                            $ordered_new = DB::table('orders')->join('payments','orders.paymentId','=','payments.id')->where('orders.id', $order_id)->get();
-                            $product_ordered = DB::table('products')->join('orderDetails','products.productId', '=', 'orderDetails.productId')->where('orderDetails.orderId', $order_id)->get();
-                            $shipping = DB::table('ships')->join('orders', 'ships.shipId', '=', 'orders.shipId')->where('orders.id', $order_id)->get();
-                            Session::put('message', 'Payment success!');
-                            return view('web::checkout.handcash')->with('ordered_new', $ordered_new)->with('product_ordered', $product_ordered)->with('shipping', $shipping);
-                        } else {
-                            Session::put('message', 'Sorry, Quantity of products is not enough to order!');
-                            return view('web::checkout.payment');
-                        }
-                    }
+                foreach (Session::get('Cart')->products as $product) {
+                    $product_data = DB::table('products')->where('productId', $product['productInfo']->productId)->get();
+                }
+                foreach ($product_data as $item) {
+                    $product_quantity = $item->quantity;
+                }
+                $quanti = $product_quantity - $order_detail_data['quantity'];
+                if ($quanti >= 0) {
+                    DB::table('products')->where('productId', $order_detail_data['productId'])->update(['quantity' => $quanti]);
+                    $request->Session()->forget('Cart');
+                    $paypal_money  -= $order_data['totalPrices'];
+                    DB::table('paypals')->where('paypalCode', $paypal_code)->update(['paypalMoney'=>$paypal_money]);
+                    $ordered_new = DB::table('orders')->join('payments', 'orders.paymentId', '=', 'payments.id')->where('orders.id', $order_id)->get();
+                    $product_ordered = DB::table('products')->join('orderDetails', 'products.productId', '=', 'orderDetails.productId')->where('orderDetails.orderId', $order_id)->get();
+                    $shipping = DB::table('ships')->join('orders', 'ships.shipId', '=', 'orders.shipId')->where('orders.id', $order_id)->get();
+                    Session::put('message', 'Payment success!');
+                    return view('web::checkout.success')->with('ordered_new', $ordered_new)->with('product_ordered', $product_ordered)->with('shipping', $shipping)->with('payment_info', $payment_info);
                 } else {
-                    return view('web::checkout.paypal');
+                    Session::put('message', 'Sorry, Quantity of products is not enough to order!');
+                    return view('web::checkout.payment');
                 }
             }
         }
     }
-    public function test(){
-        $product_quantity = DB::table('products')->where('id', 4)->get();
-        foreach ($product_quantity as $item) {
-            echo $item->quantity;
-        }    }
 }

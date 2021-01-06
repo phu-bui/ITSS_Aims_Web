@@ -32,6 +32,16 @@
                                 <span class="info-box-number">{{count($products)}}</span>
                             </div>
                         </h5>
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <select class="form-control" name="category" id="category">
+                                    <option value="0" selected>Tất cả</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->categoryId}}">{{$category->categoryName}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="table-responsive">
                             <table class="mb-0 table">
                                 <thead>
