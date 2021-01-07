@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePropertyTypesTable extends Migration
+class CreatePaymentMethodsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreatePropertyTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('property_types', function (Blueprint $table) {
-            $table->bigIncrements('propertyTypeId');
-            $table->integer('categoryId');
-            $table->string('propertyName');
-            $table->integer('filterable')->default(0);
-            $table->integer('sort');
+        Schema::create('payment_methods', function (Blueprint $table) {
+            $table->bigIncrements('paymentMethodId');
+            $table->string('paymentName');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreatePropertyTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('property_types');
+        Schema::dropIfExists('payment_methods');
     }
 }

@@ -52,7 +52,14 @@
                             </tbody>
                         </table>
                         @endforeach
+                        <?php
+                            $vat = $total_price*0.1;
+                            $total_price += $ship_cost;
+                            $total_price += $vat;
+                        ?>
                     </div>
+                    <h5>VAT: {{$vat}} VND</h5>
+                    <h5>Ship cost: {{$ship_cost}} VND</h5>
                     <h4>Total Price: {{$total_price}} VND</h4>
                 </div>
                 @endif
@@ -63,10 +70,10 @@
                     <br>
                     <div class="payment-options">
                         <span>
-                            <label><input name="payment_option" value="paypal" type="checkbox">Paypal</label>
+                            <label><input name="payment_option" value="paypal" type="radio">Paypal</label>
                         </span>
                         <span>
-                            <label><input name="payment_option" value="handcash" type="checkbox">Hand Cash</label>
+                            <label><input name="payment_option" value="handcash" type="radio">Hand Cash</label>
                         </span>
                         <br>
                         <?php

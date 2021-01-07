@@ -2,7 +2,7 @@
 
 use App\Lib\CsvSeeder;
 
-class ShippingTypeTableSeeder extends CsvSeeder
+class ShipTableSeeder extends CsvSeeder
 {
     /**
      * Run the database seeds.
@@ -11,8 +11,8 @@ class ShippingTypeTableSeeder extends CsvSeeder
      */
     public function __construct()
     {
-        $this->table = 'shipping_types';
-        $this->filename = base_path().'/database/seeds/csvs/shipping-types.csv';
+        $this->table = 'ships';
+        $this->filename = base_path().'/database/seeds/csvs/ships.csv';
     }
 
     public function run()

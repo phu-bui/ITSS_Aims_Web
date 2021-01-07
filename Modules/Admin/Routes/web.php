@@ -24,7 +24,10 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin', 'namespace' => '\Modul
         Route::get('/save-products', 'ProductController@save_product')->name('admin.save_product');
         Route::get('/edit-products/{product_id}', 'ProductController@edit_product')->name('admin.edit_product');
         Route::post('/update-products/{product_id}', 'ProductController@update_product')->name('admin.update_product');
+        Route::post('/update-property/{product_id}', 'ProductController@update_property')->name('admin.update_property');
         Route::get('/delete-products/{product_id}', 'ProductController@delete_product')->name('admin.delete_product');
+
+        Route::get('/category/{cate_name}' ,'ProductController@show_category_home')->name('admin.category_home');
 
 
 
@@ -35,6 +38,8 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin', 'namespace' => '\Modul
         Route::get('/edit-categories/{category_id}', 'CategoryController@edit_category')->name('admin.edit_category');
         Route::post('/update-categories/{category_id}', 'CategoryController@update_category')->name('admin.update_category');
         Route::get('/delete-categories/{category_id}', 'CategoryController@delete_category')->name('admin.delete_category');
+        //Category
+       
 
         //User
         Route::get('/users', 'UserController@index')->name('admin.users.list');
