@@ -176,6 +176,8 @@ class CheckoutController extends Controller
                 $order_data['order_no'] = rand(1, 10000);
                 $order_data['shipId'] = $ship_id;
                 $order_data['totalPrices'] = $ship_cost;
+
+                $total_price = 0;
                 //Nếu gỉỏ hàng rỗng
                 if (Session::has('Cart') == null) {
                     Session::put('message', 'Sorry, The cart is empty! Please order...');
@@ -183,8 +185,11 @@ class CheckoutController extends Controller
                 } //Giỏ hàng đã có sản phẩm được order
                 else {
                     foreach (Session::get('Cart')->products as $product) {
-                        $order_data['totalPrices'] += $product['productInfo']->price*$product['quanty'];
+                         $total_price += $product['productInfo']->price*$product['quanty'];
                     }
+                    $vat = $total_price*0.1;
+                    $total_price+=$vat;
+                    $order_data['totalPrices'] += $total_price;
                     $order_data['orderStatus'] = 1;
                     $order_id = DB::table('orders')->insertGetId($order_data);
                     //insert order detail
@@ -211,7 +216,11 @@ class CheckoutController extends Controller
                         $product_ordered = DB::table('products')->join('orderDetails', 'products.productId', '=', 'orderDetails.productId')->where('orderDetails.orderId', $order_id)->get();
                         $shipping = DB::table('ships')->join('orders', 'ships.shipId', '=', 'orders.shipId')->where('orders.id', $order_id)->get();
                         Session::put('message', 'Payment success!');
-                        return view('web::checkout.success')->with('ordered_new', $ordered_new)->with('product_ordered', $product_ordered)->with('shipping', $shipping)->with('payment_info', $payment_info);
+                        return view('web::checkout.success')
+                            ->with('ordered_new', $ordered_new)
+                            ->with('product_ordered', $product_ordered)
+                            ->with('shipping', $shipping)
+                            ->with('payment_info', $payment_info)->with('vat', $vat);
                     } else {
                         Session::put('message', 'Sorry, Quantity of products is not enough to order!');
                         return view('web::checkout.payment')->with('ship_cost', $ship_cost);
@@ -265,6 +274,8 @@ class CheckoutController extends Controller
             $order_data['order_no'] = rand(1, 10000);
             $order_data['shipId'] = $ship_id;
             $order_data['totalPrices'] = $ship_cost;
+
+            $total_price = 0;
             //Nếu gỉỏ hàng rỗng
             if (Session::has('Cart') == null) {
                 Session::put('message', 'Sorry, The cart is empty! Please order...');
@@ -272,8 +283,11 @@ class CheckoutController extends Controller
             } //Giỏ hàng đã có sản phẩm được order
             else {
                 foreach (Session::get('Cart')->products as $product) {
-                    $order_data['totalPrices'] += $product['productInfo']->price * $product['quanty'];
+                     $total_price += $product['productInfo']->price * $product['quanty'];
                 }
+                $vat = $total_price*0.1;
+                $total_price += $vat;
+                $order_data['totalPrices'] += $total_price;
                 $order_data['orderStatus'] = 1;
                 $order_id = DB::table('orders')->insertGetId($order_data);
 
@@ -303,7 +317,12 @@ class CheckoutController extends Controller
                     $product_ordered = DB::table('products')->join('orderDetails', 'products.productId', '=', 'orderDetails.productId')->where('orderDetails.orderId', $order_id)->get();
                     $shipping = DB::table('ships')->join('orders', 'ships.shipId', '=', 'orders.shipId')->where('orders.id', $order_id)->get();
                     Session::put('message', 'Payment success!');
-                    return view('web::checkout.success')->with('ordered_new', $ordered_new)->with('product_ordered', $product_ordered)->with('shipping', $shipping)->with('payment_info', $payment_method_info);
+                    return view('web::checkout.success')
+                        ->with('ordered_new', $ordered_new)
+                        ->with('product_ordered', $product_ordered)
+                        ->with('shipping', $shipping)
+                        ->with('payment_info', $payment_method_info)
+                        ->with('vat', $vat);
                 } else {
                     Session::put('message', 'Sorry, Quantity of products is not enough to order!');
                     return view('web::checkout.payment');

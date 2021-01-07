@@ -96,6 +96,15 @@
                             </div>
                         </div>
                     </div>
+                        <div class="border-bottom mb-5 pb-4">
+                            <div class="px-3 pl-md-5 pr-md-4">
+                                <div class="d-flex justify-content-between">
+                                    <span class="font-size-2 font-weight-medium">VAT</span>
+                                    <span class="font-weight-medium fon-size-2">{{$vat}} VND</span>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
                     @foreach($shipping as $ship)
                         <div class="border-bottom mb-5 pb-4">
                             <div class="px-3 pl-md-5 pr-md-4">

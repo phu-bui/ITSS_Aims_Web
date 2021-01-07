@@ -53,9 +53,12 @@
                         </table>
                         @endforeach
                         <?php
+                            $vat = $total_price*0.1;
                             $total_price += $ship_cost;
+                            $total_price += $vat;
                         ?>
                     </div>
+                    <h5>VAT: {{$vat}} VND</h5>
                     <h5>Ship cost: {{$ship_cost}} VND</h5>
                     <h4>Total Price: {{$total_price}} VND</h4>
                 </div>
