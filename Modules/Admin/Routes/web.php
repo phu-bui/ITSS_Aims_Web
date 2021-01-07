@@ -24,6 +24,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin', 'namespace' => '\Modul
         Route::get('/save-products', 'ProductController@save_product')->name('admin.save_product');
         Route::get('/edit-products/{product_id}', 'ProductController@edit_product')->name('admin.edit_product');
         Route::post('/update-products/{product_id}', 'ProductController@update_product')->name('admin.update_product');
+        Route::post('/update-property/{product_id}', 'ProductController@update_property')->name('admin.update_property');
         Route::get('/delete-products/{product_id}', 'ProductController@delete_product')->name('admin.delete_product');
 
 

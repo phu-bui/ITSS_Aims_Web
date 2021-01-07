@@ -32,7 +32,7 @@ class OrderController extends AdminBaseController
     public function view_order($order_id){
         $ordered_products = DB::table('products')->join('orderDetails', 'products.productId', '=', 'orderDetails.productId')->where('orderDetails.orderId', $order_id)->get();
         $ordered = DB::table('orders')->where('id', $order_id)->get();
-        $ship = DB::table('ships')->join('orders', 'ships.id', '=', 'orders.shipId')->where('orders.id', $order_id)->get();
+        $ship = DB::table('ships')->join('orders', 'ships.shipId', '=', 'orders.shipId')->where('orders.id', $order_id)->get();
         return view('admin::orders.order_detail')
             ->with('ship', $ship)
             ->with('ordered_products', $ordered_products)->with('ordered', $ordered);

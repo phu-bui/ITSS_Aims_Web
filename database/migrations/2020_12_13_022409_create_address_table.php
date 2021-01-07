@@ -20,6 +20,7 @@ class CreateAddressTable extends Migration
             $table->string('district');
             $table->string('wards');
             $table->string('description');
+            $table->double('shipCost');
         });
     }
 

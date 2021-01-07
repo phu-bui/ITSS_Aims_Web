@@ -58,7 +58,9 @@
                                         <th scope="row" class="pr-0 py-0 font-weight-medium">{{$order->order_no}}</th>
                                         <td class="pr-0 py-0 font-weight-medium">{{$order->orderDate}}</td>
                                         <td class="pr-0 py-0 font-weight-medium text-md-center">{{$order->totalPrices}} VND</td>
-                                        <td class="pr-md-4 py-0 font-weight-medium text-md-right">{{$order->name}} </td>
+                                        @foreach($payment_method as  $payment)
+                                        <td class="pr-md-4 py-0 font-weight-medium text-md-right">{{$payment->paymentName}} </td>
+                                        @endforeach
                                     </tr>
                                     </tbody>
                                 </table>

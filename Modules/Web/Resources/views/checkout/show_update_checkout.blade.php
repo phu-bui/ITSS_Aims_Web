@@ -23,7 +23,7 @@
                             <p>Fill in shipping information</p>
                         </div>
                         <div class="form-two">
-                            <form  action="{{route('web.save-checkout-customer')}}" method="GET">
+                            <form  action="{{route('web.save_update_checkout_customer', array('ship_id'=>$ship_id))}}" method="GET">
                                 {{csrf_field()}}
                                 <input type="text" name="shipping_name"  class="shipping_name @error('shipName') is-invalid @enderror" placeholder="Your name..."  required="">
                                 @error('shipName')

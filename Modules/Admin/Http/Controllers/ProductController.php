@@ -28,7 +28,8 @@ class ProductController extends AdminBaseController
 
     public function index() {
         $products = DB::table('products')->paginate(8);
-        return view('admin::products.index', compact('products'));
+        $categories = DB::table('categories')->orderby('categoryId', 'desc')->get();
+        return view('admin::products.index', compact('products','categories'));
     }
 
     public function add_product(){
@@ -64,10 +65,10 @@ class ProductController extends AdminBaseController
         }
         foreach ($property_type as $item) {
             $data = array();
-            $property_id = $item->id;
+            $property_id = $item->propertyTypeId;
 
             $data['productId'] = $product_id;
-            $data['propertyTypeId'] = $item->id;
+            $data['propertyTypeId'] = $item->propertyTypeId;
             $data['value'] = $request->$property_id;
 
             DB::table('properties')->insert($data);
@@ -77,25 +78,13 @@ class ProductController extends AdminBaseController
 
     }
 
-    public function renderPropertyForm(Request $request) {
-        if($request->ajax()) {
-            $categoryId = $request->get('category_id');
-            $oldDatas = $request->get('old_data');
-            $propertyTypes = DB::table('property_types')->where('categoryId', $categoryId)->get();
-            $propertyForm = view('admin::products.property-form', compact('propertyTypes', 'oldDatas'))->render();
-            return response()->json(compact('propertyForm'));
-        } else {
-            return response()->json([]);
-        }
-    }
-
     public function edit_product($product_id){
-        $category_product = DB::table('categories')->orderby('categoryId', 'desc')->get();
+        $category_product = DB::table('categories')->join('products', 'categories.categoryId', '=', 'products.categoryId')->where('products.productId', $product_id)->get();
         $edit_product = DB::table('products')->where('productId', $product_id)->get();
         return view('admin::products.edit_product')->with('products', $edit_product)->with('category_product', $category_product);
     }
 
-    public function update_product(Request $request, $product_id){
+    public function update_product(ProductCRUDRequest $request, $product_id){
         $data = array();
         $data['categoryId'] = $request->category_id;
         $data['idGood'] = 1;
@@ -108,9 +97,30 @@ class ProductController extends AdminBaseController
         $data['language'] = $request->language;
 
         DB::table('products')->where('productId', $product_id)->update($data);
-        Session::put('message', 'Update product successful!');
-        return redirect()->route('admin.edit_product', array('product_id'=>$product_id));
+        $properties = DB::table('properties')->join('property_types', 'properties.propertyTypeId', '=', 'property_types.propertyTypeId')->where('properties.productId', $product_id)->get();
+        return view('admin::products.update_property')
+            ->with('properties', $properties)
+            ->with('product_id', $product_id)
+            ->with('categoryId', $request->category_id);
     }
+
+    public function update_property(Request $request, $product_id) {
+        $product = DB::table('products')->where('productId', $product_id)->get();
+        foreach ($product as $pro){
+            $category_id = $pro->categoryId;
+        }
+        $property_type = DB::table('property_types')->where('categoryId', $category_id)->get();
+        foreach ($property_type as $item) {
+            $data = array();
+            $property_id = $item->propertyTypeId;
+            $data['value'] = $request->$property_id;
+            DB::table('properties')->where('productId', $product_id)->where('propertyTypeId', $item->propertyTypeId)->update($data);
+        }
+        Session::put('message', 'Update product successful!');
+        return redirect()->route('admin.products.list');
+
+    }
+
     public function delete_product($product_id){
         DB::table('products')->where('productId', $product_id)->delete();
         DB::table('properties')->where('productId', $product_id)->delete();

@@ -10,7 +10,9 @@
         </div>
         <div class="empty-space col-xs-b15 col-sm-b50 col-md-b100"></div>
         <div class="text-center">
-            <div class="simple-article size-3 grey uppercase col-xs-b5">Hand cash</div>
+            @foreach($payment_info as $pay_info)
+            <div class="simple-article size-3 grey uppercase col-xs-b5">{{$pay_info->paymentName}}</div>
+            @endforeach
             <div class="h2">Check your info</div>
             <div class="title-underline center"><span></span></div>
         </div>
@@ -58,7 +60,9 @@
                                         <th scope="row" class="pr-0 py-0 font-weight-medium">{{$order_new->order_no}}</th>
                                         <td class="pr-0 py-0 font-weight-medium">{{$order_new->orderDate}}</td>
                                         <td class="pr-0 py-0 font-weight-medium text-md-center">{{$order_new->totalPrices}} VND</td>
-                                        <td class="pr-md-4 py-0 font-weight-medium text-md-right">{{$order_new->name}} </td>
+                                        @foreach($payment_info as $pay_info)
+                                        <td class="pr-md-4 py-0 font-weight-medium text-md-right">{{$pay_info->paymentName}} </td>
+                                        @endforeach
                                     </tr>
                                     </tbody>
                                 </table>
@@ -92,6 +96,15 @@
                             </div>
                         </div>
                     </div>
+                        <div class="border-bottom mb-5 pb-4">
+                            <div class="px-3 pl-md-5 pr-md-4">
+                                <div class="d-flex justify-content-between">
+                                    <span class="font-size-2 font-weight-medium">VAT</span>
+                                    <span class="font-weight-medium fon-size-2">{{$vat}} VND</span>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
                     @foreach($shipping as $ship)
                         <div class="border-bottom mb-5 pb-4">
                             <div class="px-3 pl-md-5 pr-md-4">
