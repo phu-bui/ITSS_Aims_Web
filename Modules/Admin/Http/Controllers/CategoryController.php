@@ -55,4 +55,5 @@ class CategoryController extends AdminBaseController
         Session::put('message', 'Delete category successful!');
         return redirect()->route('admin.categories.list');
     }
+
 }

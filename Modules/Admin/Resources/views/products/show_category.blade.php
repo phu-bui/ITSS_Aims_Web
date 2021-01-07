@@ -24,14 +24,15 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <div class="main-card mb-3 card" id="category">
+                <div class="main-card mb-3 card">
                     <div class="card-body">
                         <h5 class="card-title">
                             <div class="info-box-content">
                                 <span class="info-box-text">Total product</span>
-                                <span class="info-box-number">{{count($products)}}</span>
+                                <span class="info-box-number">{{count($product_by_category)}}</span>
                             </div>
                         </h5>
+
                         <div class="input-group mt-3 mb-3">
                             <div class="input-group-prepend">
                                 <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
@@ -61,9 +62,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($products as $index => $product)
+                                    @foreach($product_by_category as $key => $product)
                                     <tr>
-                                        <th scope="row">{{$index + 1}}</th>
+                                        
+                                        <th scope="row">{{$key + 1}}</th>
                                         <td><img width="60" class="" src="{{$product->image}}" alt=""></td>
                                         <td>{{$product->title}}</td>
                                         <td>{{($product->price)}}</td>
@@ -89,7 +91,7 @@
                         </div>
                     </div>
                     <div class="d-block text-center card-footer">
-                        {{$products->links()}}
+                        {{$product_by_category->links()}}
                     </div>
                 </div>
             </div>
