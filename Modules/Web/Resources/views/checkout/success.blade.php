@@ -11,7 +11,7 @@
         <div class="empty-space col-xs-b15 col-sm-b50 col-md-b100"></div>
         <div class="text-center">
             @foreach($payment_info as $pay_info)
-            <div class="simple-article size-3 grey uppercase col-xs-b5">{{$pay_info->name}}</div>
+            <div class="simple-article size-3 grey uppercase col-xs-b5">{{$pay_info->paymentName}}</div>
             @endforeach
             <div class="h2">Check your info</div>
             <div class="title-underline center"><span></span></div>
@@ -60,7 +60,9 @@
                                         <th scope="row" class="pr-0 py-0 font-weight-medium">{{$order_new->order_no}}</th>
                                         <td class="pr-0 py-0 font-weight-medium">{{$order_new->orderDate}}</td>
                                         <td class="pr-0 py-0 font-weight-medium text-md-center">{{$order_new->totalPrices}} VND</td>
-                                        <td class="pr-md-4 py-0 font-weight-medium text-md-right">{{$order_new->name}} </td>
+                                        @foreach($payment_info as $pay_info)
+                                        <td class="pr-md-4 py-0 font-weight-medium text-md-right">{{$pay_info->paymentName}} </td>
+                                        @endforeach
                                     </tr>
                                     </tbody>
                                 </table>

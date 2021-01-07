@@ -138,8 +138,15 @@ class CheckoutController extends Controller
         }
         $user_id = $user->userId;
         $ship_by_order = DB::table('ships')->join('orders', 'ships.shipId', '=', 'orders.shipId')->where('orders.userId', $user_id)->orderby('ships.shipId', 'desc')->limit(1)->get();
-        foreach ($ship_by_order as $ship) {
-            $ship_id = $ship->shipId;
+        if(sizeof($ship_by_order) == 0){
+            $ship_new = DB::table('ships')->orderby('shipId', 'desc')->limit(1)->get();
+            foreach ($ship_new as $ship){
+                $ship_id = $ship->shipId;
+            }
+        }else {
+            foreach ($ship_by_order as $ship) {
+                $ship_id = $ship->shipId;
+            }
         }
         //insert payment
         $data = array();
@@ -148,9 +155,9 @@ class CheckoutController extends Controller
             Session::put('message', 'Sorry, Please choose your form of payment!');
             return view('web::checkout.payment');
         } else {
-            $payment_info = DB::table('payments')->where('name', $data['name'])->get();
+            $payment_info = DB::table('payment_methods')->join('payments', 'payment_methods.paymentMethodId', '=', 'payments.paymentMethodId')->where('payment_methods.paymentName', $data['name'])->get();
             foreach ($payment_info as $pay_info){
-                $payment_id = $pay_info->id;
+                $payment_id = $pay_info->paymentId;
             }
             //insert order
 
@@ -200,14 +207,14 @@ class CheckoutController extends Controller
                     if ($quanti >= 0) {
                         DB::table('products')->where('productId', $order_detail_data['productId'])->update(['quantity' => $quanti]);
                         $request->Session()->forget('Cart');
-                        $ordered_new = DB::table('orders')->join('payments', 'orders.paymentId', '=', 'payments.id')->where('orders.id', $order_id)->get();
+                        $ordered_new = DB::table('orders')->join('payments', 'orders.paymentId', '=', 'payments.paymentId')->where('orders.id', $order_id)->get();
                         $product_ordered = DB::table('products')->join('orderDetails', 'products.productId', '=', 'orderDetails.productId')->where('orderDetails.orderId', $order_id)->get();
                         $shipping = DB::table('ships')->join('orders', 'ships.shipId', '=', 'orders.shipId')->where('orders.id', $order_id)->get();
                         Session::put('message', 'Payment success!');
                         return view('web::checkout.success')->with('ordered_new', $ordered_new)->with('product_ordered', $product_ordered)->with('shipping', $shipping)->with('payment_info', $payment_info);
                     } else {
                         Session::put('message', 'Sorry, Quantity of products is not enough to order!');
-                        return view('web::checkout.payment');
+                        return view('web::checkout.payment')->with('ship_cost', $ship_cost);
                     }
                 }
             } else {
@@ -223,17 +230,18 @@ class CheckoutController extends Controller
     }
 
     public function paypal(Request $request){
-        $payment_info = DB::table('payments')->where('name', 'paypal')->get();
-        foreach ($payment_info as $pay_info){
-            $payment_id = $pay_info->id;
+        $payment_method_info = DB::table('payment_methods')->where('paymentName', 'paypal')->get();
+        foreach ($payment_method_info as $pay_info){
+            $payment_method_id = $pay_info->paymentMethodId;
         }
 
-        $paypal_code = $request->paypal_code;
-        $paypal_data = DB::table('paypals')->where('paypalCode', $paypal_code)->get();
-        foreach ($paypal_data as $paypal) {
-            $paypal_money = $paypal->paypalMoney;
+        $payment_code = $request->paypal_code;
+        $payment_data = DB::table('payments')->where('paymentCode', $payment_code)->get();
+        foreach ($payment_data as $paypal) {
+            $paypal_money = $paypal->paymentMoney;
+            $payment_id = $paypal->paymentId;
         }
-        if (sizeof($paypal_data) == 0){
+        if (sizeof($payment_data) == 0){
             Session::put('message', 'Sorry, Paypal code is not ready to accept payment! Please enter another paypal code...');
             return view('web::checkout.paypal');
         }
@@ -290,12 +298,12 @@ class CheckoutController extends Controller
                     DB::table('products')->where('productId', $order_detail_data['productId'])->update(['quantity' => $quanti]);
                     $request->Session()->forget('Cart');
                     $paypal_money  -= $order_data['totalPrices'];
-                    DB::table('paypals')->where('paypalCode', $paypal_code)->update(['paypalMoney'=>$paypal_money]);
-                    $ordered_new = DB::table('orders')->join('payments', 'orders.paymentId', '=', 'payments.id')->where('orders.id', $order_id)->get();
+                    DB::table('payments')->where('paymentCode', $payment_code)->update(['paymentMoney'=>$paypal_money]);
+                    $ordered_new = DB::table('orders')->join('payments', 'orders.paymentId', '=', 'payments.paymentId')->where('orders.id', $order_id)->get();
                     $product_ordered = DB::table('products')->join('orderDetails', 'products.productId', '=', 'orderDetails.productId')->where('orderDetails.orderId', $order_id)->get();
                     $shipping = DB::table('ships')->join('orders', 'ships.shipId', '=', 'orders.shipId')->where('orders.id', $order_id)->get();
                     Session::put('message', 'Payment success!');
-                    return view('web::checkout.success')->with('ordered_new', $ordered_new)->with('product_ordered', $product_ordered)->with('shipping', $shipping)->with('payment_info', $payment_info);
+                    return view('web::checkout.success')->with('ordered_new', $ordered_new)->with('product_ordered', $product_ordered)->with('shipping', $shipping)->with('payment_info', $payment_method_info);
                 } else {
                     Session::put('message', 'Sorry, Quantity of products is not enough to order!');
                     return view('web::checkout.payment');
