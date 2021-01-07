@@ -14,7 +14,7 @@ class CreatePropertyTypesTable extends Migration
     public function up()
     {
         Schema::create('property_types', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('propertyTypeId');
             $table->integer('categoryId');
             $table->string('propertyName');
             $table->integer('filterable')->default(0);

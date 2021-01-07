@@ -84,7 +84,7 @@ class ProductController extends AdminBaseController
         return view('admin::products.edit_product')->with('products', $edit_product)->with('category_product', $category_product);
     }
 
-    public function update_product(Request $request, $product_id){
+    public function update_product(ProductCRUDRequest $request, $product_id){
         $data = array();
         $data['categoryId'] = $request->category_id;
         $data['idGood'] = 1;

@@ -42,9 +42,9 @@
                         <!-- Slug input-->
                         <div class="col-md-4 mb-3">
                             <label for="slug">Title</label>
-                            <input type="text" class="form-control" @error('title') is-invalid @enderror id="title" name="title" placeholder="Title ..." required="">
+                            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" placeholder="Title ..." required="">
                             @error('title')
-                            <span class="error invalid-feedback">{{ $message }}</span>
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -52,17 +52,17 @@
                         <!-- Name input-->
                         <div class="col-md-4 mb-3">
                             <label for="name">Product Value</label>
-                            <input type="text" class="form-control" @error('value') is-invalid @enderror id="value" name="value" placeholder="Value ..." required="">
+                            <input type="number" class="form-control @error('value') is-invalid @enderror" id="value" name="value" placeholder="Value ..." required="">
                             @error('value')
-                            <span class="error invalid-feedback">{{ $message }}</span>
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
                             @enderror
                         </div>
                         <!-- Input image -->
                         <div class="col-md-4 mb-3">
                             <label for="image">Image</label>
-                            <input type="text" class="form-control" @error('image') is-invalid @enderror id="image" name="image" placeholder="Image ..." required="">
+                            <input type="text" class="form-control @error('image') is-invalid @enderror" id="image" name="image" placeholder="Image ..." required="">
                             @error('image')
-                            <span class="error invalid-feedback">{{ $message }}</span>
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -73,17 +73,17 @@
                         <!-- Short description input-->
                         <div class="col-md-4 mb-3">
                             <label for="short_description">Description</label>
-                            <input type="text" class="form-control" @error('description') is-invalid @enderror id="description" name="description" placeholder="Description..." required="">
+                            <input type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" placeholder="Description..." required="">
                             @error('description')
-                            <span class="error invalid-feedback">{{ $message }}</span>
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
                             @enderror
                         </div>
                         <!-- Price input-->
                         <div class="col-md-4 mb-3">
                             <label for="price">Price</label>
-                            <input type="text" class="form-control" @error('price') is-invalid @enderror id="price" name="price" placeholder="Price ..." required="">
+                            <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price" placeholder="Price ..." required="">
                             @error('price')
-                            <span class="error invalid-feedback">{{ $message }}</span>
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -91,18 +91,18 @@
                         <!-- Input vote -->
                         <div class="col-md-4 mb-3">
                             <label for="image">Quantity</label>
-                            <input type="text" class="form-control" @error('quantity') is-invalid @enderror id="quantity" name="quantity" placeholder="Quantity..." required="">
+                            <input type="number" class="form-control @error('quantity') is-invalid @enderror" id="quantity" name="quantity" placeholder="Quantity..." required="">
                             @error('quantity')
-                            <span class="error invalid-feedback">{{ $message }}</span>
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <!-- Status input-->
                         <div class="col-md-4 mb-3">
                             <label for="price">Language</label>
-                            <input type="text" class="form-control" @error('language') is-invalid @enderror id="language" name="language" placeholder="Language..." required="">
+                            <input type="text" class="form-control @error('language') is-invalid @enderror" id="language" name="language" placeholder="Language..." required="">
                             @error('language')
-                            <span class="error invalid-feedback">{{ $message }}</span>
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
                             @enderror
                         </div>
                         <div id="other-property"></div>

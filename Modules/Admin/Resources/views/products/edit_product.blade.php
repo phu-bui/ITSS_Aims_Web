@@ -42,19 +42,28 @@
                         <!-- Slug input-->
                         <div class="col-md-4 mb-3">
                             <label for="slug">Title</label>
-                            <input type="text" class="form-control" id="title" name="title" value="{{$pro->title}}"  required="">
+                            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{$pro->title}}"  required="">
+                            @error('title')
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-row">
                         <!-- Name input-->
                         <div class="col-md-4 mb-3">
                             <label for="name">Product Value</label>
-                            <input type="text" class="form-control" id="value" name="value" value="{{$pro->value}}" required="">
+                            <input type="number" class="form-control @error('value') is-invalid @enderror" id="value" name="value" value="{{$pro->value}}" required="">
+                            @error('value')
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
+                            @enderror
                         </div>
                         <!-- Input image -->
                         <div class="col-md-4 mb-3">
                             <label for="image">Image</label>
-                            <input type="text" class="form-control" id="image" name="image" value="{{$pro->image}}" required="">
+                            <input type="text" class="form-control @error('image') is-invalid @enderror" id="image" name="image" value="{{$pro->image}}" required="">
+                            @error('image')
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
+                            @enderror
                         </div>
 
 
@@ -64,25 +73,37 @@
                         <!-- Short description input-->
                         <div class="col-md-4 mb-3">
                             <label for="short_description">Description</label>
-                            <input type="text" class="form-control" id="description" name="description" value="{{$pro->description}}" required="">
+                            <input type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" value="{{$pro->description}}" required="">
+                            @error('description')
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
+                            @enderror
                         </div>
                         <!-- Price input-->
                         <div class="col-md-4 mb-3">
                             <label for="price">Price</label>
-                            <input type="text" class="form-control" id="price" name="price" value="{{$pro->price}}" required="">
+                            <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{$pro->price}}" required="">
+                            @error('price')
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-row">
                         <!-- Input vote -->
                         <div class="col-md-4 mb-3">
                             <label for="image">Quantity</label>
-                            <input type="text" class="form-control" id="quantity" name="quantity" value="{{$pro->quantity}}" required="">
+                            <input type="number" class="form-control @error('quantity') is-invalid @enderror" id="quantity" name="quantity" value="{{$pro->quantity}}" required="">
+                            @error('quantity')
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <!-- Status input-->
                         <div class="col-md-4 mb-3">
                             <label for="price">Language</label>
-                            <input type="text" class="form-control" id="language" name="language" value="{{$pro->language}}" required="">
+                            <input type="text" class="form-control @error('language') is-invalid @enderror" id="language" name="language" value="{{$pro->language}}" required="">
+                            @error('language')
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
 

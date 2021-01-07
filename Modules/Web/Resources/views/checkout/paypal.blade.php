@@ -25,7 +25,7 @@
                         <div class="form-two">
                             <form  action="{{route('web.paypal')}}" method="GET">
                                 {{csrf_field()}}
-                                <input type="text" name="paypal_code"  class="paypal_code" placeholder="Paypal code..."  required="">
+                                <input type="text" name="paypal_code"  class="paypal_code" placeholder="Paypal code consists of 10 numeric characters..."  required="">
                                 <input type="submit" value="Payment" name="send_order_place" class="btn btn-primary br-sm">
                             </form>
                         </div>
