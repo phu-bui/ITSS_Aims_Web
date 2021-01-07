@@ -50,9 +50,10 @@ class LoginController extends BaseController
         if(empty($adminUser)) {
             return redirect()->back()->withErrors(['email' => 'Email incorrect !'])->withInput();
         } else if (!AuthUtils::attemptLogin($adminUser, 'admin', $email, $password)){
+            
             return redirect()->back()->withErrors(['password' => 'Password incorrect !'])->withInput();
         }
-
+        $request->session()->put('data-signin', $request->input());
         return redirect()->route('admin.index');
     }
 
