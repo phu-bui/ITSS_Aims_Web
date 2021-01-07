@@ -53,12 +53,13 @@ class LoginController extends BaseController
             
             return redirect()->back()->withErrors(['password' => 'Password incorrect !'])->withInput();
         }
-        $request->session()->put('data-signin', $request->input());
+        $request->session()->put('admin-data-signin', $request->input());
         return redirect()->route('admin.index');
     }
 
     public function logout(Request $request)
     {
+        session()->forget('admin-data-signin');
         $this->guard()->logout();
 
         return redirect()->route('admin.login');
