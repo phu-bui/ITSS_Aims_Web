@@ -109,7 +109,7 @@ class ProductController extends AdminBaseController
         $data['language'] = $request->language;
 
         DB::table('products')->where('productId', $product_id)->update($data);
-        $properties = DB::table('properties')->join('property_types', 'properties.propertyTypeId', '=', 'property_types.id')->where('properties.productId', $product_id)->get();
+        $properties = DB::table('properties')->join('property_types', 'properties.propertyTypeId', '=', 'property_types.propertyTypeId')->where('properties.productId', $product_id)->get();
         if (session()->has('admin-data-signin')) {
             $admin = DB::table('admins')->where('email', session('admin-data-signin')['email'])->first();
         }
