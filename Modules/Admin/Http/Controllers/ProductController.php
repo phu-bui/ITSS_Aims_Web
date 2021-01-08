@@ -111,7 +111,7 @@ class ProductController extends AdminBaseController
         DB::table('products')->where('productId', $product_id)->update($data);
         $properties = DB::table('properties')->join('property_types', 'properties.propertyTypeId', '=', 'property_types.propertyTypeId')->where('properties.productId', $product_id)->get();
         if (session()->has('admin-data-signin')) {
-            $admin = DB::table('admins')->where('email', session('admin-data-signin')['email'])->first();
+            $admin = DB::table('admins')->where('email', session('data-signin')['email'])->first();
         }
         $admin_id = $admin->id;
         $mytime = Carbon::now();
