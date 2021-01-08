@@ -3,7 +3,10 @@
 
 namespace Modules\Admin\Http\Controllers;
 
+
+use Carbon\Carbon;
 use App\Http\Controllers\BaseController;
+use App\Entities\Admin;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
@@ -53,6 +56,15 @@ class ProductController extends AdminBaseController
         $product_new_id = DB::table('products')->insertGetId($data);
 
         $propertyTypes = DB::table('property_types')->where('categoryId', $request->categoryId)->get();
+
+
+        if (session()->has('admin-data-signin')) {
+            $admin = DB::table('admins')->where('email', session('admin-data-signin')['email'])->first();
+        }
+        $admin_id = $admin->id;
+        $mytime = Carbon::now();
+        DB::insert('insert into historyadmins (adminId, act, createDate, productId) values (?, ?, ?, ?)', [$admin_id, 'Add', $mytime,$product_new_id]);
+
         return view('admin::products.add_property')->with('propertyTypes', $propertyTypes)->with('product_new_id', $product_new_id)
             ->with('categoryId', $request->categoryId);
     }
@@ -97,7 +109,13 @@ class ProductController extends AdminBaseController
         $data['language'] = $request->language;
 
         DB::table('products')->where('productId', $product_id)->update($data);
-        $properties = DB::table('properties')->join('property_types', 'properties.propertyTypeId', '=', 'property_types.propertyTypeId')->where('properties.productId', $product_id)->get();
+        $properties = DB::table('properties')->join('property_types', 'properties.propertyTypeId', '=', 'property_types.id')->where('properties.productId', $product_id)->get();
+        if (session()->has('admin-data-signin')) {
+            $admin = DB::table('admins')->where('email', session('admin-data-signin')['email'])->first();
+        }
+        $admin_id = $admin->id;
+        $mytime = Carbon::now();
+        DB::insert('insert into historyadmins (adminId, act, createDate, productId) values (?, ?, ?, ?)', [$admin_id, 'Edit', $mytime,$product_id]);
         return view('admin::products.update_property')
             ->with('properties', $properties)
             ->with('product_id', $product_id)
@@ -112,9 +130,9 @@ class ProductController extends AdminBaseController
         $property_type = DB::table('property_types')->where('categoryId', $category_id)->get();
         foreach ($property_type as $item) {
             $data = array();
-            $property_id = $item->propertyTypeId;
+            $property_id = $item->id;
             $data['value'] = $request->$property_id;
-            DB::table('properties')->where('productId', $product_id)->where('propertyTypeId', $item->propertyTypeId)->update($data);
+            DB::table('properties')->where('productId', $product_id)->where('propertyTypeId', $item->id)->update($data);
         }
         Session::put('message', 'Update product successful!');
         return redirect()->route('admin.products.list');
@@ -125,6 +143,12 @@ class ProductController extends AdminBaseController
         DB::table('products')->where('productId', $product_id)->delete();
         DB::table('properties')->where('productId', $product_id)->delete();
         Session::put('message', 'Delete product successful!');
+        if (session()->has('admin-data-signin')) {
+            $admin = DB::table('admins')->where('email', session('admin-data-signin')['email'])->first();
+        }
+        $admin_id = $admin->id;
+        $mytime = Carbon::now();
+        DB::insert('insert into historyadmins (adminId, act, createDate, productId) values (?, ?, ?, ?)', [$admin_id, 'Delete', $mytime,$product_id]);
         return redirect()->route('admin.products.list');
     }
 
