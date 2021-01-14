@@ -4,7 +4,7 @@ namespace Modules\Admin\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
-
+use DB;
 class AdminController extends AdminBaseController
 {
     /**
@@ -13,7 +13,13 @@ class AdminController extends AdminBaseController
      */
     public function index()
     {
-        return view('admin::dashboard.index');
+        $products = DB::table('products')->orderby('productId', 'desc')->get();
+        $users = DB::table('users')->orderby('userId', 'desc')->get();
+        $categories = DB::table('categories')->orderby('categoryId', 'desc')->get();
+        return view('admin::dashboard.index')
+            ->with('products', $products)
+            ->with('users', $users)
+            ->with('categories', $categories);
     }
 
 

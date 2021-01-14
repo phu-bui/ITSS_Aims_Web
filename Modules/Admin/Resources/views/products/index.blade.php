@@ -29,7 +29,7 @@
                         <h5 class="card-title">
                             <div class="info-box-content">
                                 <span class="info-box-text">Total product</span>
-                                <span class="info-box-number">{{count($products)}}</span>
+                                <span class="info-box-number">{{count($product_total)}}</span>
                             </div>
                         </h5>
                         <div class="input-group mt-3 mb-3">
@@ -40,7 +40,7 @@
                                 <div class="dropdown-menu">
                                     @foreach($categories as $category)
                                         <a class="dropdown-item" href="{{route('admin.category_home', array('cate_name'=>$category->categoryName))}}">{{$category->categoryName}}</a>
-   
+
                                     @endforeach
                                 </div>
                             </div>

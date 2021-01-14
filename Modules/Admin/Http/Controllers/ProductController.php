@@ -32,7 +32,8 @@ class ProductController extends AdminBaseController
     public function index() {
         $products = DB::table('products')->paginate(8);
         $categories = DB::table('categories')->orderby('categoryId', 'desc')->get();
-        return view('admin::products.index', compact('products','categories'));
+        $product_total = DB::table('products')->orderby('productId', 'desc')->get();
+        return view('admin::products.index', compact('products','categories', 'product_total'));
     }
 
     public function add_product(){
