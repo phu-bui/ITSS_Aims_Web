@@ -6,7 +6,7 @@
             <div class="breadcrumbs">
                 <ol class="breadcrumb">
                     <li><a href="{{route('web.home')}}">Home</a></li>
-                    <li class="active">Order cart</li>
+                    <li class="active">Checkout</li>
                 </ol>
             </div>
 
@@ -35,10 +35,6 @@
                                 @enderror
                                 <input type="text" name="shipping_email" class="shipping_email @error('shipEmail') is-invalid @enderror" placeholder="Your email..." required="">
                                 @error('shipEmail')
-                                <span class="error invalid-feedback">{{ $message }}</span>
-                                @enderror
-                                <input type="text" name="shipping_address" class="shipping_address  @error('shipAddress') is-invalid @enderror" placeholder="Your address..." required="">
-                                @error('shipAddress')
                                 <span class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
 
