@@ -27,6 +27,9 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin', 'namespace' => '\Modul
         Route::post('/update-property/{product_id}', 'ProductController@update_property')->name('admin.update_property');
         Route::get('/delete-products/{product_id}', 'ProductController@delete_product')->name('admin.delete_product');
 
+        Route::post('/delete-list-product', 'ProductController@delete_list_product')->name('admin.delete_list_product');
+
+
         Route::get('/category/{cate_name}' ,'ProductController@show_category_home')->name('admin.category_home');
 
 

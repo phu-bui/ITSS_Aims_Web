@@ -1,30 +1,4 @@
-@extends('admin::layouts.master')
-@section('content')
-    <div class="app-main__inner">
-        <div class="app-page-title">
-            <div class="page-title-wrapper">
-                <div class="page-title-heading">
-                    <div class="page-title-icon">
-                        <i class="pe-7s-box2 icon-gradient bg-happy-itmeo">
-                        </i>
-                    </div>
-                    <div>Product Management
-                        <div class="page-title-subheading">
-                            <?php
-                            $message = Session::get('message');
-                            if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
-                                Session::put('message', null);
-                            }
-                            ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12" id="list">
-                <div class="main-card mb-3 card" >
+<div class="main-card mb-3 card">
                     <div class="card-body">
                         <h5 class="card-title">
                             <div class="info-box-content">
@@ -98,47 +72,3 @@
                         {{$products->links()}}
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-<!-- JavaScript -->
-<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-
-<script src="{{asset('frontend/js/jquery-3.2.1.min.js')}}"></script>
-
-<script>
-   
-    $(document).ready(function() {
-        $("#delete-all").click(function(){
-            var favorite = [];
-            $.each($("input[name='product_name']:checked"), function(){            
-                favorite.push($(this).val());
-            });
-            
-            // Khai báo object
-            var agrs = {
-                url : "/delete-list-product", // gửi ajax đến file result.php
-                type : "post", // chọn phương thức gửi là post
-                dataType:"text", // dữ liệu trả về dạng text
-                data : { // Danh sách các thuộc tính sẽ gửi đi
-                    favorite : favorite
-                },
-                success : function (result){
-                    // Sau khi gửi và kết quả trả về thành công thì gán nội dung trả về
-                    // đó vào thẻ div có id = result
-                    $('#result').html(result);
-                }
-            };
- 
-            // Truyền object vào để gọi ajax
-            $.ajax(agrs);
-        });
-    });
-
-    function RenderList(response){
-        $("#list").empty();
-        $("#list").html(response);
-
-    }
-</script>
-@endsection

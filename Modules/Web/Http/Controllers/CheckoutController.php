@@ -26,7 +26,7 @@ class CheckoutController extends Controller
     }
 
     public function show_checkout($user_id){
-        $ship_by_order = DB::table('ships')->join('orders', 'ships.shipId', '=','orders.shipId')->where('orders.userId', $user_id)->orderby('ships.shipId','desc')->limit(1)->get();
+        $ship_by_order = DB::table('ships')->join('orders', 'ships.id', '=','orders.shipId')->where('orders.userId', $user_id)->orderby('ships.id','desc')->limit(1)->get();
         $countries = DB::table('address')->orderby('id', 'desc')->get();
         foreach ($countries as $country) {
             $country_id = $country->id;

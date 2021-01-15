@@ -7,6 +7,7 @@ namespace Modules\Admin\Http\Controllers;
 use Carbon\Carbon;
 use App\Http\Controllers\BaseController;
 use App\Entities\Admin;
+use App\Entities\ListDeleteProduct;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
@@ -140,6 +141,19 @@ class ProductController extends AdminBaseController
     }
 
     public function delete_product($product_id){
+        DB::table('products')->where('productId', $product_id)->delete();
+        DB::table('properties')->where('productId', $product_id)->delete();
+        Session::put('message', 'Delete product successful!');
+        if (session()->has('admin-data-signin')) {
+            $admin = DB::table('admins')->where('email', session('admin-data-signin')['email'])->first();
+        }
+        $admin_id = $admin->id;
+        $mytime = Carbon::now();
+        DB::insert('insert into historyadmins (adminId, act, createDate, productId) values (?, ?, ?, ?)', [$admin_id, 'Delete', $mytime,$product_id]);
+        return redirect()->route('admin.products.list');
+    }
+
+    public function delete_list_product($product_id){
         DB::table('products')->where('productId', $product_id)->delete();
         DB::table('properties')->where('productId', $product_id)->delete();
         Session::put('message', 'Delete product successful!');
