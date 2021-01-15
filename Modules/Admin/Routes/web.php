@@ -16,6 +16,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin', 'namespace' => '\Modul
     Route::group(['middleware' => 'auth.admin'], function() {
         Route::get('/', 'AdminController@index')->name('admin.index');
         Route::get('/logout', 'Auth\LoginController@logout')->name('admin.logout');
+        Route::get('/profile', 'Auth\LoginController@profile')->name('admin.profile');
 
         //Product
         Route::get('/products', 'ProductController@index')->name('admin.products.list');

@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Services\Utils\AuthUtils;
-
+use DB;
 class LoginController extends BaseController
 {
     /*
@@ -55,6 +55,15 @@ class LoginController extends BaseController
         }
         $request->session()->put('admin-data-signin', $request->input());
         return redirect()->route('admin.index');
+    }
+
+    public function profile(){
+        if (session()->has('admin-data-signin')) {
+            $admin = DB::table('admins')->where('email', session('admin-data-signin')['email'])->first();
+        }
+        $admin_id = $admin->id;
+        $admin_info = DB::table('admins')->where('id', $admin_id)->get();
+        return view('admin::auth.profile')->with('admin_info', $admin_info);
     }
 
     public function logout(Request $request)
