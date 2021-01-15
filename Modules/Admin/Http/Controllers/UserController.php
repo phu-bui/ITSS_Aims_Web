@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use mysql_xdevapi\Table;
 use Session;
 use App\Entities\User;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 session_start();
@@ -27,7 +28,19 @@ class UserController extends AdminBaseController
     }
 
     public function delete_user($user_id){
+        $user = DB::table('users')->where('userId', $user_id)->get();
         DB::table('users')->where('userId', $user_id)->delete();
+        $data = array();
+        foreach ($user as $us){
+            $data['name'] = $us->name;
+            $data['email'] = $us->email;
+        }
+
+        Mail::send(['text'=>'admin::users.mail'], array('name'=>$data['name'], 'email'=>$data['email']), function($message) use($data){
+            $message->to($data['email'], $data['name'])->subject('Your account information has been deleted');
+            $message->from('phubuihedspi@gmail.com','Aims System');
+        });
+
         Session::put('message', 'Delete user successful!');
         return redirect()->route('admin.users.list');
     }
@@ -45,6 +58,11 @@ class UserController extends AdminBaseController
         $data['role'] = $request->role;
 
         DB::table('users')->where('userId', $user_id)->update($data);
+        Mail::send(['text'=>'admin::users.mail'], array('name'=>$data['name'], 'email'=>$data['email']), function($message) use($data){
+            $message->to($data['email'], $data['name'])->subject('Your account information has been updated');
+            $message->from('phubuihedspi@gmail.com','Aims System');
+        });
+
         Session::put('message', 'Update user successful!');
         return redirect()->route('admin.users.list');
     }
@@ -62,7 +80,13 @@ class UserController extends AdminBaseController
         $data['role'] = $request->role;
 
         DB::table('users')->insert($data);
-        Session::put('message', 'Add user successfull!');
+
+        Mail::send(['text'=>'admin::users.mail'], array('name'=>$data['name'], 'email'=>$data['email']), function($message) use($data){
+            $message->to($data['email'], $data['name'])->subject('Your aims app account has been created');
+            $message->from('phubuihedspi@gmail.com','Aims System');
+        });
+
+        Session::put('message', 'Add user successfugit l!');
         return redirect()->route('admin.users.list');
     }
 
