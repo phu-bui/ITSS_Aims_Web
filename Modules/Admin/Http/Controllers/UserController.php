@@ -35,7 +35,7 @@ class UserController extends AdminBaseController
             $data['name'] = $us->name;
             $data['email'] = $us->email;
         }
-
+        //send mail
         Mail::send(['text'=>'admin::users.mail'], array('name'=>$data['name'], 'email'=>$data['email']), function($message) use($data){
             $message->to($data['email'], $data['name'])->subject('Your account information has been deleted');
             $message->from('phubuihedspi@gmail.com','Aims System');
@@ -109,6 +109,47 @@ class UserController extends AdminBaseController
         $user = DB::table('users')->where('userId', $user_id)->get();
         Session::put('message', 'Update password successful!');
         return view('admin::users.update_password')->with('user', $user);
+    }
+
+    public function block_user($user_id){
+
+        $user = DB::table('users')->where('userId', $user_id)->get();
+        $data = array();
+        foreach ($user as $us){
+            $data['name'] = $us->name;
+            $data['email'] = $us->email;
+        }
+
+        DB::table('users')->where('userId', $user_id)->update(['role'=>1]);
+
+        Mail::send(['text'=>'admin::users.mail'], array('name'=>$data['name'], 'email'=>$data['email']), function($message) use($data){
+            $message->to($data['email'], $data['name'])->subject('Your account information has been blocked');
+            $message->from('phubuihedspi@gmail.com','Aims System');
+        });
+
+        Session::put('message', 'Block user successful!');
+
+        return redirect()->route('admin.users.list');
+    }
+
+    public function unblock_user($user_id){
+        $user = DB::table('users')->where('userId', $user_id)->get();
+        $data = array();
+        foreach ($user as $us){
+            $data['name'] = $us->name;
+            $data['email'] = $us->email;
+        }
+
+        DB::table('users')->where('userId', $user_id)->update(['role'=>0]);
+
+        Mail::send(['text'=>'admin::users.mail'], array('name'=>$data['name'], 'email'=>$data['email']), function($message) use($data){
+            $message->to($data['email'], $data['name'])->subject('Your account information has been unblocked');
+            $message->from('phubuihedspi@gmail.com','Aims System');
+        });
+
+        Session::put('message', 'Unblock user successful!');
+
+        return redirect()->route('admin.users.list');
     }
 
 }

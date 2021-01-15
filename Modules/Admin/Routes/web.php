@@ -48,6 +48,8 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin', 'namespace' => '\Modul
         Route::get('/update-user/{user_id}', 'UserController@update_user')->name('admin.update_user');
         Route::get('/update-user-password/{user_id}', 'UserController@update_password')->name('admin.update_user_password');
         Route::get('/save-update-user-password/{user_id}', 'UserController@save_update_password')->name('admin.save_update_user_password');
+        Route::get('/block-user/{user_id}', 'UserController@block_user')->name('admin.block_user');
+        Route::get('/unblock-user/{user_id}', 'UserController@unblock_user')->name('admin.unblock_user');
 
         //Order
         Route::get('orders', 'OrderController@index')->name('admin.orders.list');

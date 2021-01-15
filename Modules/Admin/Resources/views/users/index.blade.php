@@ -46,6 +46,7 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Phone</th>
+                                        <th>Role</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -56,6 +57,30 @@
                                         <td>{{$user->name}}</td>
                                         <td>{{($user->email)}}</td>
                                         <td>{{($user->phone)}}</td>
+                                        <td>
+                                            <?php
+                                                if($user->role==1){
+                                                    ?>
+                                                <a href="{{route('admin.unblock_user', array('user_id'=>$user->userId))}}" class="btn btn-warning btn-icon-split">
+                                                            <span class="icon text-white-50">
+                                                            <i class="fas fa-exclamation-triangle"></i>
+                                                            </span>
+                                                    <span class="text">Unblock</span>
+                                                </a>
+                                                    <?php
+                                                }
+                                                else{
+                                                    ?>
+                                                <a href="{{route('admin.block_user', array('user_id'=>$user->userId))}}" class="btn btn-warning btn-icon-split">
+                                                            <span class="icon text-white-50">
+                                                            <i class="fas fa-exclamation-triangle"></i>
+                                                            </span>
+                                                    <span class="text">Block</span>
+                                                </a>
+                                                    <?php
+                                                }
+                                            ?>
+                                        </td>
                                         <td>
                                             <a href="{{route('admin.view_user', array('user_id'=>$user->userId))}}" class="btn btn-info btn-icon-split">
                                         <span class="icon text-white-50">
