@@ -1,5 +1,6 @@
 @extends('admin::layouts.master')
 @section('content')
+    <div class="container-fluid">
     <div class="app-main__inner">
         <div class="app-page-title">
             <div class="page-title-wrapper">
@@ -58,7 +59,7 @@
                                 <tbody>
                                     @foreach($product_by_category as $key => $product)
                                     <tr>
-                                        
+
                                         <th scope="row">{{$key + 1}}</th>
                                         <td><img width="60" class="" src="{{$product->image}}" alt=""></td>
                                         <td>{{$product->title}}</td>
@@ -90,5 +91,6 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection

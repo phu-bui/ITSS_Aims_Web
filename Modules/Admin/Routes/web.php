@@ -39,17 +39,23 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin', 'namespace' => '\Modul
         Route::post('/update-categories/{category_id}', 'CategoryController@update_category')->name('admin.update_category');
         Route::get('/delete-categories/{category_id}', 'CategoryController@delete_category')->name('admin.delete_category');
         //Category
-       
+
 
         //User
         Route::get('/users', 'UserController@index')->name('admin.users.list');
-        Route::get('/delete-users/{user_id}', 'UserController@delete_user')->name('admin.delete_user');
+        Route::get('/delete-user/{user_id}', 'UserController@delete_user')->name('admin.delete_user');
+        Route::get('/user/{user_id}', 'UserController@edit_user')->name('admin.view_user');
+        Route::get('/update-user/{user_id}', 'UserController@update_user')->name('admin.update_user');
+        Route::get('/update-user-password/{user_id}', 'UserController@update_password')->name('admin.update_user_password');
+        Route::get('/save-update-user-password/{user_id}', 'UserController@save_update_password')->name('admin.save_update_user_password');
 
         //Order
         Route::get('orders', 'OrderController@index')->name('admin.orders.list');
         Route::get('delete-orders/{order_id}', 'OrderController@delete_order')->name('admin.delete_order');
         Route::get('view-order/{order_id}', 'OrderController@view_order')->name('admin.view_order');
         Route::get('order-approval/{order_id}', 'OrderController@order_approval')->name('admin.order_approval');
+        Route::get('add-user', 'UserController@add_user')->name('admin.add_user');
+        Route::get('save-user', 'UserController@save_user')->name('admin.save_user');
 
         //History
         Route::get('/history', 'HistoryController@index')->name('admin.history');

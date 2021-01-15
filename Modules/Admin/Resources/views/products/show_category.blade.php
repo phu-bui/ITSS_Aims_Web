@@ -1,5 +1,6 @@
 @extends('admin::layouts.master')
 @section('content')
+    <div class="container-fluid">
     <div class="app-main__inner">
         <div class="app-page-title">
             <div class="page-title-wrapper">
@@ -41,7 +42,7 @@
                                 <div class="dropdown-menu">
                                     @foreach($categories as $category)
                                         <a class="dropdown-item" href="{{route('admin.category_home', array('cate_name'=>$category->categoryName))}}">{{$category->categoryName}}</a>
-   
+
                                     @endforeach
                                 </div>
                             </div>
@@ -64,7 +65,7 @@
                                 <tbody>
                                     @foreach($product_by_category as $key => $product)
                                     <tr>
-                                        
+
                                         <th scope="row">{{$key + 1}}</th>
                                         <td><img width="60" class="" src="{{$product->image}}" alt=""></td>
                                         <td>{{$product->title}}</td>
@@ -96,5 +97,6 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection

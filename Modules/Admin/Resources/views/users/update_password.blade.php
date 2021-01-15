@@ -9,7 +9,7 @@
                     <div class="page-title-icon">
                         <i class="pe-7s-eyedropper icon-gradient bg-happy-itmeo"></i>
                     </div>
-                    <div>Update category
+                    <div>User detail
                         <div class="page-title-subheading">
                             <?php
                             $message = Session::get('message');
@@ -26,26 +26,43 @@
         </div>
         <div class="main-card mb-3 card">
             <div class="card-body">
-                <h5 class="card-title">Categories</h5>
-                @foreach($categories as $key => $category)
-                <form class="form-horizontal" action="{{route('admin.update_category', array('category_id'=>$category->categoryId))}}" method="post">
+                <h5 class="card-title">Users</h5>
+                @foreach($user as $key => $user)
+                <form class="form-horizontal" action="{{route('admin.save_update_user_password', array('user_id'=>$user->userId))}}" method="get">
                     {{csrf_field()}}
+                    <div class="form-row">
+                        <!-- Slug input-->
+                        <div class="col-md-4 mb-3">
+                            <label for="slug">Current password</label>
+                            <input type="password" class="form-control" id="user_password" name="user_password" required="">
+                        </div>
+                    </div>
                     <div class="form-row">
                         <!-- Name input-->
                         <div class="col-md-4 mb-3">
-                            <label for="slug">Category name</label>
-                            <input type="text" class="form-control" id="category_name" name="category_name" value="{{$category->categoryName}}"  required="">
+                            <label for="name">New password</label>
+                            <input type="password" class="form-control" id="new_password" name="new_password" required="">
                         </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="category_id">Category</label>
-                            <select id="category_type" name="category_type" class="form-control">
-                                <option value="1">PhysicGood</option>
-                                <option value="2">EGood</option>
-                            </select>
-                        </div>
+                    </div>
+                    <div class="col-sm-12 clearfix">
+                        @if(session()->has('message'))
+                            <div class="alert alert-success">
+                                {{ session()->get('message') }}
+                            </div>
+                        @elseif(session()->has('error'))
+                            <div class="alert alert-danger">
+                                {{ session()->get('error') }}
+                            </div>
+                        @endif
 
                     </div>
-                    <button class="btn btn-primary" type="submit">Update</button>
+                    <a href="{{route('admin.view_user', array('user_id'=>$user->userId))}}" class="btn btn-secondary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </span>
+                        <span class="text">Cancel</span>
+                    </a>
+                    <button class="btn btn-primary" type="submit">Save</button>
                 </form>
                 @endforeach
                 <script>
@@ -70,26 +87,6 @@
                 </script>
             </div>
         </div>
-        <script>
-            // Example starter JavaScript for disabling form submissions if there are invalid fields
-            (function() {
-                'use strict';
-                window.addEventListener('load', function() {
-                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                    var forms = document.getElementsByClassName('needs-validation');
-                    // Loop over them and prevent submission
-                    var validation = Array.prototype.filter.call(forms, function(form) {
-                        form.addEventListener('submit', function(event) {
-                            if (form.checkValidity() === false) {
-                                event.preventDefault();
-                                event.stopPropagation();
-                            }
-                            form.classList.add('was-validated');
-                        }, false);
-                    });
-                }, false);
-            })();
-        </script>
     </div>
     </div>
 @endsection

@@ -1,5 +1,6 @@
 @extends('admin::layouts.master')
 @section('content')
+    <div class="container-fluid">
     <div class="app-main__inner">
         <div class="app-page-title">
             <div class="page-title-wrapper">
@@ -8,16 +9,21 @@
                         <i class="pe-7s-box2 icon-gradient bg-happy-itmeo">
                         </i>
                     </div>
-                    <div>User Management
-                        <div class="page-title-subheading">
-                            <?php
-                            $message = Session::get('message');
-                            if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
-                                Session::put('message', null);
-                            }
-                            ?>
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">User manager</h1>
+                        <div>
+                            <div class="page-title-subheading">
+                                <?php
+                                $message = Session::get('message');
+                                if($message){
+                                    echo '<span class="text-alert">'.$message.'</span>';
+                                    Session::put('message', null);
+                                }
+                                ?>
+                            </div>
                         </div>
+                        <a href="{{route('admin.add_user')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-user-plus fa-sm text-white-50"></i>Add user</a>
+                        <div></div>
                     </div>
                 </div>
             </div>
@@ -27,7 +33,10 @@
                 <div class="main-card mb-3 card">
                     <div class="card-body">
                         <h5 class="card-title">
-
+                            <div class="info-box-content">
+                                <span class="info-box-text">Total user</span>
+                                <span class="info-box-number">{{count($user_total)}}</span>
+                            </div>
                         </h5>
                         <div class="table-responsive">
                             <table class="mb-0 table">
@@ -51,6 +60,7 @@
                                             <form action="{{route('admin.delete_user', array('user_id'=>$user->userId))}}">
                                                 <button class="mb-2 mr-2 btn-transition btn btn-outline-success" onclick="return confirm('Are you sure you want to delete this user?')" >Delete</button>
                                             </form>
+                                            <form action="{{route('admin.view_user', array('user_id'=>$user->userId))}}"><button class="mb-2 mr-2 btn-transition btn btn-outline-primary">Detail</button></form>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -64,5 +74,6 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection

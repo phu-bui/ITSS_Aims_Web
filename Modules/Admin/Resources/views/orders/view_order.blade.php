@@ -1,5 +1,6 @@
 @extends('admin::layouts.master')
 @section('content')
+    <div class="container-fluid">
     <div class="app-main__inner">
         <div class="app-page-title">
             <div class="page-title-wrapper">
@@ -80,5 +81,6 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection
