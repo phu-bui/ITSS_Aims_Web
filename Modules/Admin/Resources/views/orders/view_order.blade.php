@@ -9,16 +9,20 @@
                         <i class="pe-7s-box2 icon-gradient bg-happy-itmeo">
                         </i>
                     </div>
-                    <div>Product Management
-                        <div class="page-title-subheading">
-                            <?php
-                            $message = Session::get('message');
-                            if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
-                                Session::put('message', null);
-                            }
-                            ?>
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Order manager</h1>
+                        <div>
+                            <div class="page-title-subheading">
+                                <?php
+                                $message = Session::get('message');
+                                if($message){
+                                    echo '<span class="text-alert">'.$message.'</span>';
+                                    Session::put('message', null);
+                                }
+                                ?>
+                            </div>
                         </div>
+                        <div></div>
                     </div>
                 </div>
             </div>
@@ -64,10 +68,18 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <form action="{{route('admin.delete_order', array('order_id'=>$order->id))}}">
-                                                <button class="mb-2 mr-2 btn-transition btn btn-outline-success" onclick="return confirm('Are you sure you want to delete this order?')" >Delete</button>
-                                            </form>
-                                            <form action="{{route('admin.view_order', array('order_id'=>$order->id))}}"><button class="mb-2 mr-2 btn-transition btn btn-outline-primary">Detail</button></form>
+                                            <a href="{{route('admin.view_order', array('order_id'=>$order->id))}}" class="btn btn-info btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-info-circle"></i>
+                                        </span>
+                                                <span class="text">View</span>
+                                            </a>
+                                            <a href="{{route('admin.delete_order', array('order_id'=>$order->id))}}" onclick="return confirm('Are you sure you want to delete this order?')" class="btn btn-danger btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                                <span class="text">Delete</span>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach

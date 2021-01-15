@@ -3,7 +3,21 @@
     <div class="container-fluid">
     <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Order detail</h6>
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Order detail</h1>
+            <div>
+                <div class="page-title-subheading">
+                    <?php
+                    $message = Session::get('message');
+                    if($message){
+                        echo '<span class="text-alert">'.$message.'</span>';
+                        Session::put('message', null);
+                    }
+                    ?>
+                </div>
+            </div>
+            <div></div>
+        </div>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -29,9 +43,19 @@
                     </tbody>
                 </table>
                 @if($order->orderStatus == 1)
-                <form action="{{route('admin.order_approval', array('order_id'=>$order->id))}}"><button class="mb-2 mr-2 btn-transition btn btn-outline-primary">Delivered</button></form>
+                    <a href="{{route('admin.order_approval', array('order_id'=>$order->id))}}" class="btn btn-success btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                        <span class="text">Delivered</span>
+                    </a>
                 @else()
-                    <form action="{{route('admin.orders.list')}}"><button class="mb-2 mr-2 btn-transition btn btn-outline-primary">Cancel</button></form>
+                    <a href="{{route('admin.orders.list')}}" class="btn btn-secondary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </span>
+                        <span class="text">Cancel</span>
+                    </a>
                 @endif
             @endforeach
 

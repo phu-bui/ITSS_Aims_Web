@@ -9,16 +9,20 @@
                     <div class="page-title-icon">
                         <i class="pe-7s-eyedropper icon-gradient bg-happy-itmeo"></i>
                     </div>
-                    <div>Update product
-                        <div class="page-title-subheading">
-                            <?php
-                            $message = Session::get('message');
-                            if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
-                                Session::put('message', null);
-                            }
-                            ?>
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Product manager</h1>
+                        <div>
+                            <div class="page-title-subheading">
+                                <?php
+                                $message = Session::get('message');
+                                if($message){
+                                    echo '<span class="text-alert">'.$message.'</span>';
+                                    Session::put('message', null);
+                                }
+                                ?>
+                            </div>
                         </div>
+                        <div></div>
                     </div>
                 </div>
                 <div class="page-title-actions">
@@ -107,7 +111,12 @@
                             @enderror
                         </div>
                     </div>
-
+                    <a href="{{route('admin.products.list')}}" class="btn btn-secondary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </span>
+                        <span class="text">Cancel</span>
+                    </a>
                     <button class="btn btn-primary" type="submit">Continue</button>
                 </form>
                 @endforeach

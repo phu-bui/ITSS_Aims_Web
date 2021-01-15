@@ -46,7 +46,7 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Phone</th>
-                                        <th>Delete</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,10 +57,18 @@
                                         <td>{{($user->email)}}</td>
                                         <td>{{($user->phone)}}</td>
                                         <td>
-                                            <form action="{{route('admin.delete_user', array('user_id'=>$user->userId))}}">
-                                                <button class="mb-2 mr-2 btn-transition btn btn-outline-success" onclick="return confirm('Are you sure you want to delete this user?')" >Delete</button>
-                                            </form>
-                                            <form action="{{route('admin.view_user', array('user_id'=>$user->userId))}}"><button class="mb-2 mr-2 btn-transition btn btn-outline-primary">Detail</button></form>
+                                            <a href="{{route('admin.view_user', array('user_id'=>$user->userId))}}" class="btn btn-info btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-info-circle"></i>
+                                        </span>
+                                                <span class="text">View</span>
+                                            </a>
+                                            <a href="{{route('admin.delete_user', array('user_id'=>$user->userId))}}" onclick="return confirm('Are you sure you want to delete this user?')" class="btn btn-danger btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                                <span class="text">Delete</span>
+                                            </a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -70,6 +78,7 @@
                         </div>
                     </div>
                     <div class="d-block text-center card-footer">
+
                     </div>
                 </div>
             </div>

@@ -9,16 +9,21 @@
                         <i class="pe-7s-box2 icon-gradient bg-happy-itmeo">
                         </i>
                     </div>
-                    <div>Category Management
-                        <div class="page-title-subheading">
-                            <?php
-                            $message = Session::get('message');
-                            if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
-                                Session::put('message', null);
-                            }
-                            ?>
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Category manager</h1>
+                        <div>
+                            <div class="page-title-subheading">
+                                <?php
+                                $message = Session::get('message');
+                                if($message){
+                                    echo '<span class="text-alert">'.$message.'</span>';
+                                    Session::put('message', null);
+                                }
+                                ?>
+                            </div>
                         </div>
+                        <a href="{{route('admin.add_category')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-flag fa-sm text-white-50"></i>Add category</a>
+                        <div></div>
                     </div>
                 </div>
             </div>
@@ -51,10 +56,18 @@
                                             <td>EGood</td>
                                         @endif
                                         <td>
-                                            <form action="{{route('admin.delete_category', array('category_id'=>$category->categoryId))}}">
-                                                <button class="mb-2 mr-2 btn-transition btn btn-outline-success" onclick="return confirm('Are you sure you want to delete this category?')" >Delete</button>
-                                            </form>
-                                            <form action="{{route('admin.edit_category', array('category_id'=>$category->categoryId))}}"><button class="mb-2 mr-2 btn-transition btn btn-outline-primary">Detail</button></form>
+                                            <a href="{{route('admin.edit_category', array('category_id'=>$category->categoryId))}}" class="btn btn-info btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-info-circle"></i>
+                                        </span>
+                                                <span class="text">View</span>
+                                            </a>
+                                            <a href="{{route('admin.delete_category', array('category_id'=>$category->categoryId))}}" onclick="return confirm('Are you sure you want to delete this category?')" class="btn btn-danger btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                                <span class="text">Delete</span>
+                                            </a>
                                         </td>
                                     </tr>
                                     @endforeach
