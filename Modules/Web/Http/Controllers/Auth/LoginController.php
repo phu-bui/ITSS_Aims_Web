@@ -60,10 +60,12 @@ class LoginController extends BaseController
             $password = $request->input('password');
 
             $user = User::where('email', $email)->first();
-            if(!empty($user) && AuthUtils::attemptLogin($user, 'web', $email, $password, $request->has('remember_me'))){
+            if($user['role']==1){
+                return redirect()->back()->withErrors(['account' => 'Your account has been locked. Please contact the admin to unlock your account !'])->withInput();
+            }elseif(!empty($user) && AuthUtils::attemptLogin($user, 'web', $email, $password, $request->has('remember_me'))){
                 $request->session()->put('data-signin', $request->input());
                 return redirect()->route('web.home');
-            } else {
+            }else {
                 return redirect()->back()->withErrors(['email' => 'Email or password incorrect !'])->withInput();
             }
         }
