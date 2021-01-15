@@ -86,7 +86,8 @@
                                             </form>
                                             <form action="{{route('admin.edit_product', array('product_id'=>$product->productId))}}"><button class="mb-2 mr-2 btn-transition btn btn-outline-primary">Detail</button></form>
                                         </td>
-                                        <td><input type="checkbox" name="product_name" value="{{$product->productId}}"  id="fluency"></td>
+                                        <td><meta name="csrf-token" content="{{ csrf_token() }}">
+                                            <input type="checkbox" name="product_name" value="{{$product->productId}}"  id="fluency"></td>
                                     </tr>
                                     @endforeach
 
@@ -104,6 +105,14 @@
 <!-- JavaScript -->
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+<!-- Bootstrap theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
 <script src="{{asset('frontend/js/jquery-3.2.1.min.js')}}"></script>
 
 <script>
@@ -114,31 +123,22 @@
             $.each($("input[name='product_name']:checked"), function(){            
                 favorite.push($(this).val());
             });
-            
-            // Khai báo object
-            var agrs = {
-                url : "/delete-list-product", // gửi ajax đến file result.php
-                type : "post", // chọn phương thức gửi là post
-                dataType:"text", // dữ liệu trả về dạng text
-                data : { // Danh sách các thuộc tính sẽ gửi đi
-                    favorite : favorite
-                },
-                success : function (result){
-                    // Sau khi gửi và kết quả trả về thành công thì gán nội dung trả về
-                    // đó vào thẻ div có id = result
-                    $('#result').html(result);
-                }
-            };
- 
-            // Truyền object vào để gọi ajax
-            $.ajax(agrs);
+            if(favorite.length > 0){
+                $.ajax({
+                    url: 'delete-list-product/',
+                    headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                    type: 'POST',
+                    data: {
+                        favorite: favorite,
+                         //services: services                     
+                    },
+                }).done(function(response){
+                    window.location.href = "/admin/products";
+                });    
+            }            
         });
     });
-
-    function RenderList(response){
-        $("#list").empty();
-        $("#list").html(response);
-
-    }
 </script>
 @endsection
