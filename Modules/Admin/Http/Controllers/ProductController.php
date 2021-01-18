@@ -98,29 +98,46 @@ class ProductController extends AdminBaseController
     }
 
     public function update_product(ProductCRUDRequest $request, $product_id){
-        $data = array();
-        $data['categoryId'] = $request->category_id;
-        $data['idGood'] = 1;
-        $data['title'] = $request->title;
-        $data['value'] = $request->value;
-        $data['image'] = $request->image;
-        $data['price'] = $request->price;
-        $data['description'] = $request->description;
-        $data['quantity'] = $request->quantity;
-        $data['language'] = $request->language;
-
-        DB::table('products')->where('productId', $product_id)->update($data);
-        $properties = DB::table('properties')->join('property_types', 'properties.propertyTypeId', '=', 'property_types.propertyTypeId')->where('properties.productId', $product_id)->get();
         if (session()->has('admin-data-signin')) {
             $admin = DB::table('admins')->where('email', session('admin-data-signin')['email'])->first();
         }
         $admin_id = $admin->id;
-        $mytime = Carbon::now();
-        DB::insert('insert into historyadmins (adminId, act, createDate, productId) values (?, ?, ?, ?)', [$admin_id, 'Edit', $mytime,$product_id]);
-        return view('admin::products.update_property')
+        $mytime = Carbon::now()->toDateString();
+        $count = DB::table('historyAdmins')->where('adminId', $admin_id)->where('act', "Edit")->where('createDate', $mytime)->count();
+        if ($count + 1 < 4 ) {
+            $product = DB::table('products')->where('productId', $product_id)->get();
+            $data = array();
+            $data['categoryId'] = $request->category_id;
+            $data['idGood'] = 1;
+            $data['title'] = $request->title;
+            $data['value'] = $request->value;
+            $data['image'] = $request->image;
+            $data['price'] = $request->price;
+            $data['description'] = $request->description;
+            $data['quantity'] = $request->quantity;
+            $data['language'] = $request->language;
+            if($data['price'] != $product[0]->price || $data['value'] != $product[0]->value ){
+                $count = DB::table('historyAdmins')->where('adminId', $admin_id)->where('act', "Update Price")->where('productId', $product_id)->where('createDate', $mytime)->count();
+                if($count + 1 > 2){
+                    Session::put('message', 'Update product fail, you have updated more than 2 products today!');
+                    return redirect()->route('admin.products.list');
+                }
+                DB::table('products')->where('productId', $product_id)->update($data);
+                $properties = DB::table('properties')->join('property_types', 'properties.propertyTypeId', '=', 'property_types.propertyTypeId')->where('properties.productId', $product_id)->get();
+                DB::insert('insert into historyadmins (adminId, act, createDate, productId) values (?, ?, ?, ?)', [$admin_id, 'Update Price', $mytime,$product_id]);
+            }
+            else{
+                DB::table('products')->where('productId', $product_id)->update($data);
+                $properties = DB::table('properties')->join('property_types', 'properties.propertyTypeId', '=', 'property_types.propertyTypeId')->where('properties.productId', $product_id)->get();
+                DB::insert('insert into historyadmins (adminId, act, createDate, productId) values (?, ?, ?, ?)', [$admin_id, 'Edit', $mytime,$product_id]);
+            }
+            return view('admin::products.update_property')
             ->with('properties', $properties)
             ->with('product_id', $product_id)
             ->with('categoryId', $request->category_id);
+        }
+        Session::put('message', 'Update product fail, you have updated more than 30 products today!');
+        return redirect()->route('admin.products.list');
     }
 
     public function update_property(Request $request, $product_id) {
@@ -141,31 +158,45 @@ class ProductController extends AdminBaseController
     }
 
     public function delete_product($product_id){
-        DB::table('products')->where('productId', $product_id)->delete();
-        DB::table('properties')->where('productId', $product_id)->delete();
-        Session::put('message', 'Delete product successful!');
         if (session()->has('admin-data-signin')) {
             $admin = DB::table('admins')->where('email', session('admin-data-signin')['email'])->first();
         }
         $admin_id = $admin->id;
-        $mytime = Carbon::now();
-        DB::insert('insert into historyadmins (adminId, act, createDate, productId) values (?, ?, ?, ?)', [$admin_id, 'Delete', $mytime,$product_id]);
+        $mytime = Carbon::now()->toDateString();
+        $count = DB::table('historyAdmins')->where('adminId', $admin_id)->where('act', "Delete")->where('createDate', $mytime)->count();
+        if ($count + 1 < 2 ) {
+            DB::table('products')->where('productId', $product_id)->delete();
+            DB::table('properties')->where('productId', $product_id)->delete();
+            Session::put('message', 'Delete product successful!');
+            DB::insert('insert into historyadmins (adminId, act, createDate, productId) values (?, ?, ?, ?)', [$admin_id, 'Delete', $mytime,$product_id]);
+        }
+        Session::put('message', 'Delete product fail, you have deleted more than 30 products today!');
         return redirect()->route('admin.products.list');
     }
 
     public function delete_list_product(Request $rq){
         $listProducts = $rq->favorite;
+        if (session()->has('admin-data-signin')) {
+            $admin = DB::table('admins')->where('email', session('admin-data-signin')['email'])->first();
+        }
+        $admin_id = $admin->id;
+        $mytime = Carbon::now()->toDateString();
+        $count = DB::table('historyAdmins')->where('adminId', $admin_id)->where('act', "Delete")->where('createDate', $mytime)->count();
+        $count = $count + count($listProducts);
+        if ($count < 2 ) {
             foreach ($listProducts as $product_id) {
-            DB::table('products')->where('productId', $product_id)->delete();
-            DB::table('properties')->where('productId', $product_id)->delete();
-            if (session()->has('admin-data-signin')) {
-                $admin = DB::table('admins')->where('email', session('admin-data-signin')['email'])->first();
-            }
-            $admin_id = $admin->id;
-            $mytime = Carbon::now();
-            DB::insert('insert into historyadmins (adminId, act, createDate, productId) values (?, ?, ?, ?)', [$admin_id, 'Delete', $mytime,$product_id]);
-            }
-            Session::put('message', 'Delete product successful!');
+                DB::table('products')->where('productId', $product_id)->delete();
+                DB::table('properties')->where('productId', $product_id)->delete();
+                if (session()->has('admin-data-signin')) {
+                    $admin = DB::table('admins')->where('email', session('admin-data-signin')['email'])->first();
+                }
+                $admin_id = $admin->id;
+                $mytime = Carbon::now();
+                DB::insert('insert into historyadmins (adminId, act, createDate, productId) values (?, ?, ?, ?)', [$admin_id, 'Delete', $mytime,$product_id]);
+                }
+                Session::put('message', 'Delete product successful!');
+        }
+        Session::put('message', 'Delete product fail, you have deleted more than 30 products today!');
             return ;
     }
 
