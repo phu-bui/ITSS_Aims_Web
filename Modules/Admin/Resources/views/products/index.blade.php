@@ -64,6 +64,17 @@
                                         <th>Value</th>
                                         <th>Quantity</th>
                                         <th>Update/Delete</th>
+                                        <th>
+                                            <div id="conditional_part">
+                                            <a id="delete-all" class="btn btn-danger btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                                <span class="text">Delete</span>
+                                            </a>
+                                                <!-- <button class="mb-2 btn btn-outline-success" id="delete-all" >Delete all</button> -->
+                                            </div>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -95,6 +106,10 @@
                                                 <span class="text">Delete</span>
                                             </a>
                                         </td>
+                                        <td>
+                                            <meta name="csrf-token" content="{{ csrf_token() }}">
+                                            <input type="checkbox" name="product_name" value="{{$product->productId}}"  id="fluency">
+                                        </td>
                                     </tr>
                                     @endforeach
 
@@ -110,4 +125,36 @@
         </div>
     </div>
     </div>
+    <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script src="{{asset('frontend/js/jquery-3.2.1.min.js')}}"></script>
+
+    <script>
+       
+        $(document).ready(function() {
+            $("#delete-all").click(function(){
+                if (confirm('Are you sure you want to delete this products?')) {
+                    var favorite = [];
+                    $.each($("input[name='product_name']:checked"), function(){            
+                        favorite.push($(this).val());
+                    });
+                    if(favorite.length > 0){
+                        $.ajax({
+                            url: 'delete-list-product/',
+                            headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                            type: 'POST',
+                            data: {
+                                favorite: favorite,
+                                 //services: services                     
+                            },
+                        }).done(function(response){
+                            window.location.href = "/admin/products";
+                        });    
+                    }         
+                }   
+            });
+        });
+    </script>
 @endsection
