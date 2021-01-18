@@ -64,11 +64,11 @@
 
                             </div>
                 @endforeach
-                {{ $products->links() }}
-
+                
 
 
                 </div>
+                {{ $products->links() }}
 
             </div>
         </div>

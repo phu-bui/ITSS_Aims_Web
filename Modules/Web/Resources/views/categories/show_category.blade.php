@@ -67,8 +67,9 @@
                         </a>
                         @endforeach
 
-                        {{$product_by_category->links()}}
+                        
                     </div><!--features_items-->
+                    {{$product_by_category->links()}}
         <!--/recommended_items-->
             </div>
         </div>
