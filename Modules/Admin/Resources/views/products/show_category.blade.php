@@ -83,10 +83,18 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <form action="{{route('admin.delete_product', array('product_id'=>$product->productId))}}">
-                                                <button class="mb-2 mr-2 btn-transition btn btn-outline-success" onclick="return confirm('Are you sure you want to delete this product?')" >Delete</button>
-                                            </form>
-                                            <form action="{{route('admin.edit_product', array('product_id'=>$product->productId))}}"><button class="mb-2 mr-2 btn-transition btn btn-outline-primary">Detail</button></form>
+                                            <a href="{{route('admin.edit_product', array('product_id'=>$product->productId))}}" class="btn btn-info btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-info-circle"></i>
+                                        </span>
+                                                <span class="text">View</span>
+                                            </a>
+                                            <a href="{{route('admin.delete_product', array('product_id'=>$product->productId))}}" onclick="return confirm('Are you sure you want to delete this product?')" class="btn btn-danger btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                                <span class="text">Delete</span>
+                                            </a>
                                         </td>
                                     </tr>
                                     @endforeach
