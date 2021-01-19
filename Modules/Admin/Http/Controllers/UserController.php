@@ -6,6 +6,7 @@ namespace Modules\Admin\Http\Controllers;
 use App\Http\Controllers\BaseController;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
+use Modules\Admin\Http\Requests\UserCRUDRequest;
 use App\Http\Requests\AdminAddProductRequest;
 use DB;
 use Illuminate\Support\Facades\Hash;
@@ -50,7 +51,7 @@ class UserController extends AdminBaseController
         return view('admin::users.edit_user')->with('user', $user);
     }
 
-    public function update_user(Request $request, $user_id){
+    public function update_user(UserCRUDRequest $request, $user_id){
         $data = array();
         $data['name'] = $request->username;
         $data['email'] = $request->email;
@@ -71,7 +72,7 @@ class UserController extends AdminBaseController
         return view('admin::users.add_user');
     }
 
-    public function save_user(Request $request){
+    public function save_user(UserCRUDRequest $request){
         $data = array();
         $data['name'] = $request->username;
         $data['email'] = $request->email;
@@ -95,7 +96,7 @@ class UserController extends AdminBaseController
         return view('admin::users.update_password')->with('user', $user);
     }
 
-    public function save_update_password(Request $request, $user_id){
+    public function save_update_password(UserCRUDRequest $request, $user_id){
         $password = $request->user_password;
         $user = User::where('userId', $user_id)->first();
 

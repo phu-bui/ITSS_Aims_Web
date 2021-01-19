@@ -9,7 +9,7 @@ use App\Http\Controllers\BaseController;
 use App\Entities\Admin;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
-use App\Http\Requests\ProductRequest;
+use Modules\Admin\Http\Requests\PromotionCRUDRequest;
 use DB;
 use Modules\Admin\Http\Requests\ProductCRUDRequest;
 use mysql_xdevapi\Table;
@@ -33,7 +33,7 @@ class PromotionController extends AdminBaseController
         return view('admin::promotions.add_promotion')->with('category_product');
     }
 
-    public function save_promotion(Request $request){
+    public function save_promotion(PromotionCRUDRequest $request){
         $data = array();
         $data['type'] = $request->type;
         $data['name'] = $request->name;
@@ -55,7 +55,7 @@ class PromotionController extends AdminBaseController
         return view('admin::promotions.edit_promotion')->with('promotions', $edit_promotion);
     }
 
-    public function update_promotion(Request $request, $promotion_id){
+    public function update_promotion(ProductCRUDRequest $request, $promotion_id){
         $data = array();
         $data['type'] = $request->type;
         $data['name'] = $request->name;

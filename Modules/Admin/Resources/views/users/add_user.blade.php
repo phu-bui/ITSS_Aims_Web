@@ -39,18 +39,25 @@
                         <div class="col-md-4 mb-3">
                             <label for="slug">Name</label>
                             <input type="text" class="form-control" id="username" name="username"  required="">
+
                         </div>
                     </div>
                     <div class="form-row">
                         <!-- Name input-->
                         <div class="col-md-4 mb-3">
                             <label for="name">Email</label>
-                            <input type="text" class="form-control" id="email" name="email" required="">
+                            <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" required="">
+                            @error('email')
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
+                            @enderror
                         </div>
                         <!-- Input image -->
                         <div class="col-md-4 mb-3">
                             <label for="image">Phone number</label>
-                            <input type="text" class="form-control" id="phone" name="phone">
+                            <input type="text" class="form-control @error('phone_number') is-invalid @enderror" id="phone" name="phone">
+                            @error('phone_number')
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
 
@@ -59,7 +66,10 @@
                         <!-- Short description input-->
                         <div class="col-md-4 mb-3">
                             <label for="short_description">Password</label>
-                            <input type="password" class="form-control" id="password" name="password">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
+                            @error('password')
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
+                            @enderror
                         </div>
                         <!-- Price input-->
 

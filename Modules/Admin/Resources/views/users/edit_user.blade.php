@@ -46,12 +46,18 @@
                         <!-- Name input-->
                         <div class="col-md-4 mb-3">
                             <label for="name">Email</label>
-                            <input type="text" class="form-control" id="email" name="email" value="{{$user->email}}" required="">
+                            <input type="text" class="form-control @error('title') is-invalid @enderror" id="email" name="email" value="{{$user->email}}" required="">
+                            @error('email')
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
+                            @enderror
                         </div>
                         <!-- Input image -->
                         <div class="col-md-4 mb-3">
                             <label for="image">Phone number</label>
-                            <input type="text" class="form-control" id="phone" name="phone" value="{{$user->phone}}">
+                            <input type="text" class="form-control @error('phone_number') is-invalid @enderror" id="phone" name="phone" value="{{$user->phone}}">
+                            @error('phone_number')
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
+                            @enderror
                         </div>
 
 

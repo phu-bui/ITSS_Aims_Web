@@ -59,7 +59,10 @@
                         <!-- Input image -->
                         <div class="col-md-4 mb-3">
                             <label for="image">Discount(%)</label>
-                            <input type="number" class="form-control" id="discount" name="discount" placeholder="Discount ..." required="">
+                            <input type="number" class="form-control @error('discount') is-invalid @enderror" id="discount" name="discount" placeholder="Discount ..." required="">
+                            @error('discount')
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="col-md-4 mb-3">
