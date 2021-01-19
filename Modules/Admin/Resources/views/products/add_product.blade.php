@@ -35,7 +35,7 @@
                     @csrf
                     <div class="form-row">
                         <div class="form-group col-sm-4">
-                            <label for="">Loại sản phẩm</label>
+                            <label for="">Product Type</label>
                             <select class="form-control" id="category" name="categoryId" required>
                                 <option value="" selected>---</option>
                                 @foreach($category_product as $category)

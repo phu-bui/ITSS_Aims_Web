@@ -65,6 +65,16 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin', 'namespace' => '\Modul
         //History
         Route::get('/history', 'HistoryController@index')->name('admin.history');
 
+        //Promotion
+        Route::get('promotions', 'PromotionController@index')->name('admin.promotions.list');
+        Route::get('add-promotion', 'PromotionController@add_promotion')->name('admin.add_promotion');
+        Route::get('save-promotion', 'PromotionController@save_promotion')->name('admin.save_promotion');
+        Route::get('promotion/{promotion_id}', 'PromotionController@edit_promotion')->name('admin.edit_promotion');
+        Route::get('save-update-promotion/{promotion_id}', 'PromotionController@update_promotion')->name('admin.update_promotion');
+        Route::get('delete-promotion/{promotion_id}', 'PromotionController@delete_promotion')->name('admin.delete_promotion');
+        Route::get('add-product-to-promotion/{promotion_id}', 'PromotionController@add_product_to_promotion')->name('admin.add_product_to_promotion');
+        Route::get('save-add/{promotion_id}', 'PromotionController@save_add_product_to_promotion')->name('admin.save_add');
+
 
 
 
