@@ -1,11 +1,66 @@
 productId,categoryId,idGood,title,value,image,price,description,quantity,language
-1,1,1,Combo Bí Mật Tư Duy Triệu Phú (Mới Nhất - 2016),304,https://salt.tikicdn.com/cache/200x200/media/catalog/product/7/_/7_10_2_1.u547.d20160408.t112901.jpg,304,1,1,1
-2,1,1,"Bộ: Mặt Dày Tâm Đen- Lãnh Đạo Bằng Câu Hỏi - 7 Câu Hỏi ""Thần Kỳ"" Của Mọi Sếp Giỏi",309,https://salt.tikicdn.com/cache/200x200/ts/product/3e/5e/8a/b7ccc81599336118914688e3da2fb7e5.jpg,309,1,1,1
-3,1,1,Combo Không Thể Thiếu Cho Những Nhân Viên Chuyên Nghiệp: Kỹ Năng Viết Báo Cáo Hiệu Quả + Kỹ Năng Lập Kế Hoạch Hiệu Quả (những bí quyết để từng bước thăng tiến trong công việc),164,https://salt.tikicdn.com/cache/200x200/ts/product/43/e4/e6/b1bc1888da98b108bd68da1229f18fec.jpg,164,1,1,1
-4,1,1,Gia Tộc Morgan - Một Triều Đại Ngân Hàng Mỹ Và Sự Trỗi Dậy Của Nền Tài Chính Hiện Đại,424,https://salt.tikicdn.com/cache/200x200/ts/product/5d/8d/4d/9ee0443157de2e51c013ff659c3e374f.jpg,424,1,1,1
-5,1,1,Nhất định phải kinh doanh cái gì đó,179,https://salt.tikicdn.com/cache/200x200/ts/product/61/41/03/d1150a2835d2495aee950fee2aeba5a4.jpg,179,1,1,1
-6,1,1,Combo Đánh Bại Sự Trì Trệ Của Bản Thân: Kỹ Năng Bán Hàng Hiệu Quả + Quản Lý Công Việc Hiệu Quả Theo Phong Cách Người Nhật (có đạt được thành công và tạo dấu ấn trong sự nghiệp hay không là tùy thuộc vào bạn),150,https://salt.tikicdn.com/cache/200x200/ts/product/68/b2/5a/9aa0ac6d9e2524d96670d88c6c08b6b5.jpg,150,1,1,1
-7,1,1,Hiệu Ứng IKEA Và Hành Trình Chinh Phục Thế Giới,188,https://salt.tikicdn.com/cache/200x200/ts/product/fe/ec/07/22bf265fe78207e3bc9822244cf8ee0d.jpg,188,1,1,1
-8,1,1,Combo Sách Bài Học Kinh Doanh Hay : Bước Đi Ngẫu Nhiên Trên Phố Wall + Donald Trump Chiến Lược Đầu Tư Bất Động Sản ( Tặng Kèm Postcard HAPPY LIFE ),222,https://salt.tikicdn.com/cache/200x200/ts/product/87/05/d0/059be27a9faf26428fbf965dad2218e2.jpg,222,1,1,1
-9,1,1,Khát Vọng Việt: Vì Sao Đất Nước Ta Còn Nghèo?,85,https://salt.tikicdn.com/cache/200x200/media/catalog/product/b/i/bia_khat-vong-viet.u5131.d20170505.t122106.404670.jpg,85,1,1,1
-10,1,1,Để Doanh Nghiệp Thành Công Trong Thế Giới Phẳng,11,https://salt.tikicdn.com/cache/200x200/media/catalog/product/i/m/image_895_.jpg,11,1,1,1
+1,1,1,Combo làm giàu và quyền năng làm giàu (tặng kèm bookmark AHA),192100,https://salt.tikicdn.com/cache/200x200/ts/product/49/31/ac/b926a6034582aa0559b60c03ff36f202.jpg,192100,Sách mới,30,Tiếng Việt
+2,1,1,"Bộ sách "" Khám phá tự do tài chính""",211100,https://salt.tikicdn.com/cache/200x200/ts/product/83/aa/06/c389308e302961003cad4ee66f409ede.jpg,211100,Sách mới,30,Tiếng Việt
+3,1,1,Combo sách: Top 1 Toyota – Những Bài Học Về Nghệ Thuật Lãnh Đạo Từ Công Ty Sản Xuất Ô Tô Lớn Nhất Thế Giới + Sự Quyến Rũ Của Thương Hiệu,229100,https://salt.tikicdn.com/cache/200x200/ts/product/0f/70/11/db3c97322decbfd48d238a8f7f3cbeb1.jpg,229100,Sách mới,30,Tiếng Việt
+4,1,1,"Combo Sách Kinh Điển : TiTan - Gia Tộc Rockefeller + Dầu Mỏ, Tiền Bạc Và Quyền Lực",1100,https://salt.tikicdn.com/cache/200x200/ts/product/e3/80/9b/89686fc26a60006e191c07f5d4cc145a.JPG,1100,Sách mới,30,Tiếng Việt
+5,1,1,Bộ Sách Hay: Để Trở Thành Chuyên Gia Bất Động Sản (Gồm 2 cuốn: 100 Lời Khuyên Đầu Tư Bất Động Sản Khôn Ngoan Nhất + Tư Duy Nhanh Và Chậm) Tặng Sổ Tay Giá Trị (Khổ A6 Dày 200 Trang),355100,https://salt.tikicdn.com/cache/200x200/ts/product/e9/ca/b3/fabeca7a32bf4559da9d9c959b58965e.jpg,355100,Sách mới,30,Tiếng Việt
+6,1,1,Phương Pháp Đầu Tư Warren Buffett - Tặng kèm sổ tay,140100,https://salt.tikicdn.com/cache/200x200/ts/product/4f/a7/67/ccf136823ebf5fc346c46ef7676385dd.jpg,140100,Sách mới,30,Tiếng Việt
+7,1,1,​Jeffbezos Và Kỷ Nguyên Amazon (Tái Bản),74100,https://salt.tikicdn.com/cache/200x200/ts/product/b4/82/2f/53b05631f6a59e0cc612cfde98036469.jpg,74100,Sách mới,30,Tiếng Việt
+8,1,1,Sức Mạnh Của Việc Đặt Câu Hỏi Tại Sao (Tặng Kèm Bookmark Tiki),74100,https://salt.tikicdn.com/cache/200x200/ts/product/21/73/80/bf03baa74e824acd98fa940ed8fe9b95.jpg,74100,Sách mới,30,Tiếng Việt
+9,1,1,Để Trở Thành Nhà Lãnh Đạo Quần Chúng Xuất Sắc,57100,https://salt.tikicdn.com/cache/200x200/ts/product/39/80/33/f14fdf4854460d7c31d233404bde266e.jpg,57100,Sách mới,30,Tiếng Việt
+10,1,1,Marketing Mở Đường Tăng Trưởng,113100,https://salt.tikicdn.com/cache/200x200/ts/product/3e/49/82/c3c0441b2e0eb25c76786fd2a36d6f5a.jpg,113100,Sách mới,30,Tiếng Việt
+11,1,1,The Sell: 14 Bí Quyết Để Trở Thành Nhà Bán Hàng Đại Tài,74100,https://salt.tikicdn.com/cache/200x200/ts/product/38/94/a3/f1b722df309c21f13733e2a0c5a17501.jpg,74100,Sách mới,30,Tiếng Việt
+12,1,1,Câu Chuyện Khởi Nghiệp Từ Những Gã Khổng Lồ Công Nghệ,97100,https://salt.tikicdn.com/cache/200x200/ts/product/c5/2c/b9/7bb804f9d45f717c8cbdcbb82a5e6275.png,97100,Sách mới,30,Tiếng Việt
+13,1,1,Làm Việc Từ Xa Sao Cho Hiệu Quả,83100,https://salt.tikicdn.com/cache/200x200/ts/product/d9/de/28/71d7fb4c06247fd6635d8e952268e74a.jpg,83100,Sách mới,30,Tiếng Việt
+14,1,1,Kiến Giết Voi,54100,https://salt.tikicdn.com/cache/200x200/ts/product/b0/0d/28/075c9b225faf0d86fdad85316428a137.jpg,54100,Sách mới,30,Tiếng Việt
+15,1,1,"Combo: 9 Bài Học Về Tài Ăn Nói Trong Bán Hàng + Ai Hiểu Khách Hàng Người Đó Bán Được Hàng + 5 Nguyêt Tắc Thép, 15 Nghệ Thuật Bán Hàng Thành Công (Bộ 3 Cuốn)",234100,https://salt.tikicdn.com/cache/200x200/ts/product/e7/11/9a/f8de54be8e6d0526cdd56c50fa246411.jpg,234100,Sách mới,30,Tiếng Việt
+16,1,1,Combo Người Bán Hàng Giỏi Phải Bán Mình Trước - Nguyên Tắc Quan Trọng Để Trở Thành Người Bán Hàng Xuất Sắc + Marketing du kích (Bộ 2 Cuốn),223100,https://salt.tikicdn.com/cache/200x200/ts/product/87/5e/82/bdcae9ffd0291aacb508f32387176580.jpg,223100,Sách mới,30,Tiếng Việt
+17,1,1,Combo Sách : Bi Hài Nghiệp Shopping – Chuyện Gì Sẽ Xảy Ra Khi Mua Sắm Trở Thành Bản Năng? + Những Sai Lầm Đắt Giá Trong Marketing,205100,https://salt.tikicdn.com/cache/200x200/ts/product/e9/2d/ae/a55332a8a1d7208686f526cd188c9892.JPG,205100,Sách mới,30,Tiếng Việt
+18,1,1,Combo Sách Kỹ Năng Bán Hàng - Marketing: Chiến Lược Marketing Cho Thị Trường Công Nghệ + Marketing Theo Phong Cách Sao Kim,219100,https://salt.tikicdn.com/cache/200x200/ts/product/ec/95/c3/1610cab38465684e2b38752e58155e03.JPG,219100,Sách mới,30,Tiếng Việt
+19,1,1,Combo Chiến Lược Marketing Thao Túng Người Dùng: Cách Tạo Nội Dung Thao Túng Người Dùng + Chiến Lược Marketing Hoàn Hảo,212100,https://salt.tikicdn.com/cache/200x200/ts/product/ba/06/ef/e4833a1c3119c6930e33103003270854.JPG,212100,Sách mới,30,Tiếng Việt
+20,1,1,Hackers Ielts: Speaking - Giỏi IELTS Không Tốn Mấy Đồng (Quà tặng: Cây viết Galaxy),144100,https://salt.tikicdn.com/cache/200x200/ts/product/8b/0b/ce/5c2e238cf59d99aa67403ab86ad8dc76.jpg,144100,Sách mới,30,Tiếng Việt
+21,1,1,"America Shark Tank: Bùng Nổ Bán Hàng Cùng Shark Robert Herjavec(Tặng E-Book Bộ 10 Cuốn Sách Hay Về Kỹ Năng, Đời Sống, Kinh Tế Và Gia Đình - Tại App MCbooks)",114100,https://salt.tikicdn.com/cache/200x200/ts/product/33/3b/82/2ae88501b8b50d7493bdc82a7403eae7.jpg,114100,Sách mới,30,Tiếng Việt
+22,1,1,Trở Thành Người Bán Hàng Xuất Sắc (Tái Bản),36100,https://salt.tikicdn.com/cache/200x200/ts/product/52/91/8e/d61fa59c6d2431e9fdf42a31b209ad31.jpg,36100,Sách mới,30,Tiếng Việt
+23,1,1,HBR On Change Manegement - Quản Lý Sự Thay Đổi,143100,https://salt.tikicdn.com/cache/200x200/ts/product/5a/37/5b/56945dddb642f9f45be53707591e5e2f.jpg,143100,Sách mới,30,Tiếng Việt
+24,1,1,Combo Sách Tối Ưu Hóa Thời Gian và Công Bằng Cuộc Sống Của Bạn: Quản Lý Thời Gian Chu Toàn Công Việc + Nghệ Thuật Quản Lý Thời Gian (cuộc đời bạn do bạn quyết định),182100,https://salt.tikicdn.com/cache/200x200/ts/product/68/13/3f/2c44f32735580755c12db341c79bcc01.jpg,182100,Sách mới,30,Tiếng Việt
+25,1,1,Combo Sách Truyền Cảm Hứng Hay: Bước Vào Cửa Hiệu Nhiệm Màu + The Big Nine (Sách Kinh Tế Hay / Cẩm Nang Kinh Doanh Hiệu Qủa),242100,https://salt.tikicdn.com/cache/200x200/ts/product/25/e9/02/12051f36083265f4aee0ab924d60ea3a.jpg,242100,Sách mới,30,Tiếng Việt
+26,3,1,Ngày Xưa Anh Hỡi,356100,https://dianhac.com.vn/upload/photo/2020/10/5-1603072176-6494981384-b7810fbe-3254-4c89-9e81-33ac55d2984a.jpeg,356100,Đĩa mới,30,Tiếng Việt
+27,3,1,Thà rằng như thế... tôi đi tìm tôi,310100,https://dianhac.com.vn/upload/thumb/photo/2020/06/5-1592220068-8815510381-aba0d03b-f171-43ff-a400-d9e53b89a312.jpeg,310100,Đĩa mới,30,Tiếng Việt
+28,3,1,Hương tình cũ,179100,https://dianhac.com.vn/upload/thumb/photo/2020/02/5-1581070773-9484255881-huong-tinh-cu.jpg,179100,Đĩa mới,30,Tiếng Việt
+29,3,1,Moon,72100,https://dianhac.com.vn/upload/thumb/photo/2019/12/5-1577348048-2501025252-pham-thuy-dung.jpg,72100,Đĩa mới,30,Tiếng Việt
+30,3,1,Lòi con dâng chúa,141100,https://dianhac.com.vn/upload/thumb/photo/2019/12/5-1575519762-3116185422-loi-con-dang-chua-dvh.jpg,141100,Đĩa mới,30,Tiếng Việt
+31,3,1,Lời con dâng chúa 2,108100,https://dianhac.com.vn/upload/thumb/photo/2019/12/5-1575519762-3116185422-loi-con-dang-chua-dvh.jpg,108100,Đĩa mới,30,Tiếng Việt
+32,3,1,"Phố à, phố ơi",168100,https://dianhac.com.vn/upload/thumb/photo/2019/11/5-1574824679-3998574780-hong-nhung-pho-a-pho-oi-350.jpg,168100,Đĩa mới,30,Tiếng Việt
+33,3,1,Tình ca lính,63100,https://dianhac.com.vn/upload/thumb/photo/2020/10/5-1603070998-1809261548-7909830f-8fe3-411b-a56f-a832b5f2269e.jpeg,63100,Đĩa mới,30,Tiếng Việt
+34,3,1,Một cõi tình phai,137100,https://dianhac.com.vn/upload/thumb/photo/2020/10/5-1603071387-7790629150-a42aea6f-9599-447f-99ea-fd40d4f519b0.jpeg,137100,Đĩa mới,30,Tiếng Việt
+35,3,1,Nó và tôi,96100,https://dianhac.com.vn/upload/thumb/photo/2020/10/5-1602567703-1490347295-55e8c033-f490-4748-a421-56f027001d7e.jpeg,96100,Đĩa mới,30,Tiếng Việt
+36,3,1,Tân cổ giao duyên,98100,https://dianhac.com.vn/upload/thumb/photo/2018/12/1-1545806775-6201746319-cd-tan-co-giao-duyen-song-que-huong-lan-chi-tam-mat-truoc.jpg,98100,Đĩa mới,30,Tiếng Việt
+37,3,1,Evermore,76100,https://product.hstatic.net/1000304920/product/taylor-swift_evermore-cd-tracklist_ecadc7a65b404a38b29488abcc3fd029_master.jpg,76100,Đĩa mới,30,Tiếng Việt
+38,3,1,Tuyển tập bài hát của Mỹ Tâm 1,96100,https://i.ytimg.com/vi/09Q3sy7qiSI/maxresdefault.jpg,96100,Đĩa mới,30,Tiếng Việt
+39,3,1,Tuyển tập bài hát của Mỹ Tâm 2,288100,https://i.ytimg.com/vi/09Q3sy7qiSI/maxresdefault.jpg,288100,Đĩa mới,30,Tiếng Việt
+40,3,1,Tuyển tập bài hát của Mỹ Tâm 3,182100,https://i.ytimg.com/vi/09Q3sy7qiSI/maxresdefault.jpg,182100,Đĩa mới,30,Tiếng Việt
+41,3,1,Rap cùng Đen Vâu,319100,https://photo-resize-zmp3.zadn.vn/w480_r1x1_jpeg/cover/e/0/a/f/e0afea694968c6a4d90853970626d280.jpg,319100,Đĩa mới,30,Tiếng Việt
+42,3,1,The best of Min,147100,https://photo-resize-zmp3.zadn.vn/w480_r1x1_jpeg/cover/9/1/a/5/91a5530c22b7ed73af1cb70d5f08bf01.jpg,147100,Đĩa mới,30,Tiếng Việt
+43,3,1,Những bài hát hay nhất của Lynk Lee,123100,https://photo-resize-zmp3.zadn.vn/w480_r1x1_jpeg/cover/c/4/9/d/c49d15a1e0ee8cdb8aa456ae8e80a5ec.jpg,123100,Đĩa mới,30,Tiếng Việt
+44,3,1,Lynk Lee và những người bạn,234100,https://photo-resize-zmp3.zadn.vn/w480_r1x1_jpeg/cover/c/4/9/d/c49d15a1e0ee8cdb8aa456ae8e80a5ec.jpg,234100,Đĩa mới,30,Tiếng Việt
+45,3,1,Ngày ấy bạn và tôi,125100,https://i.ytimg.com/vi/om3EoR9H_KI/hqdefault.jpg,125100,Đĩa mới,30,Tiếng Việt
+46,3,1,Big city boi,234100,	https://photo-resize-zmp3.zadn.vn/w480_r1x1_jpeg/cover/5/a/3/f/5a3fc3e7494404c21d2a535cd7f6709b.jpg,234100,Đĩa mới,30,Tiếng Việt
+47,3,1,Binz comeback,195100,https://photo-resize-zmp3.zadn.vn/w480_r1x1_jpeg/cover/5/a/3/f/5a3fc3e7494404c21d2a535cd7f6709b.jpg,195100,Đĩa mới,30,Tiếng Việt
+48,3,1,Hoa hồng dại,182100,https://zmp3-photo-fbcrawler.zadn.vn/covers/c/2/c270eb7dd0e8b6b2e46e7b8efb3a1362_1473331409.jpg,182100,Đĩa mới,30,Tiếng Việt
+49,3,1,Phai dấu cuộc tình,319100,https://photo-resize-zmp3.zadn.vn/w480_r1x1_jpeg/cover/5/c/8/b/5c8bea63460464da39018228c690c937.jpg,319100,Đĩa mới,30,Tiếng Việt
+50,3,1,Chỉ là em giấu đi,147100,https://d2p8jjwwnx090z.cloudfront.net/613/959/072/-179996987-1ta7321-c1qgq23seed2e95/original/file.jpg,147100,Đĩa mới,30,Tiếng Việt
+76,2,1,Cao Bồi Viễn Tây,123100,https://salt.tikicdn.com/cache/w444/media/catalog/product/c/a/caoboimientay6_3.jpg,123100,Đĩa mới,30,Tiếng Việt
+77,2,1,Anh Hùng Trái Đất (Trọn Bộ 26 Đĩa),234100,https://salt.tikicdn.com/cache/w444/media/catalog/product/a/n/anhhungtraidat-vcd11_1.jpg,234100,Đĩa mới,30,Tiếng Việt
+78,2,1,Kim cương máu,125100,https://salt.tikicdn.com/cache/w444/media/catalog/product/b/l/blood_diamond1.jpg,125100,Đĩa mới,30,Tiếng Việt
+79,2,1,Được sống,234100,https://salt.tikicdn.com/cache/w444/media/catalog/product/d/u/duoc_song_350px_.jpg,234100,Đĩa mới,30,Tiếng Việt
+80,2,1,Truy lùng băng quỷ,195100,https://salt.tikicdn.com/cache/w444/media/catalog/product/d/s/dsc_8484.u634.d20160405.t110038.jpg,195100,Đĩa mới,30,Tiếng Việt
+81,2,1,Kẻ Thế Mạng,123100,https://salt.tikicdn.com/cache/w444/media/catalog/product/k/e/kehuydiet35.jpg,123100,Đĩa mới,30,Tiếng Việt
+82,2,1,Phương Án Ba Bông Hồng,234100,https://salt.tikicdn.com/cache/w444/media/catalog/product/d/s/dsc_8489.u634.d20160405.t103622.jpg,234100,Đĩa mới,30,Tiếng Việt
+83,2,1,Ngọn Cờ Chiến Thắng,125100,https://salt.tikicdn.com/cache/w444/media/catalog/product/f/l/flags_of_our_fathers_12104.jpg,125100,Đĩa mới,30,Tiếng Việt
+84,2,1,Mật Mã Sống Còn - Babylon,234100,https://salt.tikicdn.com/cache/w444/media/catalog/product/m/a/matmasongcon44.jpg,234100,Đĩa mới,30,Tiếng Việt
+85,2,1,Geki Ranger - Siêu Nhân Mãnh Thú,195100,https://salt.tikicdn.com/cache/w444/media/catalog/product/8/8/8806.u634.d20160401.t115317.jpg,195100,Đĩa mới,30,Tiếng Việt
+86,2,1,Trái tim bé bỏng,123100,https://salt.tikicdn.com/cache/w444/media/catalog/product/d/s/dsc_8276.u634.d20160405.t114030.jpg,123100,Đĩa mới,30,Tiếng Việt
+87,2,1,Phút 89,234100,https://salt.tikicdn.com/cache/w444/media/catalog/product/d/s/dsc_8448.u634.d20160405.t103814.jpg,234100,Đĩa mới,30,Tiếng Việt
+88,2,1,Không nơi ẩn nấp,125100,https://salt.tikicdn.com/cache/w444/media/catalog/product/8/8/8884.u634.d20160401.t163446.jpg,125100,Đĩa mới,30,Tiếng Việt
+89,2,1,Anh chỉ có mình em,234100,https://salt.tikicdn.com/cache/w444/media/catalog/product/d/s/dsc_8362.u634.d20160401.t170308.jpg,234100,Đĩa mới,30,Tiếng Việt
+90,2,1,Số phận một tình yêu,195100,https://salt.tikicdn.com/cache/w444/media/catalog/product/8/8/8863.u634.d20160405.t104951.jpg,195100,Đĩa mới,30,Tiếng Việt

@@ -299,131 +299,131 @@ id,productId,propertyTypeId,value
 298,50,18,"['Chỉ là em giấu đi','Đoản xuân ca','Sâu trong em','Rằng em mãi ở bên','Vâng anh đi đi','Em muốn','Nếu hạnh phúc không phải em','Đưa em đi khắp thế gian','Có lẽ em','Có khi nào rời xa','Nơi nào có anh']"
 299,50,19,07-2019
 300,50,20,Nhạc trẻ
-301,51,8,Blu-ray
-302,51,9,Hải Ninh
-303,51,10,80
-304,51,11,Hãng phim truyện Việt Nam
-305,51,12,03-2003
-306,51,13,Tiếng Việt
-307,51,14,Tiếng Việt
-308,51,15,Tình cảm
-309,52,8,Blu-ray
-310,52,9,Đới Xuân Việt
-311,52,10,120
-312,52,11,Hãng phim truyện Việt Nam
-313,52,12,08-1994
-314,52,13,Tiếng Việt
-315,52,14,Tiếng Việt
-316,52,15,Tình cảm
-317,53,8,Blu-ray
-318,53,9,Ed Harris
-319,53,10,92
-320,53,11,Warner Bros
-321,53,12,03-2014
-322,53,13,Tiếng Anh
-323,53,14,Tiếng Việt
-324,53,15,Tâm lí - hành động
-325,54,8,Blu-ray
-326,54,9,Amrob Victor
-327,54,10,30
-328,54,11,Phương Nam
-329,54,12,05-2016
-330,54,13,Tiếng Việt
-331,54,14,Tiếng Việt
-332,54,15,Hành động
-333,55,8,Blu-ray
-334,55,9,Edward Zwick
-335,55,10,125
-336,55,11,Warner Bros
-337,55,12,03-2014
-338,55,13,Tiếng Anh
-339,55,14,Tiếng Việt
-340,55,15,Hành động
-341,56,8,Blu-ray
-342,56,9,Đức Hoàn
-343,56,10,120
-344,56,11,Hãng phim truyện Việt Nams
-345,56,12,02/2014
-346,56,13,Tiếng Việt
-347,56,14,Tiếng Việt
-348,56,15,Tâm lí - chiến tranh
-349,57,8,Blu-ray
-350,57,9,Trần Trung Dũng
-351,57,10,100
-352,57,11,Hãng phim truyện Việt Nam
-353,57,12,02-2014
-354,57,13,Tiếng Việt
-355,57,14,Tiếng Việt
-356,57,15,Tâm lí - xã hội
-357,58,8,Blu-ray
-358,58,9,Mạnh Cường
-359,58,10,110
-360,58,11,Phương Nam Film
-361,58,12,05-2016
-362,58,13,Tiếng Việt
-363,58,14,Tiếng Việt
-364,58,15,Hành động
-365,59,8,Blu-ray
-366,59,9,Jonathan Mostow
-367,59,10,95
-368,59,11,Touchstone Home Entertainment
-369,59,12,03-2014
-370,59,13,Tiếng Anh
-371,59,14,Tiếng Việt
-372,59,15,Tâm lí hình sự
-373,60,8,Blu-ray
-374,60,9,Văn Hòa
-375,60,10,135
-376,60,11,Phương Nam Film
-377,60,12,05-2018
-378,60,13,Tiếng Việt
-379,60,14,Tiếng Việt
-380,60,15,Tình cảm
-381,61,8,Blu-ray
-382,61,9,Clint Eastwood
-383,61,10,85
-384,61,11,Warner Bros
-385,61,12,03-2014
-386,61,13,Tiếng Anh
-387,61,14,Tiếng Việt
-388,61,15,Phim sử thi
-389,62,8,Blu-ray
-390,62,9,Mathieu Kassovitz
-391,62,10,150
-392,62,11,20th Century Fox
-393,62,12,03-2014
-394,62,13,Tiếng Anh
-395,62,14,Tiếng Việt
-396,62,15,Viễn tưởng - Hành động
-397,63,8,Blu-ray
-398,63,9,Ranger Rose
-399,63,10,60
-400,63,11,Phương Nam Film
-401,63,12,08-2018
-402,63,13,Tiếng Việt
-403,63,14,Tiếng Việt
-404,63,15,Siêu anh hùng
-405,64,8,Blu-ray
-406,64,9,Nguyễn Thanh Vân
-407,64,10,140
-408,64,11,Hãng phim truyện Việt Nam
-409,64,12,09-2015
-410,64,13,Tiếng Việt
-411,64,14,Tiếng Việt
-412,64,15,Tình cảm
-413,65,8,Blu-ray
-414,65,9,Quốc Long
-415,65,10,89
-416,65,11,Hãng phim truyện Việt Nam
-417,65,12,08-1980
-418,65,13,Tiếng Việt
-419,65,14,Tiếng Việt
-420,65,15,Thể thao
-421,66,8,Blu-ray
-422,66,9,Phạm Kỳ Nam
-423,66,10,100
-424,66,11,Hãng phim truyện Việt Nam
-425,66,12,01-1971
-426,66,13,Tiếng Việt
-427,66,14,Tiếng Việt
-428,66,15,Hành Động
+301,76,8,Blu-ray
+302,76,9,Ed Harris
+303,76,10,92
+304,76,11,Warner Bros
+305,76,12,03-2014
+306,76,13,Tiếng Anh
+307,76,14,Tiếng Việt
+308,76,15,Tâm lí - hành động
+309,77,8,Blu-ray
+310,77,9,Amrob Victor
+311,77,10,30
+312,77,11,Phương Nam
+313,77,12,05-2016
+314,77,13,Tiếng Việt
+315,77,14,Tiếng Việt
+316,77,15,Hành động
+317,78,8,Blu-ray
+318,78,9,Edward Zwick
+319,78,10,125
+320,78,11,Warner Bros
+321,78,12,03-2014
+322,78,13,Tiếng Anh
+323,78,14,Tiếng Việt
+324,78,15,Hành động
+325,78,8,Blu-ray
+326,78,9,Đức Hoàn
+327,78,10,120
+328,78,11,Hãng phim truyện Việt Nams
+329,78,12,02/2014
+330,78,13,Tiếng Việt
+331,78,14,Tiếng Việt
+332,78,15,Tâm lí - chiến tranh
+333,79,8,Blu-ray
+334,79,9,Trần Trung Dũng
+335,79,10,100
+336,79,11,Hãng phim truyện Việt Nam
+337,79,12,02-2014
+338,79,13,Tiếng Việt
+339,79,14,Tiếng Việt
+340,79,15,Tâm lí - xã hội
+341,80,8,Blu-ray
+342,80,9,Mạnh Cường
+343,80,10,110
+344,80,11,Phương Nam Film
+345,80,12,05-2016
+346,80,13,Tiếng Việt
+347,80,14,Tiếng Việt
+348,80,15,Hành động
+349,81,8,Blu-ray
+350,81,9,Jonathan Mostow
+351,81,10,95
+352,81,11,Touchstone Home Entertainment
+353,81,12,03-2014
+354,81,13,Tiếng Anh
+355,81,14,Tiếng Việt
+356,81,15,Tâm lí hình sự
+357,82,8,Blu-ray
+358,82,9,Văn Hòa
+359,82,10,135
+360,82,11,Phương Nam Film
+361,82,12,05-2018
+362,82,13,Tiếng Việt
+363,82,14,Tiếng Việt
+364,82,15,Tình cảm
+365,83,8,Blu-ray
+366,83,9,Clint Eastwood
+367,83,10,85
+368,83,11,Warner Bros
+369,83,12,03-2014
+370,83,13,Tiếng Anh
+371,83,14,Tiếng Việt
+372,83,15,Phim sử thi
+373,84,8,Blu-ray
+374,84,9,Mathieu Kassovitz
+375,84,10,150
+376,84,11,20th Century Fox
+377,84,12,03-2014
+378,84,13,Tiếng Anh
+379,84,14,Tiếng Việt
+380,84,15,Viễn tưởng - Hành động
+381,85,8,Blu-ray
+382,85,9,Ranger Rose
+383,85,10,60
+384,85,11,Phương Nam Film
+385,85,12,08-2018
+386,85,13,Tiếng Việt
+387,85,14,Tiếng Việt
+388,85,15,Siêu anh hùng
+389,86,8,Blu-ray
+390,86,9,Nguyễn Thanh Vân
+391,86,10,140
+392,86,11,Hãng phim truyện Việt Nam
+393,86,12,09-2015
+394,86,13,Tiếng Việt
+395,86,14,Tiếng Việt
+396,86,15,Tình cảm
+397,87,8,Blu-ray
+398,87,9,Quốc Long
+399,87,10,89
+400,87,11,Hãng phim truyện Việt Nam
+401,87,12,08-1980
+402,87,13,Tiếng Việt
+403,87,14,Tiếng Việt
+404,87,15,Thể thao
+405,88,8,Blu-ray
+406,88,9,Phạm Kỳ Nam
+407,88,10,100
+408,88,11,Hãng phim truyện Việt Nam
+409,88,12,01-1971
+410,88,13,Tiếng Việt
+411,88,14,Tiếng Việt
+412,88,15,Hành Động
+413,89,8,Blu-ray
+414,89,9,Đới Xuân Việt
+415,89,10,120
+416,89,11,Hãng phim truyện Việt Nam
+417,89,12,08-1994
+418,89,13,Tiếng Việt
+419,89,14,Tiếng Việt
+420,89,15,Tình cảm
+421,90,8,Blu-ray
+422,90,9,Hải Ninh
+423,90,10,80
+424,90,11,Hãng phim truyện Việt Nam
+425,90,12,03-2003
+426,90,13,Tiếng Việt
+427,90,14,Tiếng Việt
+428,90,15,Tình cảm
