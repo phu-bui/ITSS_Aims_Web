@@ -103,3 +103,13 @@ Run script to make table in database
 ### Step5: Run command to start project
 
 ```$ php artisan serve```
+
+### Setup mail information in .env file:
+```MAIL_DRIVER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=465
+MAIL_USERNAME=phubuihedspi@gmail.com
+MAIL_PASSWORD=vietnhatk62
+MAIL_ENCRYPTION=ssl
+MAIL_FROM_ADDRESS=null
+MAIL_FROM_NAME="${APP_NAME}"
