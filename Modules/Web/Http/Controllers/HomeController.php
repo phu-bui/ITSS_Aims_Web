@@ -15,10 +15,33 @@ class HomeController extends Controller
      * Display a listing of the Lab09.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->orderby){
+            $orderby =$request->orderby;
+            switch ($orderby) {
+                case 'desc':
+                    $products = DB::table('products')->orderBy('productId' , 'DESC');
+                    break;
+                case 'asc':
+                    $products = DB::table('products')->orderBy('productId' , 'ASC');
+                    break;
+                case 'price_max':
+                    $products = DB::table('products')->orderBy('price' , 'DESC');
+                    break;
+                case 'price_min':
+                    $products = DB::table('products')->orderBy('price' , 'ASC');
+                    break;
+                default:
+                    $products = DB::table('products')->orderBy('productId' , 'DESC');
+                    break;
+            }
+        }
+        else{
+            $products = DB::table('products');
+        }
         $category_product = DB::table('categories')->orderby('categoryId', 'desc')->get();
-        $all_product = DB::table('products')->paginate(6);
+        $all_product = $products->paginate(6);
         return view('web::home')->with('category_product', $category_product)->with('products', $all_product);
     }
 

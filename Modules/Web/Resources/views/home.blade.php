@@ -20,8 +20,14 @@
                     <div class="price-range"><!--price-range-->
                         <h2>Price Range</h2>
                         <div class="well text-center">
-                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-                            <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+                            <form method="get" id="form_order">
+                            <select name="orderby" class="orderby" >
+                                <option {{Request::get('orderby') == "desc" ? "selected='selected'" : ""}} value="{{Request::url()}}?orderby=sdesc">Sản phẩm mới</option>
+                                <option {{Request::get('orderby') == "asc" ? "selected='selected'" : ""}} value="asc">Sản phẩm cũ</option>
+                                <option {{Request::get('orderby') == "price_max" ? "selected='selected'" : ""}} value="price_max">Giá giảm dần</option>
+                                <option {{Request::get('orderby') == "price_min" ? "selected='selected'" : ""}} value="price_min">Giá tăng dần</option>
+                            </select>                       
+                            </form>
                         </div>
                     </div><!--/price-range-->
 
@@ -63,12 +69,11 @@
                                 </div>
 
                             </div>
-                @endforeach
-                
+                @endforeach             
 
 
                 </div>
-                {{ $products->links() }}
+                {{ $products->appends(request()->query())->links() }}
 
             </div>
         </div>
@@ -100,5 +105,12 @@
     }
 </script>
 
+<script>
+    $(function(){
+        $('.orderby').change(function () {
+            $("#form_order").submit();
+        })
+    }) 
+</script>
 
 @endsection
