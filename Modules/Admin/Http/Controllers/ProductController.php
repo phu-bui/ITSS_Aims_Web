@@ -104,7 +104,7 @@ class ProductController extends AdminBaseController
         $admin_id = $admin->id;
         $mytime = Carbon::now()->toDateString();
         $count = DB::table('historyAdmins')->where('adminId', $admin_id)->where('act', "Edit")->where('createDate', $mytime)->count();
-        if ($count + 1 < 4 ) {
+        if ($count + 1 < 5 ) {
             $product = DB::table('products')->where('productId', $product_id)->get();
             $data = array();
             $data['categoryId'] = $request->category_id;
@@ -164,14 +164,18 @@ class ProductController extends AdminBaseController
         $admin_id = $admin->id;
         $mytime = Carbon::now()->toDateString();
         $count = DB::table('historyAdmins')->where('adminId', $admin_id)->where('act', "Delete")->where('createDate', $mytime)->count();
-        if ($count + 1 < 2 ) {
+        if ($count + 1 < 10 ) {
             DB::table('products')->where('productId', $product_id)->delete();
             DB::table('properties')->where('productId', $product_id)->delete();
             Session::put('message', 'Delete product successful!');
             DB::insert('insert into historyadmins (adminId, act, createDate, productId) values (?, ?, ?, ?)', [$admin_id, 'Delete', $mytime,$product_id]);
+            return redirect()->route('admin.products.list');
         }
-        Session::put('message', 'Delete product fail, you have deleted more than 30 products today!');
-        return redirect()->route('admin.products.list');
+        else{
+            Session::put('message', 'Delete product fail, you have deleted more than 30 products today!');
+            return redirect()->route('admin.products.list');
+        }
+
     }
 
     public function delete_list_product(Request $rq){
@@ -183,7 +187,7 @@ class ProductController extends AdminBaseController
         $mytime = Carbon::now()->toDateString();
         $count = DB::table('historyAdmins')->where('adminId', $admin_id)->where('act', "Delete")->where('createDate', $mytime)->count();
         $count = $count + count($listProducts);
-        if ($count < 2 ) {
+        if ($count < 10 ) {
             foreach ($listProducts as $product_id) {
                 DB::table('products')->where('productId', $product_id)->delete();
                 DB::table('properties')->where('productId', $product_id)->delete();
@@ -195,9 +199,12 @@ class ProductController extends AdminBaseController
                 DB::insert('insert into historyadmins (adminId, act, createDate, productId) values (?, ?, ?, ?)', [$admin_id, 'Delete', $mytime,$product_id]);
                 }
                 Session::put('message', 'Delete product successful!');
+            return redirect()->route('admin.products.list');
         }
-        Session::put('message', 'Delete product fail, you have deleted more than 30 products today!');
-            return ;
+        else{
+            Session::put('message', 'Delete product fail, you have deleted more than 30 products today!');
+            return redirect()->route('admin.products.list');
+        }
     }
 
     public function show_category_home($cate_name){

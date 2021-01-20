@@ -96,7 +96,7 @@ class UserController extends AdminBaseController
         return view('admin::users.update_password')->with('user', $user);
     }
 
-    public function save_update_password(UserCRUDRequest $request, $user_id){
+    public function save_update_password(Request $request, $user_id){
         $password = $request->user_password;
         $user = User::where('userId', $user_id)->first();
 
@@ -105,9 +105,21 @@ class UserController extends AdminBaseController
 
         }
         $user_update = array();
-        $user_update['password'] = Hash::make($request->user_new_password);
+        $user_update['password'] = Hash::make($request->new_password);
         DB::table('users')->where('userId', $user_id)->update($user_update);
+
         $user = DB::table('users')->where('userId', $user_id)->get();
+        $data = array();
+        foreach ($user as $us){
+            $data['name'] = $us->name;
+            $data['email'] = $us->email;
+        }
+        //send mail
+        Mail::send(['text'=>'admin::users.mail'], array('password'=>$password), function($message) use($data){
+            $message->to($data['email'], $data['name'])->subject('Your aims app account changed password');
+            $message->from('phubuihedspi@gmail.com','Aims System');
+        });
+
         Session::put('message', 'Update password successful!');
         return view('admin::users.update_password')->with('user', $user);
     }

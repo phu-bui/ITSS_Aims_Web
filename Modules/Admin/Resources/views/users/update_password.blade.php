@@ -38,14 +38,20 @@
                         <!-- Slug input-->
                         <div class="col-md-4 mb-3">
                             <label for="slug">Current password</label>
-                            <input type="password" class="form-control" id="user_password" name="user_password" required="">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="user_password" name="user_password" required="">
+                            @error('password')
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-row">
                         <!-- Name input-->
                         <div class="col-md-4 mb-3">
                             <label for="name">New password</label>
-                            <input type="password" class="form-control" id="new_password" name="new_password" required="">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="new_password" name="new_password" required="">
+                            @error('password')
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-sm-12 clearfix">
