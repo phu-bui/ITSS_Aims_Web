@@ -16,8 +16,7 @@ class UserCRUDRequest extends FormRequest
     {
         return [
             'email' =>'required|email',
-            'password' => 'required|min:6',
-            'phone_number' => 'required|regex:/^0(\d{9})$/i'
+            'password' => 'required|min:6'
         ];
     }
 
@@ -43,8 +42,6 @@ class UserCRUDRequest extends FormRequest
             'email.email' => "Email must be in @ gmail.com format",
             'password.required' => "Password has not been entered",
             'password.min' => "Password longer than 6 characters",
-            'phone_number.required' => 'Phone number has not been entered',
-            'phone_number.regex' => 'Phone number incorrect format',
         ];
     }
 }

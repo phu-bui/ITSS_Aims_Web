@@ -260,8 +260,15 @@ class CheckoutController extends Controller
             }
             $user_id = $user->userId;
             $ship_by_order = DB::table('ships')->join('orders', 'ships.shipId', '=', 'orders.shipId')->where('orders.userId', $user_id)->orderby('ships.shipId', 'desc')->limit(1)->get();
-            foreach ($ship_by_order as $ship) {
-                $ship_id = $ship->shipId;
+            if(sizeof($ship_by_order) == 0){
+                $ship_new = DB::table('ships')->orderby('shipId', 'desc')->limit(1)->get();
+                foreach ($ship_new as $ship){
+                    $ship_id = $ship->shipId;
+                }
+            }else {
+                foreach ($ship_by_order as $ship) {
+                    $ship_id = $ship->shipId;
+                }
             }
             $ship_info = DB::table('ships')->where('shipId', $ship_id)->get();
             foreach ($ship_info as $info) {

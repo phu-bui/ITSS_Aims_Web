@@ -54,10 +54,7 @@
                         <!-- Input image -->
                         <div class="col-md-4 mb-3">
                             <label for="image">Phone number</label>
-                            <input type="text" class="form-control @error('phone_number') is-invalid @enderror" id="phone" name="phone">
-                            @error('phone_number')
-                            <span class="invalid-feedback d-block">{{ $message }}</span>
-                            @enderror
+                            <input type="text" class="form-control " id="phone" name="phone">
                         </div>
                     </div>
 
